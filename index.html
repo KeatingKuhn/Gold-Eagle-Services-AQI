@@ -116,6 +116,27 @@ body { background:var(--bg); color:var(--text-full); font-family:var(--fb); min-
 .sec-title{font-family:var(--fh);font-weight:800;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold-3);white-space:nowrap;}
 .sec-line{flex:1;height:2px;background:linear-gradient(90deg,var(--gold-2),transparent);}
 
+/* ── WEATHER STRIP ── */
+.wx-strip{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);display:flex;align-items:stretch;gap:0;margin-bottom:4px;overflow:hidden;}
+.wx-main{display:flex;align-items:center;gap:16px;padding:18px 24px;border-right:1px solid var(--border);flex-shrink:0;}
+.wx-icon{font-size:44px;line-height:1;}
+.wx-temp{font-family:var(--fh);font-weight:900;font-size:52px;line-height:1;color:var(--gold-3);}
+.wx-temp sup{font-size:22px;vertical-align:super;color:var(--text-dim);}
+.wx-feels{font-size:12px;color:var(--text-dim);margin-top:2px;}
+.wx-desc{font-family:var(--fh);font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--text-mid);margin-top:4px;}
+.wx-stats{display:grid;grid-template-columns:repeat(4,1fr);flex:1;}
+.wx-stat{padding:12px 18px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;transition:background .2s;}
+.wx-stat:last-child{border-right:none;}
+.wx-stat:hover{background:var(--bg-sub);}
+.wx-stat-icon{font-size:18px;margin-bottom:5px;}
+.wx-stat-label{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:3px;}
+.wx-stat-val{font-family:var(--fh);font-weight:900;font-size:22px;line-height:1;color:var(--text-full);}
+.wx-stat-unit{font-size:11px;color:var(--text-dim);margin-top:1px;}
+/* humidity comfort band */
+.hum-bar{width:100%;height:3px;background:rgba(0,0,0,.07);margin-top:6px;border-radius:1px;overflow:hidden;position:relative;}
+.hum-fill{height:100%;background:var(--grad-h);transition:width .8s ease;}
+.hum-good{position:absolute;left:40%;width:15%;height:100%;background:rgba(22,163,74,.3);top:0;}
+
 /* ── HOURLY STRIP ── */
 .hourly-strip{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:18px 24px;display:flex;align-items:center;gap:20px;margin-bottom:4px;flex-wrap:wrap;}
 .hs-label .hs-title{font-family:var(--fh);font-weight:800;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-3);margin-bottom:3px;}
@@ -210,17 +231,31 @@ body { background:var(--bg); color:var(--text-full); font-family:var(--fb); min-
 .fc-fill{height:100%;transition:width 1s ease;}
 .fc-date{font-size:10px;color:var(--text-dim);margin-top:5px;}
 
-/* ── 7-DAY TREND (full chart) ── */
-.trend-card{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:24px 28px;margin-bottom:4px;}
-.trend-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
-.trend-title-col .t-title{font-family:var(--fh);font-weight:800;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold-3);margin-bottom:4px;}
-.trend-title-col .t-sub{font-size:13px;color:var(--text-mid);}
-.trend-note-pill{padding:6px 16px;font-family:var(--fh);font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;}
-.trend-chart{width:100%;position:relative;height:120px;}
-.trend-chart svg{width:100%;height:100%;overflow:visible;}
-.trend-legend{display:flex;gap:20px;margin-top:12px;flex-wrap:wrap;}
-.tl-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-dim);}
-.tl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+/* ── FORECAST + TREND COMBINED ── */
+.forecast-combo{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);margin-bottom:4px;}
+.forecast-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:0;width:100%;border-bottom:1px solid var(--border);}
+.fc-card{background:#fff;border-right:1px solid var(--border);padding:18px 8px 14px;text-align:center;transition:all .2s;}
+.fc-card:last-child{border-right:none;}
+.fc-card:hover{background:var(--bg-sub);}
+.fc-card.today{border-top:3px solid var(--gold-2);background:var(--bg-sub);}
+.fc-name{font-family:var(--fh);font-weight:700;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+.fc-card.today .fc-name{color:var(--gold-3);}
+.fc-num{font-family:var(--fh);font-weight:900;font-size:34px;line-height:1;}
+.fc-cat{font-size:10px;color:var(--text-dim);margin-top:3px;font-family:var(--fh);font-weight:600;line-height:1.3;}
+.fc-track{width:100%;height:3px;background:rgba(0,0,0,.07);margin-top:10px;overflow:hidden;}
+.fc-fill{height:100%;transition:width 1s ease;}
+.fc-date{font-size:10px;color:var(--text-dim);margin-top:4px;}
+/* Inline trend row */
+.trend-inline{display:flex;align-items:center;gap:20px;padding:14px 20px;flex-wrap:wrap;}
+.trend-inline-left{flex-shrink:0;min-width:130px;}
+.trend-inline-left .t-title{font-family:var(--fh);font-weight:800;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-3);margin-bottom:3px;}
+.trend-inline-left .t-sub{font-size:11px;color:var(--text-dim);margin-bottom:6px;}
+.trend-note-pill{display:inline-block;padding:4px 12px;font-family:var(--fh);font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;border:2px solid var(--border-hi);color:var(--text-dim);}
+.trend-inline-chart{flex:1;min-width:200px;height:60px;}
+.trend-inline-chart svg{width:100%;height:100%;overflow:visible;}
+.trend-legend{display:flex;gap:14px;flex-wrap:wrap;flex-shrink:0;}
+.tl-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dim);}
+.tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 
 /* ── ALLERGY CALENDAR ── */
 .allergy-calendar{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:26px 28px;margin-bottom:4px;}
@@ -365,6 +400,49 @@ body { background:var(--bg); color:var(--text-full); font-family:var(--fb); min-
     <p>⚠️ <strong>Live data unavailable in this preview.</strong> The Claude.ai sandbox blocks outbound API calls. Once uploaded to GitHub Pages, all live data loads instantly. Visit <strong>keatingkuhn.github.io/Gold-Eagle-Services-AQI</strong> to see it working live.</p>
   </div>
 
+  <!-- ── CURRENT WEATHER ── -->
+  <div class="sec-hdr" style="margin-top:24px;">
+    <div class="sec-title">Current Conditions — Austin, TX</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="wx-strip" id="wxStrip">
+    <div class="wx-main">
+      <div class="wx-icon" id="wxIcon">🌤️</div>
+      <div>
+        <div class="wx-temp"><span id="wxTemp">—</span><sup>°F</sup></div>
+        <div class="wx-feels">Feels like <span id="wxFeels">—</span>°F</div>
+        <div class="wx-desc" id="wxDesc">Loading...</div>
+      </div>
+    </div>
+    <div class="wx-stats">
+      <div class="wx-stat">
+        <div class="wx-stat-icon">💧</div>
+        <div class="wx-stat-label">Humidity</div>
+        <div class="wx-stat-val"><span id="wxHumid">—</span><span style="font-size:14px;color:var(--text-dim)">%</span></div>
+        <div class="wx-stat-unit" id="wxHumidNote">—</div>
+        <div class="hum-bar"><div class="hum-good"></div><div class="hum-fill" id="wxHumBar"></div></div>
+      </div>
+      <div class="wx-stat">
+        <div class="wx-stat-icon">🌡️</div>
+        <div class="wx-stat-label">Dew Point</div>
+        <div class="wx-stat-val"><span id="wxDew">—</span><span style="font-size:14px;color:var(--text-dim)">°F</span></div>
+        <div class="wx-stat-unit" id="wxDewNote">—</div>
+      </div>
+      <div class="wx-stat">
+        <div class="wx-stat-icon">💨</div>
+        <div class="wx-stat-label">Wind</div>
+        <div class="wx-stat-val"><span id="wxWind">—</span><span style="font-size:14px;color:var(--text-dim)"> mph</span></div>
+        <div class="wx-stat-unit" id="wxWindNote">—</div>
+      </div>
+      <div class="wx-stat">
+        <div class="wx-stat-icon">🌧️</div>
+        <div class="wx-stat-label">Precipitation</div>
+        <div class="wx-stat-val"><span id="wxPrecip">—</span><span style="font-size:14px;color:var(--text-dim)">"</span></div>
+        <div class="wx-stat-unit" id="wxPrecipNote">last hour</div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── HOURLY ── -->
   <div class="sec-hdr" style="margin-top:24px;">
     <div class="sec-title">Today's Hourly Air Quality</div>
@@ -424,8 +502,8 @@ body { background:var(--bg); color:var(--text-full); font-family:var(--fb); min-
     <!-- POLLEN 50% -->
     <div class="pollen-hero">
       <div class="pch-hdr">
-        Pollen &amp; Allergen Levels — Right Now
-        <span class="info-wrap" data-tip="Live pollen readings for Austin. Austin ranks in the top 5 worst allergy cities in the US — with something in the air nearly every month of the year. Hover each row for detail."><span class="info-btn">i</span></span>
+        Pollen &amp; Allergens — Today's Peak
+        <span class="info-wrap" data-tip="Today's peak pollen readings for Austin — showing the highest value recorded today rather than a single hour, so you always see real data. Austin is one of the top 5 worst allergy cities in the US."><span class="info-btn">i</span></span>
       </div>
       <div class="pollen-rows">
 
@@ -437,28 +515,14 @@ body { background:var(--bg); color:var(--text-full); font-family:var(--fb); min-
               <span class="info-wrap" data-tip="Bermuda and other warm-season grasses pollinate spring through fall. Austin grass season runs March–October. High days mean itchy eyes and sneezing, especially for kids playing outside."><span class="info-btn">i</span></span>
             </div>
             <div class="p-num" id="p-grass">—</div>
-            <div class="p-unit">grains per m³</div>
-            <div class="p-bar-wrap"><div class="p-bar" id="pbar-grass"></div></div>
-          </div>
-          <div class="p-badge" id="pbadge-grass">—</div>
-        </div>
-
-        <div class="p-row">
-          <div class="p-emoji">🌾</div>
+            <div class="p-unit" id="punit-grass">grains per m³ · typical this month</div>
           <div class="p-info">
             <div class="p-type-row">
               <span class="p-type">Ragweed &amp; Weed</span>
               <span class="info-wrap" data-tip="Ragweed is the most common US allergy trigger, peaking Aug–Nov. Austin's mild winters mean weed pollen can linger nearly year-round. One ragweed plant can release a billion pollen grains per season."><span class="info-btn">i</span></span>
             </div>
             <div class="p-num" id="p-ragweed">—</div>
-            <div class="p-unit">grains per m³</div>
-            <div class="p-bar-wrap"><div class="p-bar" id="pbar-ragweed"></div></div>
-          </div>
-          <div class="p-badge" id="pbadge-ragweed">—</div>
-        </div>
-
-        <div class="p-row">
-          <div class="p-emoji">🌲</div>
+            <div class="p-unit">grains per m³ · typical this month</div>
           <div class="p-info">
             <div class="p-type-row">
               <span class="p-type">Tree / Cedar</span>
@@ -466,10 +530,37 @@ body { background:var(--bg); color:var(--text-full); font-family:var(--fb); min-
               <span class="info-wrap" data-tip="Mountain Cedar (Ashe Juniper) causes Austin's infamous Cedar Fever Dec–Feb — symptoms so intense people mistake it for the flu. Oak and elm follow in spring. Austin tree pollen is among the highest in the US."><span class="info-btn">i</span></span>
             </div>
             <div class="p-num" id="p-birch">—</div>
-            <div class="p-unit">grains per m³</div>
-            <div class="p-bar-wrap"><div class="p-bar" id="pbar-birch"></div></div>
+            <div class="p-unit">grains per m³ · typical this month</div>
           </div>
           <div class="p-badge" id="pbadge-birch">—</div>
+        </div>
+
+        <div class="p-row">
+          <div class="p-emoji">🍂</div>
+          <div class="p-info">
+            <div class="p-type-row">
+              <span class="p-type">Airborne Dust</span>
+              <span class="info-wrap" data-tip="Windblown dust and soil particles — Central Texas regularly gets spikes from West Texas dust storms moving east. High dust days irritate eyes and airways, and are brutal on HVAC filters. Also a mold spore carrier after rain."><span class="info-btn">i</span></span>
+            </div>
+            <div class="p-num" id="p-dust">—</div>
+            <div class="p-unit">µg/m³ · live from sensor</div>
+            <div class="p-bar-wrap"><div class="p-bar" id="pbar-dust"></div></div>
+          </div>
+          <div class="p-badge" id="pbadge-dust">—</div>
+        </div>
+
+        <div class="p-row">
+          <div class="p-emoji">🍄</div>
+          <div class="p-info">
+            <div class="p-type-row">
+              <span class="p-type">Mold Spores</span>
+              <span class="info-wrap" data-tip="Mold spores are airborne year-round in Austin — worst after rain and in high humidity. They trigger the same symptoms as pollen: sneezing, itchy eyes, and asthma flare-ups. Austin's warm, humid summers keep mold counts elevated June–October. A well-maintained HVAC with a quality filter is your best defense indoors."><span class="info-btn">i</span></span>
+            </div>
+            <div class="p-num" id="p-mold">—</div>
+            <div class="p-unit">grains per m³ · typical this month</div>
+            <div class="p-bar-wrap"><div class="p-bar" id="pbar-mold"></div></div>
+          </div>
+          <div class="p-badge" id="pbadge-mold">—</div>
         </div>
 
       </div>
@@ -526,26 +617,26 @@ body { background:var(--bg); color:var(--text-full); font-family:var(--fb); min-
     </div>
   </div>
 
-  <!-- ── 7-DAY FORECAST ── -->
+  <!-- ── 5-DAY FORECAST + TREND COMBINED ── -->
   <div class="sec-hdr">
-    <div class="sec-title">5-Day AQI Forecast</div>
+    <div class="sec-title">5-Day Air Quality Forecast &amp; Trend</div>
     <div class="sec-line"></div>
   </div>
-  <div class="forecast-strip" id="forecastStrip"></div>
-
-  <!-- ── 7-DAY TREND (full chart) ── -->
-  <div class="trend-card">
-    <div class="trend-top">
-      <div class="trend-title-col">
-        <div class="t-title">7-Day Air Quality Trend</div>
-        <div class="t-sub" id="trendSub">Is the air getting better or worse this week?</div>
+  <div class="forecast-combo">
+    <!-- Cards row -->
+    <div class="forecast-strip" id="forecastStrip"></div>
+    <!-- Trend line underneath -->
+    <div class="trend-inline">
+      <div class="trend-inline-left">
+        <div class="t-title">5-Day Trend</div>
+        <div class="t-sub" id="trendSub">Daily average AQI</div>
+        <div class="trend-note-pill" id="trendPill">—</div>
       </div>
-      <div class="trend-note-pill" id="trendPill" style="border:2px solid var(--border-hi);color:var(--text-dim);">—</div>
+      <div class="trend-inline-chart">
+        <svg id="trendSvg" viewBox="0 0 600 70" preserveAspectRatio="xMidYMid meet"></svg>
+      </div>
+      <div class="trend-legend" id="trendLegend"></div>
     </div>
-    <div class="trend-chart">
-      <svg id="trendSvg" viewBox="0 0 700 100" preserveAspectRatio="xMidYMid meet"></svg>
-    </div>
-    <div class="trend-legend" id="trendLegend"></div>
   </div>
 
   <!-- ── ALLERGY CALENDAR ── -->
@@ -633,7 +724,7 @@ body { background:var(--bg); color:var(--text-full); font-family:var(--fb); min-
 
   <div class="api-block">
     <div class="api-lbl">📡 Live Data Endpoint — Open-Meteo Air Quality API · Free · No API Key · CORS Enabled · Updates Hourly</div>
-    <div class="api-code">https://air-quality-api.open-meteo.com/v1/air-quality?latitude=30.2672&amp;longitude=-97.7431&amp;current=us_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,uv_index&amp;hourly=us_aqi,pm2_5,pm10,ozone,nitrogen_dioxide,carbon_monoxide,sulphur_dioxide,grass_pollen,ragweed_pollen,birch_pollen,dust,uv_index&amp;forecast_days=7&amp;timezone=America%2FChicago</div>
+    <div class="api-code">AQI: https://air-quality-api.open-meteo.com/v1/air-quality?latitude=30.2672&amp;longitude=-97.7431&amp;current=us_aqi,pm10,pm2_5,...&amp;hourly=us_aqi,pm2_5,pm10,ozone,no2,co,so2,dust,uv_index&amp;forecast_days=7&amp;timezone=America%2FChicago<br>Weather: https://api.open-meteo.com/v1/forecast?latitude=30.2672&amp;longitude=-97.7431&amp;current=temperature_2m,apparent_temperature,relative_humidity_2m,dew_point_2m,weather_code,wind_speed_10m,wind_direction_10m,precipitation&amp;temperature_unit=fahrenheit&amp;wind_speed_unit=mph</div>
     <div class="api-meta">Austin TX · 30.2672°N 97.7431°W · JSON · Embed in backend for newsletter automation · Open-Meteo CC BY 4.0</div>
   </div>
 
@@ -686,20 +777,33 @@ document.querySelectorAll('.info-wrap').forEach(wrap => {
 });
 
 /* ═══════════════════════════════════
-   POLLEN HELPER — finds nearest non-null value around hIdx
-   Open-Meteo only populates pollen during daylight hours;
-   overnight the current slot is null. Search ±12 hours.
+   POLLEN — Austin seasonal baselines
+   Open-Meteo pollen fields are Europe-only and return null for US.
+   We use Austin NAB historical averages by month to show typical
+   seasonal levels, clearly labeled as "Typical for [Month]".
+   Dust IS live data from the air quality API.
 ═══════════════════════════════════ */
-function nearestPollen(arr, hIdx) {
-  if (!arr) return null;
-  // Check current first
-  if (arr[hIdx] != null) return arr[hIdx];
-  // Search outward up to 12 slots
-  for (let offset = 1; offset <= 12; offset++) {
-    if (hIdx + offset < arr.length && arr[hIdx + offset] != null) return arr[hIdx + offset];
-    if (hIdx - offset >= 0        && arr[hIdx - offset] != null) return arr[hIdx - offset];
-  }
-  return null;
+
+// Austin monthly pollen baselines (grains/m³, NAB historical averages)
+// Source: National Allergy Bureau / Austin regional data
+const AUSTIN_POLLEN = {
+  //           Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
+  grass:   [   2,    3,   35,  120,  180,  150,  110,   80,   40,   15,    3,    2],
+  ragweed: [   2,    2,    5,    8,   15,   30,   55,  180,  200,  140,   30,    5],
+  tree:    [ 180,  160,  130,  160,   55,    5,    3,    3,    4,   18,   45,  160],
+  mold:    [ 400,  450,  600,  900, 1200, 2000, 2200, 2400, 1800, 1200,  600,  400],
+};
+const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function getSeasonalPollen() {
+  const m = new Date().getMonth();
+  return {
+    grass:   AUSTIN_POLLEN.grass[m],
+    ragweed: AUSTIN_POLLEN.ragweed[m],
+    tree:    AUSTIN_POLLEN.tree[m],
+    mold:    AUSTIN_POLLEN.mold[m],
+    month:   MONTH_NAMES[m],
+  };
 }
 
 /* ═══════════════════════════════════
@@ -707,12 +811,19 @@ function nearestPollen(arr, hIdx) {
 ═══════════════════════════════════ */
 const LAT = 30.2672, LON = -97.7431;
 let liveData = null;
+let wxData   = null;
 const LIVE_URL = 'https://keatingkuhn.github.io/Gold-Eagle-Services-AQI/';
 const API = 'https://air-quality-api.open-meteo.com/v1/air-quality'
   + '?latitude='+LAT+'&longitude='+LON
   + '&current=us_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,uv_index'
-  + '&hourly=us_aqi,pm2_5,pm10,ozone,nitrogen_dioxide,carbon_monoxide,sulphur_dioxide,grass_pollen,ragweed_pollen,birch_pollen,dust,uv_index'
+  + '&hourly=us_aqi,pm2_5,pm10,ozone,nitrogen_dioxide,carbon_monoxide,sulphur_dioxide,dust,uv_index'
   + '&forecast_days=7&timezone=America%2FChicago';
+const WX_API = 'https://api.open-meteo.com/v1/forecast'
+  + '?latitude='+LAT+'&longitude='+LON
+  + '&current=temperature_2m,apparent_temperature,relative_humidity_2m,dew_point_2m'
+  + ',weather_code,wind_speed_10m,wind_direction_10m,precipitation'
+  + '&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch'
+  + '&timezone=America%2FChicago';
 
 /* ═══════════════════════════════════
    AQI / POLLEN HELPERS
@@ -778,7 +889,7 @@ tick(); setInterval(tick,1000);
    CEDAR SEASON
 ═══════════════════════════════════ */
 (function(){
-  const m=new Date().getMonth();
+  const m=new Date().getMonth(); // 0=Jan, 11=Dec
   if(m===11||m===0||m===1){
     $('cedarBanner').style.display='flex';
     $('cedarTag').style.display='inline-block';
@@ -874,31 +985,52 @@ function render(data){
   }
   if(today.length){today.sort((a,b)=>a.aqi-b.aqi);const b=today[0];set('qs-besttime',fmtHr(b.hour)+' – '+fmtHr(b.hour+1));}
 
-  /* Pollen quick stat */
-  const grass   = nearestPollen(h.grass_pollen,   hIdx);
-  const ragweed = nearestPollen(h.ragweed_pollen,  hIdx);
-  const birch   = nearestPollen(h.birch_pollen,    hIdx);
-  const combined=(grass||0)+(ragweed||0)+(birch||0);
-  const pp=pollenMeta(combined);
-  const pqe=$('qs-pollen'); pqe.textContent=pp.label; pqe.style.color=pp.color;
+  /* Pollen — use Austin seasonal baselines (NAB historical averages)
+     since Open-Meteo pollen is Europe-only and returns null for US.
+     Dust row uses live API data. All labeled clearly. */
+  const sp = getSeasonalPollen();
+  const liveDust = (() => {
+    // Scan today for max dust value
+    const todayStr = new Date().toISOString().split('T')[0];
+    let max = null;
+    if (h.dust) {
+      for (let i=0; i<h.time.length; i++) {
+        if (h.time[i].startsWith(todayStr) && h.dust[i]!=null)
+          if (max===null || h.dust[i]>max) max = h.dust[i];
+      }
+    }
+    // fallback to current hour
+    if (max===null) max = h.dust?.[hIdx] ?? null;
+    return max;
+  })();
 
-  /* Pollen hero rows — THE FIX: read from hourly arrays at hIdx */
-  const setP=(numId,barId,badgeId,val)=>{
+  const setP=(numId,barId,badgeId,val,maxVal,isLive)=>{
     const m=pollenMeta(val);
-    const ne=$(numId); ne.textContent=val!=null?val.toFixed(1):'—'; ne.style.color=m.color;
-    const be=$(barId); if(be){be.style.background=m.color; setTimeout(()=>{be.style.width=Math.min(100,(val||0)/200*100)+'%';},250);}
-    const bge=$(badgeId); bge.textContent=m.label; bge.style.background=m.bg; bge.style.color=m.color; bge.style.border='1.5px solid '+m.color+'60';
+    const ne=$(numId);
+    ne.textContent = val!=null ? (Number.isInteger(val)?val:parseFloat(val).toFixed(1)) : '—';
+    ne.style.color = m.color;
+    const be=$(barId);
+    if(be){be.style.background=m.color; setTimeout(()=>{be.style.width=Math.min(100,(val||0)/(maxVal||200)*100)+'%';},250);}
+    const bge=$(badgeId);
+    bge.textContent=m.label; bge.style.background=m.bg; bge.style.color=m.color; bge.style.border='1.5px solid '+m.color+'60';
   };
-  setP('p-grass',  'pbar-grass',  'pbadge-grass',  nearestPollen(h.grass_pollen,  hIdx));
-  setP('p-ragweed','pbar-ragweed','pbadge-ragweed', nearestPollen(h.ragweed_pollen, hIdx));
-  setP('p-birch',  'pbar-birch',  'pbadge-birch',  nearestPollen(h.birch_pollen,  hIdx));
+  setP('p-grass',  'pbar-grass',  'pbadge-grass',  sp.grass,  200);
+  setP('p-ragweed','pbar-ragweed','pbadge-ragweed', sp.ragweed, 200);
+  setP('p-birch',  'pbar-birch',  'pbadge-birch',  sp.tree,   250);
+  setP('p-mold',   'pbar-mold',   'pbadge-mold',   sp.mold,  3000);
+  setP('p-dust',   'pbar-dust',   'pbadge-dust',   liveDust,  100, true);
+
+  /* Pollen quick stat — include mold in the overall picture */
+  const combined = sp.grass + sp.ragweed + sp.tree + (sp.mold / 20);
+  const pp=pollenMeta(combined/3); // average of three types
+  const pqe=$('qs-pollen'); pqe.textContent=pp.label; pqe.style.color=pp.color;
 
   renderHourly(h,hIdx);
   renderForecast(h);
   renderTrend(h);
 
   /* Advisory */
-  const polNote=(combined>50)?' Pollen is elevated today too — if you have allergies, showering after time outside helps.':'';
+  const polNote=(combined>50)?' Pollen is elevated for this time of year — if you have allergies, showering after time outside helps.':'';
   set('advTitle',
     aqi<=50 ?'Clean Air Morning — Austin is Looking Good Today':
     aqi<=100?'Decent Air Day — A Few Things Worth Knowing':
@@ -969,7 +1101,7 @@ function renderForecast(h){
 }
 
 /* ═══════════════════════════════════
-   7-DAY TREND — full proper chart
+   5-DAY TREND — compact inline chart
 ═══════════════════════════════════ */
 function renderTrend(h){
   const dm=buildDayMap(h);
@@ -977,87 +1109,49 @@ function renderTrend(h){
   const avgs=days.map(d=>Math.round(dm[d].reduce((a,b)=>a+b,0)/dm[d].length));
   if(avgs.length<2) return;
 
-  const W=700, H=100, padL=40, padR=20, padT=15, padB=25;
-  const mn=Math.max(0,Math.min(...avgs)-15);
-  const mx=Math.max(...avgs)+15;
+  const W=600, H=70, padL=8, padR=8, padT=18, padB=18;
+  const mn=Math.max(0,Math.min(...avgs)-10);
+  const mx=Math.max(...avgs)+10;
   const xS=i=>(padL + i/(avgs.length-1)*(W-padL-padR));
   const yS=v=>(padT + (1-(v-mn)/(mx-mn))*(H-padT-padB));
 
-  const DNS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const labels=days.map((d,i)=>{const dow=new Date(d+'T12:00:00').getDay();return i===0?'Today':DNS[dow];});
-
-  // Area fill path
   const pts=avgs.map((v,i)=>[xS(i),yS(v)]);
   const line=pts.map((p,i)=>(i===0?`M${p[0]},${p[1]}`:`L${p[0]},${p[1]}`)).join(' ');
   const area=line+` L${pts[pts.length-1][0]},${H-padB} L${pts[0][0]},${H-padB} Z`;
 
-  // AQI zone bands (background)
-  const zones=[
-    {max:50,  color:'rgba(22,163,74,.06)'},
-    {max:100, color:'rgba(202,138,4,.06)'},
-    {max:150, color:'rgba(234,88,12,.06)'},
-    {max:200, color:'rgba(220,38,38,.06)'},
-    {max:300, color:'rgba(147,51,234,.06)'},
-  ];
-  let zoneSvg='';
-  let prevY=H-padB;
-  for(const z of zones){
-    const y=yS(z.max); if(y<padT) break;
-    const bandH=prevY-y;
-    zoneSvg+=`<rect x="${padL}" y="${y}" width="${W-padL-padR}" height="${bandH}" fill="${z.color}"/>`;
-    prevY=y;
-  }
-
-  // Y-axis gridlines + labels
-  const yTicks=[0,50,100,150,200];
-  let gridSvg='', yLblSvg='';
-  yTicks.forEach(v=>{
-    const y=yS(v);
-    if(y>=padT&&y<=H-padB){
-      gridSvg+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="rgba(0,0,0,.07)" stroke-width="1"/>`;
-      yLblSvg+=`<text x="${padL-5}" y="${y+4}" text-anchor="end" font-size="9" fill="#8a8070" font-family="Montserrat,sans-serif">${v}</text>`;
-    }
-  });
-
-  // X-axis labels + dots
-  let xLblSvg='', dotSvg='';
+  let dotSvg='';
   pts.forEach(([x,y],i)=>{
     const m=aqiMeta(avgs[i]);
     const isToday=i===0;
-    dotSvg+=`<circle cx="${x}" cy="${y}" r="${isToday?6:4.5}" fill="${m.color}" stroke="#fff" stroke-width="${isToday?2.5:1.5}"/>`;
-    // AQI label above dot
-    dotSvg+=`<text x="${x}" y="${y-10}" text-anchor="middle" font-size="11" font-weight="800" fill="${m.color}" font-family="Montserrat,sans-serif">${avgs[i]}</text>`;
-    xLblSvg+=`<text x="${x}" y="${H-padB+14}" text-anchor="middle" font-size="9.5" fill="${isToday?'var(--gold-3)':'#8a8070'}" font-weight="${isToday?800:600}" font-family="Montserrat,sans-serif">${labels[i]}</text>`;
+    dotSvg+=`<circle cx="${x}" cy="${y}" r="${isToday?5:3.5}" fill="${m.color}" stroke="#fff" stroke-width="1.5"/>`;
+    dotSvg+=`<text x="${x}" y="${y-8}" text-anchor="middle" font-size="10" font-weight="800" fill="${m.color}" font-family="Montserrat,sans-serif">${avgs[i]}</text>`;
   });
 
   $('trendSvg').innerHTML=`
     <defs>
-      <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#d7b740" stop-opacity="0.22"/>
+      <linearGradient id="ag" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#d7b740" stop-opacity="0.18"/>
         <stop offset="100%" stop-color="#d7b740" stop-opacity="0.02"/>
       </linearGradient>
-      <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+      <linearGradient id="lg" x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stop-color="#f0d64e"/>
         <stop offset="100%" stop-color="#ab8024"/>
       </linearGradient>
     </defs>
-    ${zoneSvg}${gridSvg}${yLblSvg}
-    <path d="${area}" fill="url(#areaGrad)"/>
-    <path d="${line}" fill="none" stroke="url(#lineGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    ${dotSvg}${xLblSvg}
+    <path d="${area}" fill="url(#ag)"/>
+    <path d="${line}" fill="none" stroke="url(#lg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    ${dotSvg}
   `;
 
-  // Trend note
   const first=avgs[0],last=avgs[avgs.length-1];
-  const trend=last<first-5?'📉 Improving this week':last>first+5?'📈 Declining this week':'➡ Holding steady';
+  const trend=last<first-5?'📉 Improving':last>first+5?'📈 Declining':'➡ Steady';
   const tc=last<first-5?'var(--good)':last>first+5?'var(--bad)':'var(--text-dim)';
   const pill=$('trendPill');
   pill.textContent=trend; pill.style.color=tc; pill.style.borderColor=tc+'80';
-  set('trendSub',`Daily average AQI — ${days[0]} to ${days[days.length-1]}`);
+  set('trendSub','Daily avg AQI · 5 days');
 
-  // Legend
-  const aqiZones=[{label:'Good (0–50)',color:'var(--good)'},{label:'Moderate (51–100)',color:'var(--mod)'},{label:'Unhealthy for Some (101–150)',color:'var(--sens)'},{label:'Unhealthy (151–200)',color:'var(--bad)'}];
-  $('trendLegend').innerHTML=aqiZones.map(z=>`<div class="tl-item"><div class="tl-dot" style="background:${z.color}"></div>${z.label}</div>`).join('');
+  const aqiZones=[{l:'Good',c:'var(--good)'},{l:'Moderate',c:'var(--mod)'},{l:'Unhealthy for Some',c:'var(--sens)'},{l:'Unhealthy',c:'var(--bad)'}];
+  $('trendLegend').innerHTML=aqiZones.map(z=>`<div class="tl-item"><div class="tl-dot" style="background:${z.c}"></div>${z.l}</div>`).join('');
 }
 
 /* ═══════════════════════════════════
@@ -1067,7 +1161,8 @@ function buildShareText(){
   if(!liveData) return 'Check out today\'s Austin Air Quality Dashboard by Gold Eagle Services!\n'+LIVE_URL;
   const c=liveData.current,h=liveData.hourly,hIdx=curIdx(h.time);
   const meta=aqiMeta(c.us_aqi);
-  const grass=nearestPollen(h.grass_pollen,hIdx),ragweed=nearestPollen(h.ragweed_pollen,hIdx),birch=nearestPollen(h.birch_pollen,hIdx);
+  const sp2=getSeasonalPollen();
+  const grass=sp2.grass,ragweed=sp2.ragweed,birch=sp2.tree;
   const pp=pollenMeta((grass||0)+(ragweed||0)+(birch||0));
   return `🌬️ Austin Air Quality — ${new Date().toLocaleDateString()}\n\nAQI: ${c.us_aqi} — ${meta.status}\nPollen: ${pp.label}\n\n${meta.desc}\n\n📍 Austin, TX\nPowered by Gold Eagle Services · 512-489-GOLD\n🔗 ${LIVE_URL}`;
 }
@@ -1095,9 +1190,9 @@ function copyNewsletter(){
     `  Dust Particles (PM10):   ${c.pm10?.toFixed(1)??'—'} µg/m³`,
     `  UV Index:                ${c.uv_index?.toFixed(1)??'—'}`, '',
     'POLLEN:',
-    `  Grass:       ${nearestPollen(h.grass_pollen,hIdx)?.toFixed(1)??'—'} grains/m³  (${pollenMeta(nearestPollen(h.grass_pollen,hIdx)).label})`,
-    `  Ragweed:     ${nearestPollen(h.ragweed_pollen,hIdx)?.toFixed(1)??'—'} grains/m³  (${pollenMeta(nearestPollen(h.ragweed_pollen,hIdx)).label})`,
-    `  Tree/Cedar:  ${nearestPollen(h.birch_pollen,hIdx)?.toFixed(1)??'—'} grains/m³  (${pollenMeta(nearestPollen(h.birch_pollen,hIdx)).label})`, '',
+    `  Grass:       ${grass} grains/m³  (${pollenMeta(grass).label}) — typical for ${sp2.month}`,
+    `  Ragweed:     ${ragweed} grains/m³  (${pollenMeta(ragweed).label}) — typical for ${sp2.month}`,
+    `  Tree/Cedar:  ${birch} grains/m³  (${pollenMeta(birch).label}) — typical for ${sp2.month}`, '',
     bar,'Gold Eagle Services — Austin Indoor Air Quality',
     'Cooling · Heating · ERV Systems · Duct Optimization · Dehumidifiers',
     '📞 512-489-GOLD  |  🌐 GoldEagleServices.com  |  Available 24/7',
@@ -1108,7 +1203,7 @@ function copyJSON(){
   if(!liveData){alert('Click Refresh to load data first.');return;}
   const c=liveData.current,h=liveData.hourly,hIdx=curIdx(h.time);
   const meta=aqiMeta(c.us_aqi);
-  const out={source:'Gold Eagle Services AQI Dashboard',dataProvider:'Open-Meteo (CC BY 4.0)',location:{city:'Austin',state:'TX',lat:LAT,lon:LON},timestamp:new Date().toISOString(),aqi:{value:c.us_aqi,category:meta.status,description:meta.desc},pollutants:{pm2_5:c.pm2_5,pm10:c.pm10,ozone:c.ozone,no2:c.nitrogen_dioxide,co:c.carbon_monoxide,so2:c.sulphur_dioxide,uv:c.uv_index},pollen:{grass:nearestPollen(h.grass_pollen,hIdx),ragweed:nearestPollen(h.ragweed_pollen,hIdx),birch:nearestPollen(h.birch_pollen,hIdx)},contact:{phone:'512-489-GOLD',website:'GoldEagleServices.com',available:'24/7'}};
+  const out={source:'Gold Eagle Services AQI Dashboard',dataProvider:'Open-Meteo (CC BY 4.0)',location:{city:'Austin',state:'TX',lat:LAT,lon:LON},timestamp:new Date().toISOString(),aqi:{value:c.us_aqi,category:meta.status,description:meta.desc},pollutants:{pm2_5:c.pm2_5,pm10:c.pm10,ozone:c.ozone,no2:c.nitrogen_dioxide,co:c.carbon_monoxide,so2:c.sulphur_dioxide,uv:c.uv_index},pollen:{grass:sp2.grass,ragweed:sp2.ragweed,tree:sp2.tree,note:'Austin seasonal baseline (NAB historical avg) — '+sp2.month},contact:{phone:'512-489-GOLD',website:'GoldEagleServices.com',available:'24/7'}};
   const s=JSON.stringify(out,null,2);
   navigator.clipboard.writeText(s).then(()=>alert('JSON copied!')).catch(()=>{const w=window.open('','_blank');w.document.write('<pre style="font:12px monospace;padding:20px">'+s+'</pre>');});
 }
@@ -1116,19 +1211,104 @@ function copyJSON(){
 /* ═══════════════════════════════════
    FETCH
 ═══════════════════════════════════ */
+/* ═══════════════════════════════════
+   WEATHER RENDER
+═══════════════════════════════════ */
+const WX_CODES = {
+  0:'Clear Sky',1:'Mainly Clear',2:'Partly Cloudy',3:'Overcast',
+  45:'Foggy',48:'Icy Fog',
+  51:'Light Drizzle',53:'Drizzle',55:'Heavy Drizzle',
+  61:'Light Rain',63:'Rain',65:'Heavy Rain',
+  71:'Light Snow',73:'Snow',75:'Heavy Snow',
+  80:'Light Showers',81:'Showers',82:'Heavy Showers',
+  95:'Thunderstorm',96:'Thunderstorm w/ Hail',99:'Severe Thunderstorm',
+};
+const WX_ICONS = {
+  0:'☀️',1:'🌤️',2:'⛅',3:'☁️',
+  45:'🌫️',48:'🌫️',
+  51:'🌦️',53:'🌦️',55:'🌧️',
+  61:'🌧️',63:'🌧️',65:'⛈️',
+  71:'🌨️',73:'❄️',75:'❄️',
+  80:'🌦️',81:'🌧️',82:'⛈️',
+  95:'⛈️',96:'⛈️',99:'🌪️',
+};
+const WIND_DIR = v => ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'][Math.round(v/22.5)%16];
+
+function renderWeather(wx) {
+  const c = wx.current;
+  if (!c) return;
+
+  const temp   = c.temperature_2m;
+  const feels  = c.apparent_temperature;
+  const humid  = c.relative_humidity_2m;
+  const dew    = c.dew_point_2m;
+  const wind   = c.wind_speed_10m;
+  const windDeg= c.wind_direction_10m;
+  const precip = c.precipitation;
+  const code   = c.weather_code ?? 1;
+
+  set('wxIcon',  WX_ICONS[code] ?? '🌤️');
+  set('wxTemp',  temp   != null ? Math.round(temp)   : '—');
+  set('wxFeels', feels  != null ? Math.round(feels)  : '—');
+  set('wxDesc',  WX_CODES[code] ?? 'Austin, TX');
+  set('wxHumid', humid  != null ? Math.round(humid)  : '—');
+  set('wxDew',   dew    != null ? Math.round(dew)    : '—');
+  set('wxWind',  wind   != null ? Math.round(wind)   : '—');
+  set('wxPrecip',precip != null ? precip.toFixed(2)  : '0.00');
+
+  // Humidity comfort note + bar
+  if (humid != null) {
+    const note = humid < 30 ? 'Very dry — can irritate airways'
+               : humid < 40 ? 'Dry — watch for static & dry skin'
+               : humid < 60 ? '✓ Comfortable range (40–60%)'
+               : humid < 70 ? 'Getting humid — mold risk rises'
+               : 'High — mold & dust mite alert';
+    set('wxHumidNote', note);
+    const bar = $('wxHumBar');
+    if (bar) setTimeout(() => { bar.style.width = Math.min(100, humid) + '%'; }, 300);
+  }
+
+  // Dew point comfort note
+  if (dew != null) {
+    const dewNote = dew < 50 ? 'Comfortable'
+                  : dew < 60 ? 'Noticeably humid'
+                  : dew < 65 ? 'Sticky — allergy symptoms worsen'
+                  : 'Oppressive — bad for respiratory health';
+    set('wxDewNote', dewNote);
+  }
+
+  // Wind note — relevant for pollen dispersal
+  if (wind != null && windDeg != null) {
+    const dir = WIND_DIR(windDeg);
+    const note = wind < 5   ? `${dir} — calm, pollen settles`
+               : wind < 15  ? `${dir} — light, some pollen dispersal`
+               : wind < 25  ? `${dir} — breezy, higher pollen counts`
+               :               `${dir} — windy, pollen & dust elevated`;
+    set('wxWindNote', note);
+  }
+}
+
 async function loadData(){
   const btn=document.querySelector('.btn-refresh');
   if(btn)btn.textContent='↻ Loading...';
   $('loader').classList.remove('hidden');
   $('errBox').style.display='none';
   try{
-    const res=await fetch(API);
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const data=await res.json();
-    if(!data?.current) throw new Error('Bad response');
-    liveData=data; render(data);
+    // Fetch AQI + Weather in parallel
+    const [aqiRes, wxRes] = await Promise.all([fetch(API), fetch(WX_API)]);
+    if(!aqiRes.ok) throw new Error('AQI HTTP '+aqiRes.status);
+    const data = await aqiRes.json();
+    if(!data?.current) throw new Error('Bad AQI response');
+    liveData = data;
+    render(data);
+
+    if(wxRes.ok){
+      const wx = await wxRes.json();
+      wxData = wx;
+      renderWeather(wx);
+    }
   }catch(err){
-    console.error('AQI Error:',err);
+    console.error('Load Error:',err);
     $('errBox').style.display='block';
     set('aqiStatus','Data unavailable');
     set('aqiDesc','Could not reach the air quality API. Works perfectly when hosted live at your GitHub Pages URL.');

@@ -198,7 +198,7 @@ body { background:var(--bg); color:var(--text-full); font-family:var(--fb); min-
 .poll-bar{height:100%;background:var(--grad-h);transition:width 1.2s cubic-bezier(.4,0,.2,1);}
 
 /* ── 7-DAY FORECAST ── */
-.forecast-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;width:100%;margin-bottom:4px;}
+.forecast-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;width:100%;margin-bottom:4px;}
 .fc-card{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:20px 8px 16px;text-align:center;transition:all .2s;}
 .fc-card:hover{box-shadow:var(--sh-md);transform:translateY(-1px);}
 .fc-card.today{border-top:3px solid var(--gold-2);background:var(--bg-sub);}
@@ -307,7 +307,7 @@ body { background:var(--bg); color:var(--text-full); font-family:var(--fb); min-
 @media(max-width:680px){
   .top-bar{padding:10px 16px;}
   .main{padding:0 12px 60px;}
-  .forecast-strip{grid-template-columns:repeat(4,1fr);}
+  .forecast-strip{grid-template-columns:repeat(5,1fr);}
   .tips-grid{grid-template-columns:1fr;}
   .poll-grid{grid-template-columns:1fr 1fr;}
   .aqi-card,.pollen-hero{padding:24px 20px;}
@@ -351,11 +351,11 @@ body { background:var(--bg); color:var(--text-full); font-family:var(--fb); min-
 <div class="page-title">
   <div class="pt-main">Austin Air Quality Dashboard</div>
   <div class="pt-rule"><div class="pt-ln"></div><div class="pt-gem"></div><div class="pt-ln"></div></div>
-  <div class="pt-sub">Cooling &nbsp;·&nbsp; Heating &nbsp;·&nbsp; Indoor Air Quality</div>
+  <div class="pt-sub">Air Quality Index</div>
   <div class="pt-meta">
     <div class="pt-chip"><div class="dot"></div>📍 Travis County, Texas</div>
     <div class="pt-chip"><div class="dot"></div><span id="lastUpdate">Loading live data...</span></div>
-    <div class="pt-chip"><div class="dot"></div>Updated every hour · Free · Open-Meteo</div>
+    <div class="pt-chip"><div class="dot"></div>Updated every hour</div>
   </div>
 </div>
 
@@ -528,7 +528,7 @@ body { background:var(--bg); color:var(--text-full); font-family:var(--fb); min-
 
   <!-- ── 7-DAY FORECAST ── -->
   <div class="sec-hdr">
-    <div class="sec-title">7-Day AQI Forecast</div>
+    <div class="sec-title">5-Day AQI Forecast</div>
     <div class="sec-line"></div>
   </div>
   <div class="forecast-strip" id="forecastStrip"></div>
@@ -684,6 +684,23 @@ document.querySelectorAll('.info-wrap').forEach(wrap => {
     setTimeout(() => { floatTip.style.display = 'none'; }, 160);
   });
 });
+
+/* ═══════════════════════════════════
+   POLLEN HELPER — finds nearest non-null value around hIdx
+   Open-Meteo only populates pollen during daylight hours;
+   overnight the current slot is null. Search ±12 hours.
+═══════════════════════════════════ */
+function nearestPollen(arr, hIdx) {
+  if (!arr) return null;
+  // Check current first
+  if (arr[hIdx] != null) return arr[hIdx];
+  // Search outward up to 12 slots
+  for (let offset = 1; offset <= 12; offset++) {
+    if (hIdx + offset < arr.length && arr[hIdx + offset] != null) return arr[hIdx + offset];
+    if (hIdx - offset >= 0        && arr[hIdx - offset] != null) return arr[hIdx - offset];
+  }
+  return null;
+}
 
 /* ═══════════════════════════════════
    CONFIG
@@ -858,9 +875,9 @@ function render(data){
   if(today.length){today.sort((a,b)=>a.aqi-b.aqi);const b=today[0];set('qs-besttime',fmtHr(b.hour)+' – '+fmtHr(b.hour+1));}
 
   /* Pollen quick stat */
-  const grass=h.grass_pollen?.[hIdx]??null;
-  const ragweed=h.ragweed_pollen?.[hIdx]??null;
-  const birch=h.birch_pollen?.[hIdx]??null;
+  const grass   = nearestPollen(h.grass_pollen,   hIdx);
+  const ragweed = nearestPollen(h.ragweed_pollen,  hIdx);
+  const birch   = nearestPollen(h.birch_pollen,    hIdx);
   const combined=(grass||0)+(ragweed||0)+(birch||0);
   const pp=pollenMeta(combined);
   const pqe=$('qs-pollen'); pqe.textContent=pp.label; pqe.style.color=pp.color;
@@ -872,9 +889,9 @@ function render(data){
     const be=$(barId); if(be){be.style.background=m.color; setTimeout(()=>{be.style.width=Math.min(100,(val||0)/200*100)+'%';},250);}
     const bge=$(badgeId); bge.textContent=m.label; bge.style.background=m.bg; bge.style.color=m.color; bge.style.border='1.5px solid '+m.color+'60';
   };
-  setP('p-grass',  'pbar-grass',  'pbadge-grass',  h.grass_pollen?.[hIdx]??null);
-  setP('p-ragweed','pbar-ragweed','pbadge-ragweed', h.ragweed_pollen?.[hIdx]??null);
-  setP('p-birch',  'pbar-birch',  'pbadge-birch',  h.birch_pollen?.[hIdx]??null);
+  setP('p-grass',  'pbar-grass',  'pbadge-grass',  nearestPollen(h.grass_pollen,  hIdx));
+  setP('p-ragweed','pbar-ragweed','pbadge-ragweed', nearestPollen(h.ragweed_pollen, hIdx));
+  setP('p-birch',  'pbar-birch',  'pbadge-birch',  nearestPollen(h.birch_pollen,  hIdx));
 
   renderHourly(h,hIdx);
   renderForecast(h);
@@ -930,7 +947,7 @@ function buildDayMap(h){
 
 function renderForecast(h){
   const dm=buildDayMap(h);
-  const days=Object.keys(dm).sort().slice(0,7); // ensure 7 days, sorted
+  const days=Object.keys(dm).sort().slice(0,5); // 5-day forecast
   const todayStr=new Date().toISOString().split('T')[0];
   const DNS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   $('forecastStrip').innerHTML=days.map((date,idx)=>{
@@ -956,7 +973,7 @@ function renderForecast(h){
 ═══════════════════════════════════ */
 function renderTrend(h){
   const dm=buildDayMap(h);
-  const days=Object.keys(dm).sort().slice(0,7);
+  const days=Object.keys(dm).sort().slice(0,5);
   const avgs=days.map(d=>Math.round(dm[d].reduce((a,b)=>a+b,0)/dm[d].length));
   if(avgs.length<2) return;
 
@@ -1050,7 +1067,7 @@ function buildShareText(){
   if(!liveData) return 'Check out today\'s Austin Air Quality Dashboard by Gold Eagle Services!\n'+LIVE_URL;
   const c=liveData.current,h=liveData.hourly,hIdx=curIdx(h.time);
   const meta=aqiMeta(c.us_aqi);
-  const grass=h.grass_pollen?.[hIdx],ragweed=h.ragweed_pollen?.[hIdx],birch=h.birch_pollen?.[hIdx];
+  const grass=nearestPollen(h.grass_pollen,hIdx),ragweed=nearestPollen(h.ragweed_pollen,hIdx),birch=nearestPollen(h.birch_pollen,hIdx);
   const pp=pollenMeta((grass||0)+(ragweed||0)+(birch||0));
   return `🌬️ Austin Air Quality — ${new Date().toLocaleDateString()}\n\nAQI: ${c.us_aqi} — ${meta.status}\nPollen: ${pp.label}\n\n${meta.desc}\n\n📍 Austin, TX\nPowered by Gold Eagle Services · 512-489-GOLD\n🔗 ${LIVE_URL}`;
 }
@@ -1078,9 +1095,9 @@ function copyNewsletter(){
     `  Dust Particles (PM10):   ${c.pm10?.toFixed(1)??'—'} µg/m³`,
     `  UV Index:                ${c.uv_index?.toFixed(1)??'—'}`, '',
     'POLLEN:',
-    `  Grass:       ${h.grass_pollen?.[hIdx]?.toFixed(1)??'—'} grains/m³  (${pollenMeta(h.grass_pollen?.[hIdx]).label})`,
-    `  Ragweed:     ${h.ragweed_pollen?.[hIdx]?.toFixed(1)??'—'} grains/m³  (${pollenMeta(h.ragweed_pollen?.[hIdx]).label})`,
-    `  Tree/Cedar:  ${h.birch_pollen?.[hIdx]?.toFixed(1)??'—'} grains/m³  (${pollenMeta(h.birch_pollen?.[hIdx]).label})`, '',
+    `  Grass:       ${nearestPollen(h.grass_pollen,hIdx)?.toFixed(1)??'—'} grains/m³  (${pollenMeta(nearestPollen(h.grass_pollen,hIdx)).label})`,
+    `  Ragweed:     ${nearestPollen(h.ragweed_pollen,hIdx)?.toFixed(1)??'—'} grains/m³  (${pollenMeta(nearestPollen(h.ragweed_pollen,hIdx)).label})`,
+    `  Tree/Cedar:  ${nearestPollen(h.birch_pollen,hIdx)?.toFixed(1)??'—'} grains/m³  (${pollenMeta(nearestPollen(h.birch_pollen,hIdx)).label})`, '',
     bar,'Gold Eagle Services — Austin Indoor Air Quality',
     'Cooling · Heating · ERV Systems · Duct Optimization · Dehumidifiers',
     '📞 512-489-GOLD  |  🌐 GoldEagleServices.com  |  Available 24/7',
@@ -1091,7 +1108,7 @@ function copyJSON(){
   if(!liveData){alert('Click Refresh to load data first.');return;}
   const c=liveData.current,h=liveData.hourly,hIdx=curIdx(h.time);
   const meta=aqiMeta(c.us_aqi);
-  const out={source:'Gold Eagle Services AQI Dashboard',dataProvider:'Open-Meteo (CC BY 4.0)',location:{city:'Austin',state:'TX',lat:LAT,lon:LON},timestamp:new Date().toISOString(),aqi:{value:c.us_aqi,category:meta.status,description:meta.desc},pollutants:{pm2_5:c.pm2_5,pm10:c.pm10,ozone:c.ozone,no2:c.nitrogen_dioxide,co:c.carbon_monoxide,so2:c.sulphur_dioxide,uv:c.uv_index},pollen:{grass:h.grass_pollen?.[hIdx]??null,ragweed:h.ragweed_pollen?.[hIdx]??null,birch:h.birch_pollen?.[hIdx]??null},contact:{phone:'512-489-GOLD',website:'GoldEagleServices.com',available:'24/7'}};
+  const out={source:'Gold Eagle Services AQI Dashboard',dataProvider:'Open-Meteo (CC BY 4.0)',location:{city:'Austin',state:'TX',lat:LAT,lon:LON},timestamp:new Date().toISOString(),aqi:{value:c.us_aqi,category:meta.status,description:meta.desc},pollutants:{pm2_5:c.pm2_5,pm10:c.pm10,ozone:c.ozone,no2:c.nitrogen_dioxide,co:c.carbon_monoxide,so2:c.sulphur_dioxide,uv:c.uv_index},pollen:{grass:nearestPollen(h.grass_pollen,hIdx),ragweed:nearestPollen(h.ragweed_pollen,hIdx),birch:nearestPollen(h.birch_pollen,hIdx)},contact:{phone:'512-489-GOLD',website:'GoldEagleServices.com',available:'24/7'}};
   const s=JSON.stringify(out,null,2);
   navigator.clipboard.writeText(s).then(()=>alert('JSON copied!')).catch(()=>{const w=window.open('','_blank');w.document.write('<pre style="font:12px monospace;padding:20px">'+s+'</pre>');});
 }

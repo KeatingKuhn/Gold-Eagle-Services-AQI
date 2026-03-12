@@ -9,26 +9,23 @@
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
 :root {
-  /* ── Light warm stone background — premium, readable, not clinical */
-  --bg:          #f2efe8;
-  --bg-card:     #ffffff;
-  --bg-sub:      #f8f6f1;
-  --bg-hover:    #f0ede5;
-  --border:      rgba(140,100,20,0.16);
-  --border-hi:   rgba(171,128,36,0.45);
-  --border-card: rgba(140,100,20,0.12);
+  --bg:        #f2efe8;
+  --bg-card:   #ffffff;
+  --bg-sub:    #f8f6f1;
+  --bg-hover:  #f0ede5;
+  --border:    rgba(140,100,20,0.15);
+  --border-hi: rgba(171,128,36,0.45);
 
-  --text-full:   #1a1710;
-  --text-mid:    #4a4538;
-  --text-dim:    #8a8070;
-  --text-inv:    #ffffff;
+  --text-full: #1a1710;
+  --text-mid:  #4a4538;
+  --text-dim:  #8a8070;
 
   --gold-1: #f0d64e;
   --gold-2: #d7b740;
   --gold-3: #ab8024;
   --gold-dk:#7a5c10;
   --grad:   linear-gradient(135deg,#f0d64e 0%,#d7b740 48%,#ab8024 100%);
-  --grad-v: linear-gradient(180deg,#d4a017 0%,#ab8024 55%,#7a5c10 100%);
+  --grad-v: linear-gradient(180deg,#d4a017 0%,#ab8024 60%,#7a5c10 100%);
   --grad-h: linear-gradient(90deg,#f0d64e 0%,#d7b740 48%,#ab8024 100%);
 
   --good:  #16a34a;
@@ -38,408 +35,303 @@
   --vbad:  #9333ea;
   --haz:   #7f1d1d;
 
-  --shadow-sm: 0 1px 4px rgba(100,80,20,0.08);
-  --shadow-md: 0 4px 16px rgba(100,80,20,0.10);
-  --shadow-lg: 0 8px 32px rgba(100,80,20,0.13);
+  --sh-sm: 0 1px 4px rgba(100,80,20,0.08);
+  --sh-md: 0 4px 16px rgba(100,80,20,0.10);
+  --sh-lg: 0 8px 32px rgba(100,80,20,0.14);
 
-  --font-h: 'Montserrat', sans-serif;
-  --font-b: 'Open Sans', sans-serif;
-  --radius: 0px;
+  --fh: 'Montserrat',sans-serif;
+  --fb: 'Open Sans',sans-serif;
 }
 
 html { scroll-behavior:smooth; }
-body {
-  background:var(--bg);
-  color:var(--text-full);
-  font-family:var(--font-b);
-  min-height:100vh;
-  -webkit-font-smoothing:antialiased;
-  font-size:15px;
-}
+body { background:var(--bg); color:var(--text-full); font-family:var(--fb); min-height:100vh; -webkit-font-smoothing:antialiased; font-size:15px; }
 
-/* ── LOADER ─────────────────────────────────────── */
-#loader {
-  position:fixed; inset:0; background:var(--bg);
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  z-index:9000; transition:opacity 0.6s;
-}
-#loader.hidden { opacity:0; pointer-events:none; }
-.ld-eagle { font-size:60px; animation:soar 2.4s ease-in-out infinite; }
-.ld-txt { font-family:var(--font-h); font-weight:800; font-size:11px; letter-spacing:6px; text-transform:uppercase; color:var(--gold-3); margin-top:20px; }
-.ld-bar { width:200px; height:2px; background:rgba(171,128,36,0.2); margin-top:16px; overflow:hidden; }
-.ld-fill { height:100%; background:var(--grad); animation:sweep 2s ease-in-out infinite; }
-@keyframes soar  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-@keyframes sweep { 0%{width:0;margin-left:0} 50%{width:55%;margin-left:22%} 100%{width:0;margin-left:100%} }
+/* ── LOADER ── */
+#loader { position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9000;transition:opacity .6s; }
+#loader.hidden{opacity:0;pointer-events:none;}
+.ld-eagle{font-size:60px;animation:soar 2.4s ease-in-out infinite;}
+.ld-txt{font-family:var(--fh);font-weight:800;font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--gold-3);margin-top:20px;}
+.ld-bar{width:200px;height:2px;background:rgba(171,128,36,0.2);margin-top:16px;overflow:hidden;}
+.ld-fill{height:100%;background:var(--grad);animation:sweep 2s ease-in-out infinite;}
+@keyframes soar{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes sweep{0%{width:0;margin-left:0}50%{width:55%;margin-left:22%}100%{width:0;margin-left:100%}}
 
-/* ── TOP BAR ─────────────────────────────────────── */
-.top-bar {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:12px 36px; border-bottom:2px solid var(--border-hi);
-  background:#fff; box-shadow:var(--shadow-sm);
-  position:sticky; top:0; z-index:100;
-}
-.brand-name { font-family:var(--font-h); font-weight:900; font-size:14px; letter-spacing:2px; text-transform:uppercase; color:var(--gold-3); }
-.brand-sub  { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); margin-top:2px; }
-.topbar-r   { display:flex; align-items:center; gap:16px; }
-.live-dot {
-  display:flex; align-items:center; gap:7px;
-  font-size:12px; color:var(--text-mid);
-}
-.live-dot::before {
-  content:''; width:8px; height:8px; border-radius:50%; background:var(--good); flex-shrink:0;
-  animation:pulse-g 2s infinite;
-}
-@keyframes pulse-g { 0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,0.4)} 50%{box-shadow:0 0 0 6px rgba(22,163,74,0)} }
-#topTime { font-family:var(--font-h); font-weight:600; font-size:13px; color:var(--text-mid); }
-.btn-refresh {
-  background:none; border:2px solid var(--border-hi); cursor:pointer;
-  color:var(--gold-3); font-family:var(--font-h); font-size:10px; font-weight:700;
-  letter-spacing:2px; text-transform:uppercase; padding:7px 16px; transition:all 0.2s;
-}
-.btn-refresh:hover { background:var(--gold-3); color:#fff; }
+/* ── TOP BAR ── */
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 36px;border-bottom:3px solid var(--gold-2);background:#fff;box-shadow:var(--sh-sm);position:sticky;top:0;z-index:100;}
+.brand-block{display:flex;align-items:center;gap:14px;}
+.brand-eagle{font-size:28px;}
+.brand-name{font-family:var(--fh);font-weight:900;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-3);}
+.brand-sub{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-top:2px;}
+.brand-phone{font-family:var(--fh);font-weight:700;font-size:13px;color:var(--gold-3);margin-top:3px;}
+.topbar-r{display:flex;align-items:center;gap:16px;}
+.live-dot{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-mid);}
+.live-dot::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--good);flex-shrink:0;animation:pulse-g 2s infinite;}
+@keyframes pulse-g{0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,.4)}50%{box-shadow:0 0 0 6px rgba(22,163,74,0)}}
+#topTime{font-family:var(--fh);font-weight:600;font-size:13px;color:var(--text-mid);}
+.btn-refresh{background:none;border:2px solid var(--border-hi);cursor:pointer;color:var(--gold-3);font-family:var(--fh);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:7px 16px;transition:all .2s;}
+.btn-refresh:hover{background:var(--gold-3);color:#fff;}
 
-/* ── PAGE TITLE ──────────────────────────────────── */
-.page-title {
-  text-align:center; padding:44px 24px 32px;
-  background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);
-  border-bottom:1px solid var(--border);
+/* ── CEDAR BANNER ── */
+.cedar-banner{background:linear-gradient(135deg,#7f1d1d,#991b1b);border-bottom:3px solid #f87171;padding:12px 36px;display:none;align-items:center;gap:14px;}
+.cedar-icon{font-size:24px;flex-shrink:0;}
+.cedar-text{font-family:var(--fh);font-weight:700;font-size:13px;color:#fff;line-height:1.5;}
+.cedar-text span{display:block;font-weight:400;font-family:var(--fb);font-size:12px;color:rgba(255,255,255,.8);margin-top:2px;}
+
+/* ── PAGE TITLE ── */
+.page-title{text-align:center;padding:36px 24px 28px;background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);border-bottom:1px solid var(--border);}
+.pt-main{font-family:var(--fh);font-weight:900;font-size:clamp(34px,6vw,66px);letter-spacing:-2px;line-height:1;color:var(--gold-3);}
+.pt-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin:14px auto;}
+.pt-ln{width:80px;height:2px;background:var(--grad);}
+.pt-gem{width:8px;height:8px;background:var(--gold-2);transform:rotate(45deg);}
+.pt-sub{font-family:var(--fb);font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);}
+.pt-meta{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:14px;flex-wrap:wrap;}
+.pt-chip{font-size:12px;color:var(--text-dim);display:flex;align-items:center;gap:6px;}
+.pt-chip .dot{width:5px;height:5px;border-radius:50%;background:var(--gold-3);}
+
+/* ── MAIN ── */
+.main{max-width:1300px;margin:0 auto;padding:0 28px 80px;}
+
+/* ── ERROR ── */
+.err-box{background:#fef2f2;border:1px solid #fca5a5;border-left:4px solid #ef4444;padding:16px 20px;margin-bottom:16px;display:none;}
+.err-box p{color:#7f1d1d;font-size:13px;line-height:1.75;}
+
+/* ── TOOLTIP — high z-index, never clipped ── */
+.info-wrap{position:relative;display:inline-flex;align-items:center;margin-left:6px;vertical-align:middle;}
+.info-btn{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border-hi);background:rgba(171,128,36,.12);color:var(--gold-3);font-size:10px;font-weight:800;font-family:var(--fh);cursor:help;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;line-height:1;position:relative;z-index:1;}
+.info-btn:hover{background:var(--gold-3);color:#fff;border-color:var(--gold-3);}
+.tooltip{
+  position:fixed; /* fixed so it's never clipped by overflow:hidden parents */
+  background:#1a1710;border:1px solid var(--gold-3);
+  padding:12px 14px;width:230px;
+  font-size:12px;line-height:1.65;color:#f2efe8;
+  font-family:var(--fb);pointer-events:none;
+  opacity:0;transition:opacity .18s;z-index:9999;
+  box-shadow:var(--sh-lg);white-space:normal;
+  display:none;
 }
-.pt-eyebrow { font-family:var(--font-h); font-size:11px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--text-dim); margin-bottom:12px; }
-.pt-main    { font-family:var(--font-h); font-weight:900; font-size:clamp(38px,7vw,72px); letter-spacing:-2px; line-height:1; color:var(--gold-3); }
-.pt-rule    { display:flex; align-items:center; justify-content:center; gap:14px; margin:16px auto; }
-.pt-ln      { width:80px; height:2px; background:var(--grad); }
-.pt-gem     { width:8px; height:8px; background:var(--gold-2); transform:rotate(45deg); }
-.pt-sub     { font-family:var(--font-b); font-size:13px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--text-dim); }
-.pt-meta    { display:flex; align-items:center; justify-content:center; gap:20px; margin-top:16px; flex-wrap:wrap; }
-.pt-chip    { font-size:12px; color:var(--text-dim); display:flex; align-items:center; gap:6px; }
-.pt-chip .dot { width:5px; height:5px; border-radius:50%; background:var(--gold-3); }
+/* JS positions fixed tooltips via mouseenter */
 
-/* ── CEDAR FEVER BANNER ──────────────────────────── */
-.cedar-banner {
-  background:linear-gradient(135deg,#7f1d1d,#991b1b);
-  border-bottom:3px solid #f87171;
-  padding:12px 36px; display:flex; align-items:center; gap:14px;
-  display:none; /* shown by JS in Dec–Feb */
+/* ── SEC HEADER ── */
+.sec-hdr{display:flex;align-items:center;gap:14px;margin:30px 0 14px;}
+.sec-title{font-family:var(--fh);font-weight:800;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold-3);white-space:nowrap;}
+.sec-line{flex:1;height:2px;background:linear-gradient(90deg,var(--gold-2),transparent);}
+
+/* ── HOURLY STRIP ── */
+.hourly-strip{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:18px 24px;display:flex;align-items:center;gap:20px;margin-bottom:4px;flex-wrap:wrap;}
+.hs-label .hs-title{font-family:var(--fh);font-weight:800;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-3);margin-bottom:3px;}
+.hs-label .hs-note{font-size:12px;color:var(--text-dim);}
+.hs-bars{display:flex;gap:3px;flex:1;min-width:200px;align-items:flex-end;height:52px;}
+.hs-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;height:100%;justify-content:flex-end;}
+.hs-outer{width:100%;flex:1;background:rgba(0,0,0,.05);display:flex;align-items:flex-end;overflow:hidden;}
+.hs-inner{width:100%;transition:height .8s ease;min-height:3px;}
+.hs-lbl{font-size:9px;font-family:var(--fh);font-weight:700;color:var(--text-dim);white-space:nowrap;}
+
+/* ── HERO 50/50 ── */
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:4px;}
+
+/* ── AQI CARD ── */
+.aqi-card{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-md);padding:38px 36px 30px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
+.aqi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad);}
+.aqi-eyebrow{font-family:var(--fh);font-weight:700;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+.aqi-num-row{display:flex;align-items:flex-end;gap:14px;}
+.aqi-number{font-family:var(--fh);font-weight:900;font-size:clamp(90px,11vw,145px);line-height:.88;transition:color .4s;}
+.aqi-vert{display:flex;flex-direction:column-reverse;gap:4px;padding-bottom:8px;}
+.vp{width:10px;height:24px;border-radius:2px;opacity:.12;transition:opacity .4s,transform .4s;}
+.vp.on{opacity:1;transform:scaleX(1.5);}
+.aqi-status{font-family:var(--fh);font-weight:800;font-size:clamp(17px,2.4vw,25px);margin-top:12px;transition:color .4s;}
+.aqi-pill{display:inline-flex;align-items:center;margin-top:8px;padding:5px 14px;border:2px solid;font-family:var(--fh);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;width:fit-content;}
+.aqi-desc{font-size:14px;line-height:1.8;color:var(--text-mid);margin-top:16px;}
+.compare-line{font-size:13px;color:var(--text-mid);margin-top:12px;display:flex;align-items:center;gap:8px;display:none;}
+.compare-line .ci{font-family:var(--fh);font-weight:700;}
+.family-badge{display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:10px 16px;border:2px solid var(--border-hi);background:var(--bg-sub);}
+.fb-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);font-family:var(--fh);font-weight:700;}
+.fb-val{font-size:14px;font-weight:800;font-family:var(--fh);margin-top:2px;}
+.aqi-scale-row{display:flex;gap:3px;margin-top:22px;}
+.sb{flex:1;height:6px;border-radius:2px;opacity:.14;transition:opacity .4s;}
+.sb.on{opacity:1;}
+.sc-labels{display:flex;justify-content:space-between;margin-top:5px;font-size:10px;color:var(--text-dim);font-family:var(--fh);font-weight:600;}
+
+/* ── POLLEN HERO CARD ── */
+.pollen-hero{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-md);padding:30px 28px;display:flex;flex-direction:column;position:relative;overflow:visible;}
+.pollen-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#22c55e,#16a34a);}
+.pch-hdr{font-family:var(--fh);font-weight:800;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--text-dim);margin-bottom:18px;display:flex;align-items:center;}
+.pollen-rows{display:flex;flex-direction:column;gap:3px;flex:1;}
+.p-row{background:var(--bg-sub);border:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;gap:12px;transition:background .2s;}
+.p-row:hover{background:var(--bg-hover);}
+.p-emoji{font-size:24px;flex-shrink:0;}
+.p-info{flex:1;min-width:0;}
+.p-type-row{display:flex;align-items:center;margin-bottom:2px;}
+.p-type{font-family:var(--fh);font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-mid);}
+.cedar-tag{background:#7f1d1d;color:#fca5a5;font-family:var(--fh);font-size:8px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:2px 7px;margin-left:7px;display:none;vertical-align:middle;}
+.p-num{font-family:var(--fh);font-weight:900;font-size:36px;line-height:1;margin-top:2px;}
+.p-unit{font-size:11px;color:var(--text-dim);margin-top:1px;}
+.p-bar-wrap{width:100%;height:3px;background:rgba(0,0,0,.07);margin-top:7px;overflow:hidden;}
+.p-bar{height:100%;transition:width 1.2s ease;width:0%;}
+.p-badge{padding:4px 12px;font-family:var(--fh);font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;flex-shrink:0;white-space:nowrap;}
+
+/* ── QUICK STATS ── */
+.quick-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:4px;}
+.qs-tile{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:22px 20px;position:relative;overflow:visible;transition:all .2s;}
+.qs-tile:hover{box-shadow:var(--sh-md);transform:translateY(-1px);}
+.qs-tile::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.qs-tile:hover::after{transform:scaleX(1);}
+.qs-icon{font-size:24px;margin-bottom:10px;}
+.qs-label{font-family:var(--fh);font-weight:700;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;display:flex;align-items:center;}
+.qs-val{font-family:var(--fh);font-weight:900;font-size:28px;line-height:1.1;color:var(--gold-3);}
+.qs-val.co{color:inherit;}
+.qs-note{font-size:12px;color:var(--text-dim);margin-top:4px;}
+
+/* ── POLLUTANT TABLE ── */
+.poll-section{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);margin-bottom:4px;overflow:visible;}
+.poll-section-hdr{padding:16px 20px 12px;border-bottom:1px solid var(--border);font-family:var(--fh);font-weight:800;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;}
+.poll-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+.poll-cell{padding:16px 16px 12px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:background .2s;position:relative;overflow:visible;}
+.poll-cell:hover{background:var(--bg-sub);}
+.poll-cell:nth-child(4n){border-right:none;}
+.poll-cell:nth-last-child(-n+4){border-bottom:none;}
+.poll-cell-hd{display:flex;align-items:center;margin-bottom:2px;}
+.poll-tag{font-family:var(--fh);font-weight:700;font-size:11px;letter-spacing:1.5px;color:var(--gold-3);}
+.poll-full{font-size:11px;color:var(--text-dim);margin-bottom:5px;}
+.poll-num{font-family:var(--fh);font-weight:900;font-size:30px;line-height:1;color:var(--text-full);}
+.poll-unit{font-size:11px;color:var(--text-dim);margin-top:1px;}
+.poll-bar-wrap{width:100%;height:3px;background:rgba(0,0,0,.07);border-radius:1px;margin-top:7px;overflow:hidden;}
+.poll-bar{height:100%;background:var(--grad-h);transition:width 1.2s cubic-bezier(.4,0,.2,1);}
+
+/* ── 7-DAY FORECAST ── */
+.forecast-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;width:100%;margin-bottom:4px;}
+.fc-card{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:20px 8px 16px;text-align:center;transition:all .2s;}
+.fc-card:hover{box-shadow:var(--sh-md);transform:translateY(-1px);}
+.fc-card.today{border-top:3px solid var(--gold-2);background:var(--bg-sub);}
+.fc-name{font-family:var(--fh);font-weight:700;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
+.fc-card.today .fc-name{color:var(--gold-3);}
+.fc-num{font-family:var(--fh);font-weight:900;font-size:36px;line-height:1;}
+.fc-cat{font-size:11px;color:var(--text-dim);margin-top:4px;font-family:var(--fh);font-weight:600;line-height:1.3;}
+.fc-track{width:100%;height:4px;background:rgba(0,0,0,.07);margin-top:12px;overflow:hidden;}
+.fc-fill{height:100%;transition:width 1s ease;}
+.fc-date{font-size:10px;color:var(--text-dim);margin-top:5px;}
+
+/* ── 7-DAY TREND (full chart) ── */
+.trend-card{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:24px 28px;margin-bottom:4px;}
+.trend-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+.trend-title-col .t-title{font-family:var(--fh);font-weight:800;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold-3);margin-bottom:4px;}
+.trend-title-col .t-sub{font-size:13px;color:var(--text-mid);}
+.trend-note-pill{padding:6px 16px;font-family:var(--fh);font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;}
+.trend-chart{width:100%;position:relative;height:120px;}
+.trend-chart svg{width:100%;height:100%;overflow:visible;}
+.trend-legend{display:flex;gap:20px;margin-top:12px;flex-wrap:wrap;}
+.tl-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-dim);}
+.tl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+/* ── ALLERGY CALENDAR ── */
+.allergy-calendar{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:26px 28px;margin-bottom:4px;}
+.cal-intro{font-size:14px;color:var(--text-mid);max-width:800px;line-height:1.75;margin-bottom:18px;}
+.cal-intro strong{color:var(--gold-3);}
+.cal-wrap{overflow-x:auto;}
+.cal-table{width:100%;border-collapse:collapse;min-width:640px;}
+.cal-table th{font-family:var(--fh);font-weight:700;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:8px 4px;border-bottom:2px solid var(--border);text-align:center;}
+.cal-table th.acol{text-align:left;padding-left:12px;}
+.cal-table td{padding:7px 4px;border-bottom:1px solid var(--border);text-align:center;}
+.cal-table td.aname{text-align:left;padding-left:12px;font-family:var(--fh);font-weight:700;font-size:13px;color:var(--text-full);}
+.cal-table tr:last-child td{border-bottom:none;}
+.cal-table tr:hover td{background:var(--bg-sub);}
+.cal-dot{width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;font-family:var(--fh);margin:0 auto;}
+.cal-dot.h{background:#fee2e2;color:#dc2626;}
+.cal-dot.m{background:#fef9c3;color:#ca8a04;}
+.cal-dot.l{background:#dcfce7;color:#16a34a;}
+.cal-dot.n{background:transparent;color:var(--text-dim);font-size:10px;}
+.cal-now-col{background:rgba(171,128,36,0.06)!important;}
+.cal-legend{display:flex;gap:18px;margin-top:14px;flex-wrap:wrap;}
+.leg-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-dim);}
+.cedar-note{font-size:11px;color:#dc2626;font-weight:700;background:#fee2e2;display:inline-block;padding:2px 7px;margin-top:4px;}
+.cedar-callout{margin-top:16px;padding:14px 18px;background:#fff7ed;border-left:4px solid #ea580c;font-size:13px;line-height:1.8;color:var(--text-mid);}
+.cedar-callout strong{color:#c2410c;}
+
+/* ── ADVISORY ── */
+.advisory{background:#fff;border:1px solid var(--border);border-left:5px solid var(--gold-2);box-shadow:var(--sh-sm);padding:26px 30px;margin-bottom:4px;}
+.adv-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.adv-badge{background:var(--grad);color:#000;font-family:var(--fh);font-size:9px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;padding:5px 14px;flex-shrink:0;}
+.adv-title{font-family:var(--fh);font-weight:800;font-size:17px;color:var(--text-full);}
+.adv-body{font-size:14px;line-height:1.85;color:var(--text-mid);max-width:960px;}
+.adv-body strong{color:var(--gold-3);font-weight:700;}
+.adv-contact{display:flex;gap:20px;margin-top:14px;flex-wrap:wrap;}
+.adv-chip{font-family:var(--fh);font-weight:700;font-size:14px;color:var(--gold-3);}
+
+/* ── IAQ TIPS ── */
+.iaq-tips{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:28px 30px;margin-bottom:4px;}
+.iaq-intro{font-size:14px;color:var(--text-mid);max-width:760px;line-height:1.75;}
+.iaq-intro strong{color:var(--gold-3);}
+.tips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:16px;}
+.tip-card{background:var(--bg-sub);border:1px solid var(--border);padding:20px 18px;transition:border-color .2s;}
+.tip-card:hover{border-color:var(--gold-3);}
+.tip-icon{font-size:26px;margin-bottom:10px;}
+.tip-title{font-family:var(--fh);font-weight:800;font-size:14px;color:var(--text-full);margin-bottom:7px;}
+.tip-body{font-size:13px;line-height:1.7;color:var(--text-mid);}
+.tip-body strong{color:var(--gold-3);font-weight:700;}
+
+/* ── SOCIAL SHARE ── */
+.social-bar{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:22px 26px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:4px;}
+.ss-h3{font-family:var(--fh);font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-3);margin-bottom:4px;}
+.ss-p{font-size:12px;color:var(--text-dim);}
+.ss-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.btn-fb{background:#1877f2;color:#fff;border:none;cursor:pointer;font-family:var(--fh);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:11px 18px;transition:opacity .2s;display:inline-flex;align-items:center;gap:7px;}
+.btn-fb:hover{opacity:.88;}
+.btn-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;border:none;cursor:pointer;font-family:var(--fh);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:11px 18px;transition:opacity .2s;display:inline-flex;align-items:center;gap:7px;}
+.btn-ig:hover{opacity:.88;}
+.btn-gold{background:var(--grad);color:#000;border:none;cursor:pointer;font-family:var(--fh);font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:11px 18px;transition:opacity .2s;}
+.btn-gold:hover{opacity:.82;}
+.btn-outline{background:none;border:2px solid var(--border-hi);color:var(--gold-3);cursor:pointer;font-family:var(--fh);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:11px 18px;transition:all .2s;}
+.btn-outline:hover{background:var(--gold-3);color:#fff;}
+
+/* ── API INFO ── */
+.api-block{background:var(--bg-sub);border:1px solid var(--border);padding:13px 20px;margin-top:4px;}
+.api-lbl{font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:7px;}
+.api-code{font-family:'Courier New',monospace;font-size:10px;color:var(--gold-3);background:#fff;padding:8px 12px;border-left:3px solid var(--gold-2);word-break:break-all;line-height:1.7;}
+.api-meta{font-size:11px;color:var(--text-dim);margin-top:7px;}
+
+/* ── FOOTER ── */
+.footer{border-top:2px solid var(--border-hi);padding:20px 36px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;background:#fff;}
+.footer p{font-size:12px;color:var(--text-dim);}
+.footer-links{display:flex;gap:20px;}
+.footer a{font-size:12px;color:var(--gold-3);text-decoration:none;font-weight:600;transition:color .2s;}
+.footer a:hover{color:var(--gold-dk);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:1fr;}
+  .poll-grid{grid-template-columns:repeat(2,1fr);}
+  .poll-cell:nth-child(4n){border-right:1px solid var(--border);}
+  .poll-cell:nth-child(2n){border-right:none;}
+  .quick-stats{grid-template-columns:repeat(2,1fr);}
+  .tips-grid{grid-template-columns:repeat(2,1fr);}
 }
-.cedar-icon { font-size:24px; flex-shrink:0; }
-.cedar-text { font-family:var(--font-h); font-weight:700; font-size:13px; color:#fff; }
-.cedar-text span { font-weight:400; font-family:var(--font-b); font-size:12px; color:rgba(255,255,255,0.8); margin-left:8px; }
-
-/* ── MAIN ────────────────────────────────────────── */
-.main { max-width:1300px; margin:0 auto; padding:0 28px 80px; }
-
-/* ── ERROR ───────────────────────────────────────── */
-.err-box { background:#fef2f2; border:1px solid #fca5a5; border-left:4px solid #ef4444; padding:16px 20px; margin-bottom:16px; display:none; }
-.err-box p { color:#7f1d1d; font-size:13px; line-height:1.75; }
-
-/* ── TOOLTIP ─────────────────────────────────────── */
-.info-wrap { position:relative; display:inline-flex; align-items:center; margin-left:6px; vertical-align:middle; }
-.info-btn {
-  width:18px; height:18px; border-radius:50%;
-  border:1.5px solid var(--border-hi); background:rgba(171,128,36,0.1);
-  color:var(--gold-3); font-size:10px; font-weight:800; font-family:var(--font-h);
-  cursor:help; display:inline-flex; align-items:center; justify-content:center;
-  flex-shrink:0; transition:all 0.2s; line-height:1;
+@media(max-width:680px){
+  .top-bar{padding:10px 16px;}
+  .main{padding:0 12px 60px;}
+  .forecast-strip{grid-template-columns:repeat(4,1fr);}
+  .tips-grid{grid-template-columns:1fr;}
+  .poll-grid{grid-template-columns:1fr 1fr;}
+  .aqi-card,.pollen-hero{padding:24px 20px;}
 }
-.info-btn:hover { background:var(--gold-3); color:#fff; border-color:var(--gold-3); }
-.tooltip {
-  position:absolute; bottom:calc(100% + 10px); left:50%; transform:translateX(-50%);
-  background:#1a1710; border:1px solid var(--gold-3);
-  padding:12px 14px; width:230px;
-  font-size:12px; line-height:1.65; color:#f2efe8;
-  font-family:var(--font-b); pointer-events:none;
-  opacity:0; transition:opacity 0.18s; z-index:500;
-  box-shadow:var(--shadow-lg); white-space:normal;
-}
-.tooltip::after { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:#1a1710; }
-.info-wrap:hover .tooltip,
-.info-wrap:focus-within .tooltip { opacity:1; }
-/* Flip tooltip if near right edge */
-.poll-cell:nth-child(even) .tooltip { left:auto; right:0; transform:none; }
-.poll-cell:nth-child(even) .tooltip::after { left:auto; right:16px; transform:none; }
-
-/* ── SECTION HEADER ──────────────────────────────── */
-.sec-hdr { display:flex; align-items:center; gap:14px; margin:32px 0 14px; }
-.sec-title { font-family:var(--font-h); font-weight:800; font-size:11px; letter-spacing:5px; text-transform:uppercase; color:var(--gold-3); white-space:nowrap; }
-.sec-line { flex:1; height:2px; background:linear-gradient(90deg,var(--gold-2),transparent); }
-
-/* ══════════════════════════════════════════════════
-   TOP ROW: HOURLY + [AQI HERO | POLLEN 50/50]
-══════════════════════════════════════════════════ */
-
-/* Hourly bar strip */
-.hourly-strip {
-  background:#fff; border:1px solid var(--border-card);
-  box-shadow:var(--shadow-sm); padding:18px 24px;
-  display:flex; align-items:center; gap:20px;
-  margin-bottom:4px; flex-wrap:wrap;
-}
-.hs-label { flex-shrink:0; }
-.hs-title { font-family:var(--font-h); font-weight:800; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold-3); margin-bottom:3px; }
-.hs-note  { font-size:12px; color:var(--text-dim); }
-.hs-bars  { display:flex; gap:3px; flex:1; min-width:200px; align-items:flex-end; height:52px; }
-.hs-bar-col { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; height:100%; justify-content:flex-end; }
-.hs-bar-outer { width:100%; flex:1; background:rgba(0,0,0,0.05); display:flex; align-items:flex-end; overflow:hidden; }
-.hs-bar-inner { width:100%; transition:height 0.8s ease; min-height:3px; }
-.hs-hr-lbl { font-size:9px; font-family:var(--font-h); font-weight:700; color:var(--text-dim); white-space:nowrap; }
-
-/* Hero 50/50 grid */
-.hero-grid {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:4px; margin-bottom:4px;
-}
-
-/* ── AQI CARD ────────────────────────────────────── */
-.aqi-card {
-  background:#fff; border:1px solid var(--border-card);
-  box-shadow:var(--shadow-md); padding:40px 38px 32px;
-  display:flex; flex-direction:column; justify-content:space-between;
-  position:relative; overflow:hidden;
-}
-.aqi-card::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:4px;
-  background:var(--grad);
-}
-.aqi-eyebrow { font-family:var(--font-h); font-weight:700; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--text-dim); margin-bottom:8px; }
-.aqi-num-row { display:flex; align-items:flex-end; gap:14px; }
-.aqi-number  { font-family:var(--font-h); font-weight:900; font-size:clamp(96px,12vw,150px); line-height:0.88; transition:color 0.4s; }
-.aqi-vert    { display:flex; flex-direction:column-reverse; gap:4px; padding-bottom:8px; }
-.vp          { width:10px; height:24px; border-radius:2px; opacity:0.12; transition:opacity 0.4s,transform 0.4s; }
-.vp.on       { opacity:1; transform:scaleX(1.5); }
-.aqi-status  { font-family:var(--font-h); font-weight:800; font-size:clamp(18px,2.5vw,26px); margin-top:12px; transition:color 0.4s; }
-.aqi-pill    { display:inline-flex; align-items:center; margin-top:8px; padding:5px 14px; border:2px solid; font-family:var(--font-h); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; width:fit-content; }
-.aqi-desc    { font-size:14px; line-height:1.8; color:var(--text-mid); margin-top:18px; }
-.family-badge { display:inline-flex; align-items:center; gap:10px; margin-top:16px; padding:10px 16px; border:2px solid; background:rgba(0,0,0,0.02); }
-.fb-label    { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); font-family:var(--font-h); font-weight:700; }
-.fb-val      { font-size:14px; font-weight:800; font-family:var(--font-h); margin-top:2px; }
-.aqi-scale-row { display:flex; gap:3px; margin-top:24px; }
-.sb { flex:1; height:6px; border-radius:2px; opacity:0.15; transition:opacity 0.4s; }
-.sb.on { opacity:1; }
-.sc-labels { display:flex; justify-content:space-between; margin-top:5px; font-size:10px; color:var(--text-dim); font-family:var(--font-h); font-weight:600; }
-.compare-line { font-size:13px; color:var(--text-mid); margin-top:14px; display:flex; align-items:center; gap:8px; }
-.compare-line .ci { font-family:var(--font-h); font-weight:700; }
-
-/* ── POLLEN CARD (50%) ───────────────────────────── */
-.pollen-card-hero {
-  background:#fff; border:1px solid var(--border-card);
-  box-shadow:var(--shadow-md); padding:32px 30px;
-  display:flex; flex-direction:column; gap:0;
-  position:relative; overflow:hidden;
-}
-.pollen-card-hero::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#22c55e,#16a34a,#15803d); }
-.pch-hdr { font-family:var(--font-h); font-weight:800; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--text-dim); margin-bottom:20px; display:flex; align-items:center; }
-.pollen-trio { display:flex; flex-direction:column; gap:3px; flex:1; }
-.pt-row {
-  background:var(--bg-sub); border:1px solid var(--border);
-  padding:16px 18px; display:flex; align-items:center; gap:14px;
-  transition:background 0.2s; flex:1;
-}
-.pt-row:hover { background:var(--bg-hover); }
-.pt-emoji { font-size:26px; flex-shrink:0; }
-.pt-info  { flex:1; min-width:0; }
-.pt-type  { font-family:var(--font-h); font-weight:700; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-mid); display:flex; align-items:center; }
-.pt-num   { font-family:var(--font-h); font-weight:900; font-size:38px; line-height:1; margin-top:2px; }
-.pt-unit  { font-size:11px; color:var(--text-dim); margin-top:1px; }
-.pt-badge { padding:4px 12px; font-family:var(--font-h); font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; flex-shrink:0; }
-.pt-bar-wrap { width:100%; height:3px; background:rgba(0,0,0,0.07); margin-top:8px; overflow:hidden; }
-.pt-bar { height:100%; transition:width 1.2s ease; }
-/* Cedar badge */
-.cedar-tag { background:#7f1d1d; color:#fca5a5; font-family:var(--font-h); font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; padding:2px 8px; margin-left:8px; display:none; }
-
-/* ── QUICK STATS ─────────────────────────────────── */
-.quick-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin-bottom:4px; }
-.qs-tile {
-  background:#fff; border:1px solid var(--border-card); box-shadow:var(--shadow-sm);
-  padding:22px 20px; position:relative; overflow:hidden; transition:all 0.2s;
-}
-.qs-tile:hover { box-shadow:var(--shadow-md); transform:translateY(-1px); }
-.qs-tile::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--grad); transform:scaleX(0); transform-origin:left; transition:transform 0.3s; }
-.qs-tile:hover::after { transform:scaleX(1); }
-.qs-icon  { font-size:24px; margin-bottom:10px; }
-.qs-label { font-family:var(--font-h); font-weight:700; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-dim); margin-bottom:6px; display:flex; align-items:center; }
-.qs-val   { font-family:var(--font-h); font-weight:900; font-size:28px; line-height:1.1; color:var(--gold-3); }
-.qs-val.co { color:inherit; }
-.qs-note  { font-size:12px; color:var(--text-dim); margin-top:4px; }
-
-/* ── POLLUTANT BREAKDOWN ─────────────────────────── */
-.poll-section {
-  background:#fff; border:1px solid var(--border-card);
-  box-shadow:var(--shadow-sm); margin-bottom:4px;
-}
-.poll-section-hdr {
-  padding:18px 22px 14px; border-bottom:1px solid var(--border);
-  font-family:var(--font-h); font-weight:800; font-size:10px;
-  letter-spacing:4px; text-transform:uppercase; color:var(--text-dim);
-  display:flex; align-items:center;
-}
-.poll-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
-.poll-cell {
-  padding:18px 18px 14px; border-right:1px solid var(--border); border-bottom:1px solid var(--border);
-  transition:background 0.2s; position:relative;
-}
-.poll-cell:hover { background:var(--bg-sub); }
-.poll-cell:nth-child(4n) { border-right:none; }
-.poll-cell:nth-last-child(-n+4) { border-bottom:none; }
-.poll-cell-hd { display:flex; align-items:center; margin-bottom:2px; }
-.poll-tag  { font-family:var(--font-h); font-weight:700; font-size:11px; letter-spacing:1.5px; color:var(--gold-3); }
-.poll-full { font-size:11px; color:var(--text-dim); margin-bottom:6px; }
-.poll-num  { font-family:var(--font-h); font-weight:900; font-size:32px; line-height:1; color:var(--text-full); }
-.poll-unit { font-size:11px; color:var(--text-dim); margin-top:1px; }
-.poll-bar-wrap { width:100%; height:3px; background:rgba(0,0,0,0.07); border-radius:1px; margin-top:8px; overflow:hidden; }
-.poll-bar { height:100%; background:var(--grad-h); transition:width 1.2s cubic-bezier(0.4,0,0.2,1); }
-
-/* ── 7-DAY FORECAST ──────────────────────────────── */
-.forecast-strip { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; width:100%; margin-bottom:4px; }
-.fc-card {
-  background:#fff; border:1px solid var(--border-card); box-shadow:var(--shadow-sm);
-  padding:20px 8px 16px; text-align:center; transition:all 0.2s;
-}
-.fc-card:hover { box-shadow:var(--shadow-md); transform:translateY(-1px); }
-.fc-card.today { border-top:3px solid var(--gold-2); background:var(--bg-sub); }
-.fc-name   { font-family:var(--font-h); font-weight:700; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); margin-bottom:10px; }
-.fc-card.today .fc-name { color:var(--gold-3); }
-.fc-num    { font-family:var(--font-h); font-weight:900; font-size:36px; line-height:1; }
-.fc-status { font-size:11px; color:var(--text-dim); margin-top:4px; font-family:var(--font-h); font-weight:600; }
-.fc-track  { width:100%; height:4px; background:rgba(0,0,0,0.07); margin-top:12px; overflow:hidden; }
-.fc-fill   { height:100%; transition:width 1s ease; }
-
-/* ── TREND ───────────────────────────────────────── */
-.trend-bar {
-  background:#fff; border:1px solid var(--border-card); box-shadow:var(--shadow-sm);
-  padding:20px 26px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; margin-bottom:4px;
-}
-.t-title { font-family:var(--font-h); font-weight:800; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold-3); margin-bottom:3px; }
-.t-sub   { font-size:12px; color:var(--text-dim); }
-.sparkline-wrap { flex:1; min-width:200px; height:50px; }
-.sparkline-wrap svg { width:100%; height:100%; overflow:visible; }
-
-/* ── ADVISORY ────────────────────────────────────── */
-.advisory {
-  background:#fff; border:1px solid var(--border-card); box-shadow:var(--shadow-sm);
-  border-left:5px solid var(--gold-2); padding:28px 32px; margin-bottom:4px;
-}
-.adv-top   { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
-.adv-badge { background:var(--grad); color:#000; font-family:var(--font-h); font-size:9px; font-weight:900; letter-spacing:2.5px; text-transform:uppercase; padding:5px 14px; flex-shrink:0; }
-.adv-title { font-family:var(--font-h); font-weight:800; font-size:17px; color:var(--text-full); }
-.adv-body  { font-size:14px; line-height:1.85; color:var(--text-mid); max-width:960px; }
-.adv-body strong { color:var(--gold-3); font-weight:700; }
-.adv-contact { display:flex; gap:22px; margin-top:16px; flex-wrap:wrap; }
-.adv-chip { font-family:var(--font-h); font-weight:700; font-size:14px; color:var(--gold-3); }
-
-/* ── IAQ TIPS ────────────────────────────────────── */
-.iaq-tips { background:#fff; border:1px solid var(--border-card); box-shadow:var(--shadow-sm); padding:30px 32px; margin-bottom:4px; }
-.iaq-intro { font-size:14px; color:var(--text-mid); max-width:760px; line-height:1.75; }
-.iaq-intro strong { color:var(--gold-3); }
-.tips-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; margin-top:18px; }
-.tip-card  { background:var(--bg-sub); border:1px solid var(--border); padding:22px 20px; transition:border-color 0.2s; }
-.tip-card:hover { border-color:var(--gold-3); }
-.tip-icon  { font-size:26px; margin-bottom:10px; }
-.tip-title { font-family:var(--font-h); font-weight:800; font-size:14px; color:var(--text-full); margin-bottom:8px; }
-.tip-body  { font-size:13px; line-height:1.7; color:var(--text-mid); }
-.tip-body strong { color:var(--gold-3); font-weight:700; }
-
-/* ── ALLERGY CALENDAR ────────────────────────────── */
-.allergy-calendar { background:#fff; border:1px solid var(--border-card); box-shadow:var(--shadow-sm); padding:28px 30px; margin-bottom:4px; }
-.cal-intro { font-size:14px; color:var(--text-mid); max-width:800px; line-height:1.75; margin-bottom:20px; }
-.cal-intro strong { color:var(--gold-3); }
-.cal-grid  { overflow-x:auto; }
-.cal-table { width:100%; border-collapse:collapse; min-width:640px; }
-.cal-table th {
-  font-family:var(--font-h); font-weight:700; font-size:10px; letter-spacing:2px; text-transform:uppercase;
-  color:var(--text-dim); padding:8px 6px; border-bottom:2px solid var(--border); text-align:center;
-}
-.cal-table th.allergen-col { text-align:left; padding-left:12px; }
-.cal-table td { padding:7px 6px; border-bottom:1px solid var(--border); text-align:center; }
-.cal-table td.allergen-name { text-align:left; padding-left:12px; font-family:var(--font-h); font-weight:700; font-size:13px; color:var(--text-full); }
-.cal-table tr:last-child td { border-bottom:none; }
-.cal-table tr:hover td { background:var(--bg-sub); }
-.cal-dot { width:22px; height:22px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; font-family:var(--font-h); margin:0 auto; }
-.cal-dot.high   { background:#fee2e2; color:#dc2626; }
-.cal-dot.mod    { background:#fef9c3; color:#ca8a04; }
-.cal-dot.low    { background:#dcfce7; color:#16a34a; }
-.cal-dot.none   { background:transparent; color:var(--text-dim); font-size:10px; }
-.cal-legend { display:flex; gap:20px; margin-top:14px; flex-wrap:wrap; }
-.leg-item { display:flex; align-items:center; gap:7px; font-size:12px; color:var(--text-dim); }
-.cal-month-now { background:rgba(171,128,36,0.06); }
-.cedar-row td { }
-.cedar-note { font-size:11px; color:#dc2626; font-weight:700; background:#fee2e2; display:inline-block; padding:2px 8px; margin-top:4px; }
-
-/* ── SOCIAL SHARE ────────────────────────────────── */
-.social-share {
-  background:#fff; border:1px solid var(--border-card); box-shadow:var(--shadow-sm);
-  padding:24px 28px; display:flex; align-items:center; justify-content:space-between;
-  flex-wrap:wrap; gap:16px; margin-bottom:4px;
-}
-.ss-text h3 { font-family:var(--font-h); font-weight:800; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--gold-3); margin-bottom:4px; }
-.ss-text p  { font-size:12px; color:var(--text-dim); }
-.ss-btns { display:flex; gap:10px; flex-wrap:wrap; }
-.btn-fb  { background:#1877f2; color:#fff; border:none; cursor:pointer; font-family:var(--font-h); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:11px 20px; transition:opacity 0.2s; text-decoration:none; display:inline-flex; align-items:center; gap:7px; }
-.btn-fb:hover { opacity:0.88; }
-.btn-ig  { background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; border:none; cursor:pointer; font-family:var(--font-h); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:11px 20px; transition:opacity 0.2s; display:inline-flex; align-items:center; gap:7px; }
-.btn-ig:hover { opacity:0.88; }
-.btn-copy { background:var(--grad); color:#000; border:none; cursor:pointer; font-family:var(--font-h); font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; padding:11px 20px; transition:opacity 0.2s; }
-.btn-copy:hover { opacity:0.82; }
-.btn-outline { background:none; border:2px solid var(--border-hi); color:var(--gold-3); cursor:pointer; font-family:var(--font-h); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:11px 20px; transition:all 0.2s; }
-.btn-outline:hover { background:var(--gold-3); color:#fff; }
-
-/* ── API INFO ────────────────────────────────────── */
-.api-block { background:var(--bg-sub); border:1px solid var(--border); padding:14px 20px; margin-top:4px; }
-.api-lbl  { font-family:var(--font-h); font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--text-dim); margin-bottom:7px; }
-.api-code { font-family:'Courier New',monospace; font-size:10px; color:var(--gold-3); background:#fff; padding:8px 12px; border-left:3px solid var(--gold-2); word-break:break-all; line-height:1.7; }
-.api-meta { font-size:11px; color:var(--text-dim); margin-top:7px; }
-
-/* ── EXPORT ──────────────────────────────────────── */
-.export-bar { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; background:#fff; border:1px solid var(--border-card); box-shadow:var(--shadow-sm); padding:20px 26px; }
-.exp-h3 { font-family:var(--font-h); font-weight:800; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--gold-3); margin-bottom:4px; }
-.exp-p  { font-size:12px; color:var(--text-dim); }
-.exp-btns { display:flex; gap:10px; flex-wrap:wrap; }
-
-/* ── FOOTER ──────────────────────────────────────── */
-.footer { border-top:2px solid var(--border-hi); padding:20px 36px; display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; background:#fff; }
-.footer p { font-size:12px; color:var(--text-dim); }
-.footer a { font-size:12px; color:var(--gold-3); text-decoration:none; transition:color 0.2s; font-weight:600; }
-.footer a:hover { color:var(--gold-dk); }
-.footer-links { display:flex; gap:20px; }
-
-/* ── RESPONSIVE ──────────────────────────────────── */
-@media(max-width:1000px) {
-  .hero-grid { grid-template-columns:1fr; }
-  .poll-grid { grid-template-columns:repeat(2,1fr); }
-  .poll-cell:nth-child(2n) { border-right:none; }
-  .poll-cell:nth-child(4n) { border-right:1px solid var(--border); }
-  .quick-stats { grid-template-columns:repeat(2,1fr); }
-  .tips-grid { grid-template-columns:repeat(2,1fr); }
-}
-@media(max-width:680px) {
-  .top-bar { padding:12px 16px; }
-  .main { padding:0 12px 60px; }
-  .forecast-strip { grid-template-columns:repeat(4,1fr); }
-  .pollen-trio .pt-row { padding:12px 14px; }
-  .tips-grid { grid-template-columns:1fr; }
-  .poll-grid { grid-template-columns:1fr 1fr; }
-  .aqi-card { padding:28px 22px 24px; }
-  .pollen-card-hero { padding:24px 18px; }
-}
-@media(max-width:440px) {
-  .forecast-strip { grid-template-columns:repeat(3,1fr); }
-  .quick-stats { grid-template-columns:1fr 1fr; }
+@media(max-width:440px){
+  .forecast-strip{grid-template-columns:repeat(3,1fr);}
+  .quick-stats{grid-template-columns:1fr 1fr;}
+  .brand-phone{display:none;}
 }
 </style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="ld-eagle">🦅</div>
-  <div class="ld-txt">Loading Austin Air Data</div>
-  <div class="ld-bar"><div class="ld-fill"></div></div>
-</div>
+<div id="loader"><div class="ld-eagle">🦅</div><div class="ld-txt">Loading Austin Air Data</div><div class="ld-bar"><div class="ld-fill"></div></div></div>
 
-<!-- TOP BAR -->
+<!-- ── TOP BAR ── -->
 <div class="top-bar">
-  <div>
-    <div class="brand-name">Gold Eagle Services</div>
-    <div class="brand-sub">Cooling · Heating · Indoor Air Quality</div>
+  <div class="brand-block">
+    <div class="brand-eagle">🦅</div>
+    <div>
+      <div class="brand-name">Gold Eagle Services</div>
+      <div class="brand-sub">Cooling · Heating · Indoor Air Quality</div>
+      <div class="brand-phone">📞 512-489-GOLD &nbsp;·&nbsp; GoldEagleServices.com</div>
+    </div>
   </div>
   <div class="topbar-r">
     <div class="live-dot"><span id="topTime">—</span>&nbsp;·&nbsp;Austin, TX</div>
@@ -447,35 +339,33 @@ body {
   </div>
 </div>
 
-<!-- CEDAR FEVER BANNER (shown Dec–Feb) -->
+<!-- ── CEDAR FEVER BANNER (Dec–Feb) ── -->
 <div class="cedar-banner" id="cedarBanner">
   <div class="cedar-icon">🌲</div>
-  <div class="cedar-text">Cedar Fever Season — Mountain Cedar (Ashe Juniper) is actively releasing pollen now.
-    <span>Austin's most notorious allergy event — Dec through Feb. Symptoms can feel like a bad cold or flu.</span>
+  <div class="cedar-text">Cedar Fever Season — Mountain Cedar is actively releasing pollen right now.
+    <span>Austin's most notorious allergy event. Dec–Feb. Symptoms can feel like a bad cold or the flu.</span>
   </div>
 </div>
 
-<!-- PAGE TITLE -->
+<!-- ── PAGE TITLE ── -->
 <div class="page-title">
-  <div class="pt-eyebrow">Gold Eagle Services &nbsp;·&nbsp; Austin, Texas &nbsp;·&nbsp; Travis County</div>
-  <div class="pt-main">Austin AQI Dashboard</div>
+  <div class="pt-main">Austin Air Quality Dashboard</div>
   <div class="pt-rule"><div class="pt-ln"></div><div class="pt-gem"></div><div class="pt-ln"></div></div>
   <div class="pt-sub">Cooling &nbsp;·&nbsp; Heating &nbsp;·&nbsp; Indoor Air Quality</div>
   <div class="pt-meta">
-    <div class="pt-chip"><div class="dot"></div>📍 Austin, TX · Travis County</div>
-    <div class="pt-chip"><div class="dot"></div><span id="lastUpdate">Loading...</span></div>
-    <div class="pt-chip"><div class="dot"></div>US EPA AQI Standard · Updates Hourly</div>
+    <div class="pt-chip"><div class="dot"></div>📍 Travis County, Texas</div>
+    <div class="pt-chip"><div class="dot"></div><span id="lastUpdate">Loading live data...</span></div>
+    <div class="pt-chip"><div class="dot"></div>Updated every hour · Free · Open-Meteo</div>
   </div>
 </div>
 
 <div class="main">
 
-  <!-- ERROR -->
   <div class="err-box" id="errBox">
-    <p>⚠️ <strong>Live data is not loading.</strong> This works perfectly when hosted on your live URL (GitHub Pages, website, etc.). The Claude.ai preview sandbox blocks outbound API calls. Upload to GitHub and visit <strong>keatingkuhn.github.io/Gold-Eagle-Services-AQI</strong> to see live data.</p>
+    <p>⚠️ <strong>Live data unavailable in this preview.</strong> The Claude.ai sandbox blocks outbound API calls. Once uploaded to GitHub Pages, all live data loads instantly. Visit <strong>keatingkuhn.github.io/Gold-Eagle-Services-AQI</strong> to see it working live.</p>
   </div>
 
-  <!-- ══ HOURLY STRIP ══ -->
+  <!-- ── HOURLY ── -->
   <div class="sec-hdr" style="margin-top:24px;">
     <div class="sec-title">Today's Hourly Air Quality</div>
     <div class="sec-line"></div>
@@ -483,18 +373,18 @@ body {
   <div class="hourly-strip">
     <div class="hs-label">
       <div class="hs-title">Best Time Outside</div>
-      <div class="hs-note" id="hsNote">Calculating best window...</div>
+      <div class="hs-note" id="hsNote">Finding cleanest window...</div>
     </div>
     <div class="hs-bars" id="hourlyBars"></div>
   </div>
 
-  <!-- ══ HERO GRID: AQI + POLLEN 50/50 ══ -->
+  <!-- ── HERO 50/50 ── -->
   <div class="hero-grid">
 
-    <!-- AQI CARD -->
+    <!-- AQI -->
     <div class="aqi-card">
       <div>
-        <div class="aqi-eyebrow">Current Air Quality Index · US EPA</div>
+        <div class="aqi-eyebrow">Current Air Quality Index · US EPA Standard</div>
         <div class="aqi-num-row">
           <div class="aqi-number" id="aqiNum">—</div>
           <div class="aqi-vert">
@@ -509,16 +399,13 @@ body {
         <div class="aqi-status" id="aqiStatus">Loading...</div>
         <div class="aqi-pill" id="aqiPill">—</div>
         <div class="aqi-desc" id="aqiDesc">Connecting to live air quality data for Austin, TX...</div>
-        <div class="compare-line" id="compareLine" style="display:none">
+        <div class="compare-line" id="compareLine">
           <span class="ci" id="compareIcon"></span>
           <span id="compareText"></span>
         </div>
         <div class="family-badge" id="familyBadge">
           <span style="font-size:22px">👨‍👩‍👧</span>
-          <div>
-            <div class="fb-label">Kids &amp; Pets Today</div>
-            <div class="fb-val" id="familyVal">Checking...</div>
-          </div>
+          <div><div class="fb-label">Kids &amp; Pets Today</div><div class="fb-val" id="familyVal">Checking...</div></div>
         </div>
       </div>
       <div>
@@ -534,112 +421,90 @@ body {
       </div>
     </div>
 
-    <!-- POLLEN CARD 50% -->
-    <div class="pollen-card-hero">
+    <!-- POLLEN 50% -->
+    <div class="pollen-hero">
       <div class="pch-hdr">
         Pollen &amp; Allergen Levels — Right Now
-        <div class="info-wrap">
-          <div class="info-btn">i</div>
-          <div class="tooltip">Live pollen readings for Austin. Austin is one of the worst cities in the US for allergies — with something in the air nearly every month of the year. Hover each type below for more detail.</div>
-        </div>
+        <span class="info-wrap" data-tip="Live pollen readings for Austin. Austin ranks in the top 5 worst allergy cities in the US — with something in the air nearly every month of the year. Hover each row for detail."><span class="info-btn">i</span></span>
       </div>
-      <div class="pollen-trio">
+      <div class="pollen-rows">
 
-        <!-- Grass -->
-        <div class="pt-row">
-          <div class="pt-emoji">🌿</div>
-          <div class="pt-info">
-            <div class="pt-type">Grass Pollen
-              <div class="info-wrap">
-                <div class="info-btn">i</div>
-                <div class="tooltip"><strong>Grass Pollen</strong><br>Bermuda and other warm-season grasses release pollen from spring through fall. High grass pollen days mean itchy eyes and sneezing — especially for kids playing outside. Austin grass pollen season runs March–October.</div>
-              </div>
+        <div class="p-row">
+          <div class="p-emoji">🌿</div>
+          <div class="p-info">
+            <div class="p-type-row">
+              <span class="p-type">Grass Pollen</span>
+              <span class="info-wrap" data-tip="Bermuda and other warm-season grasses pollinate spring through fall. Austin grass season runs March–October. High days mean itchy eyes and sneezing, especially for kids playing outside."><span class="info-btn">i</span></span>
             </div>
-            <div class="pt-num" id="pc-grass">—</div>
-            <div class="pt-unit">grains per m³</div>
-            <div class="pt-bar-wrap"><div class="pt-bar" id="ptb-grass"></div></div>
+            <div class="p-num" id="p-grass">—</div>
+            <div class="p-unit">grains per m³</div>
+            <div class="p-bar-wrap"><div class="p-bar" id="pbar-grass"></div></div>
           </div>
-          <div class="pt-badge" id="ptbadge-grass">—</div>
+          <div class="p-badge" id="pbadge-grass">—</div>
         </div>
 
-        <!-- Ragweed -->
-        <div class="pt-row">
-          <div class="pt-emoji">🌾</div>
-          <div class="pt-info">
-            <div class="pt-type">Ragweed &amp; Weed
-              <div class="info-wrap">
-                <div class="info-btn">i</div>
-                <div class="tooltip"><strong>Ragweed &amp; Weed Pollen</strong><br>Ragweed is the most common allergy trigger in the US, peaking Aug–November. In mild Austin winters, weed pollen can persist nearly year-round. A single ragweed plant can release a billion grains in one season.</div>
-              </div>
+        <div class="p-row">
+          <div class="p-emoji">🌾</div>
+          <div class="p-info">
+            <div class="p-type-row">
+              <span class="p-type">Ragweed &amp; Weed</span>
+              <span class="info-wrap" data-tip="Ragweed is the most common US allergy trigger, peaking Aug–Nov. Austin's mild winters mean weed pollen can linger nearly year-round. One ragweed plant can release a billion pollen grains per season."><span class="info-btn">i</span></span>
             </div>
-            <div class="pt-num" id="pc-ragweed">—</div>
-            <div class="pt-unit">grains per m³</div>
-            <div class="pt-bar-wrap"><div class="pt-bar" id="ptb-ragweed"></div></div>
+            <div class="p-num" id="p-ragweed">—</div>
+            <div class="p-unit">grains per m³</div>
+            <div class="p-bar-wrap"><div class="p-bar" id="pbar-ragweed"></div></div>
           </div>
-          <div class="pt-badge" id="ptbadge-ragweed">—</div>
+          <div class="p-badge" id="pbadge-ragweed">—</div>
         </div>
 
-        <!-- Tree / Cedar -->
-        <div class="pt-row">
-          <div class="pt-emoji">🌲</div>
-          <div class="pt-info">
-            <div class="pt-type">
-              Tree / Cedar
+        <div class="p-row">
+          <div class="p-emoji">🌲</div>
+          <div class="p-info">
+            <div class="p-type-row">
+              <span class="p-type">Tree / Cedar</span>
               <span class="cedar-tag" id="cedarTag">CEDAR FEVER</span>
-              <div class="info-wrap">
-                <div class="info-btn">i</div>
-                <div class="tooltip"><strong>Tree Pollen — Including Mountain Cedar</strong><br>Austin's most notorious allergen. Mountain Cedar (Ashe Juniper) causes "Cedar Fever" Dec–Feb with symptoms so intense people mistake it for the flu. Oak and elm follow in spring. Austin tree pollen is among the highest in the US.</div>
-              </div>
+              <span class="info-wrap" data-tip="Mountain Cedar (Ashe Juniper) causes Austin's infamous Cedar Fever Dec–Feb — symptoms so intense people mistake it for the flu. Oak and elm follow in spring. Austin tree pollen is among the highest in the US."><span class="info-btn">i</span></span>
             </div>
-            <div class="pt-num" id="pc-birch">—</div>
-            <div class="pt-unit">grains per m³</div>
-            <div class="pt-bar-wrap"><div class="pt-bar" id="ptb-birch"></div></div>
+            <div class="p-num" id="p-birch">—</div>
+            <div class="p-unit">grains per m³</div>
+            <div class="p-bar-wrap"><div class="p-bar" id="pbar-birch"></div></div>
           </div>
-          <div class="pt-badge" id="ptbadge-birch">—</div>
+          <div class="p-badge" id="pbadge-birch">—</div>
         </div>
 
-      </div><!-- /pollen-trio -->
-    </div><!-- /pollen-card-hero -->
-
+      </div>
+    </div>
   </div><!-- /hero-grid -->
 
-  <!-- ══ QUICK STATS ══ -->
+  <!-- ── QUICK STATS ── -->
   <div class="quick-stats">
     <div class="qs-tile">
       <div class="qs-icon">💨</div>
-      <div class="qs-label">Main Concern Today
-        <div class="info-wrap"><div class="info-btn">i</div><div class="tooltip">The single pollutant pushing today's AQI the highest — measured relative to its safety threshold.</div></div>
-      </div>
-      <div class="qs-val" id="qs-dom" style="font-size:22px">—</div>
-      <div class="qs-note" id="qs-dom-note">primary pollutant right now</div>
+      <div class="qs-label">Main Concern Today <span class="info-wrap" data-tip="The single pollutant driving today's AQI the most — measured relative to its safety threshold."><span class="info-btn">i</span></span></div>
+      <div class="qs-val" id="qs-dom" style="font-size:21px">—</div>
+      <div class="qs-note">primary pollutant right now</div>
     </div>
     <div class="qs-tile">
       <div class="qs-icon">🏷️</div>
-      <div class="qs-label">Air Quality Rating
-        <div class="info-wrap"><div class="info-btn">i</div><div class="tooltip">The US EPA assigns one of 6 categories to today's air. Good (0–50), Moderate (51–100), Unhealthy for Sensitive Groups (101–150), Unhealthy (151–200), Very Unhealthy (201–300), Hazardous (301+).</div></div>
-      </div>
+      <div class="qs-label">Air Quality Rating <span class="info-wrap" data-tip="US EPA categories: Good (0–50), Moderate (51–100), Unhealthy for Some (101–150), Unhealthy (151–200), Very Unhealthy (201–300), Hazardous (301+)."><span class="info-btn">i</span></span></div>
       <div class="qs-val co" id="qs-cat" style="font-size:18px;line-height:1.2">—</div>
       <div class="qs-note">US EPA classification</div>
     </div>
     <div class="qs-tile">
       <div class="qs-icon">⏰</div>
-      <div class="qs-label">Best Time to Go Outside
-        <div class="info-wrap"><div class="info-btn">i</div><div class="tooltip">The hour window today when the air is cleanest — based on today's hourly AQI forecast. Great for morning walks, kids playing outside, or opening windows for fresh air.</div></div>
-      </div>
+      <div class="qs-label">Best Time Outside <span class="info-wrap" data-tip="The hour window today when air quality is cleanest, based on the hourly forecast. Great for morning walks, kids playing outside, or opening windows."><span class="info-btn">i</span></span></div>
       <div class="qs-val" id="qs-besttime" style="font-size:20px">—</div>
       <div class="qs-note">lowest AQI window today</div>
     </div>
     <div class="qs-tile">
       <div class="qs-icon">🌿</div>
-      <div class="qs-label">Overall Pollen Load
-        <div class="info-wrap"><div class="info-btn">i</div><div class="tooltip">Combined grass + ragweed + tree pollen reading. Austin is consistently ranked one of the top 5 worst allergy cities in America — something is almost always in the air.</div></div>
-      </div>
+      <div class="qs-label">Overall Pollen Load <span class="info-wrap" data-tip="Combined grass + ragweed + tree pollen. Austin consistently ranks in the top 5 worst allergy cities in America — something is almost always in the air."><span class="info-btn">i</span></span></div>
       <div class="qs-val co" id="qs-pollen" style="font-size:26px">—</div>
-      <div class="qs-note">grass + ragweed + tree combined</div>
+      <div class="qs-note">grass + ragweed + tree</div>
     </div>
   </div>
 
-  <!-- ══ POLLUTANT BREAKDOWN ══ -->
+  <!-- ── POLLUTANT BREAKDOWN ── -->
   <div class="sec-hdr">
     <div class="sec-title">Pollutant Breakdown</div>
     <div class="sec-line"></div>
@@ -647,98 +512,72 @@ body {
   <div class="poll-section">
     <div class="poll-section-hdr">
       What's in the air right now — current hour readings
-      <div class="info-wrap">
-        <div class="info-btn">i</div>
-        <div class="tooltip" style="width:250px">These are the key particles and gases in Austin's air right now. Higher numbers mean more is present. Each one affects your health differently — hover the <strong>i</strong> next to each for a plain-English explanation.</div>
-      </div>
+      <span class="info-wrap" data-tip="Key particles and gases measured in Austin's air right now. Higher numbers mean more is present. Hover each ⓘ for plain-English explanations."><span class="info-btn">i</span></span>
     </div>
     <div class="poll-grid">
-      <div class="poll-cell">
-        <div class="poll-cell-hd"><div class="poll-tag">PM 2.5</div>
-          <div class="info-wrap"><div class="info-btn">i</div><div class="tooltip"><strong>Tiny Particles in the Air</strong><br>Smaller than a human hair — these get deep into your lungs. Wood smoke, car exhaust, and dust create them. They're the #1 reason outdoor air quality affects how you feel inside your home.</div></div>
-        </div>
-        <div class="poll-full">Tiny Airborne Particles</div>
-        <div class="poll-num" id="pv-pm25">—</div><div class="poll-unit">µg/m³</div>
-        <div class="poll-bar-wrap"><div class="poll-bar" id="pb-pm25"></div></div>
-      </div>
-      <div class="poll-cell">
-        <div class="poll-cell-hd"><div class="poll-tag">Ozone O₃</div>
-          <div class="info-wrap"><div class="info-btn">i</div><div class="tooltip"><strong>Ground-Level Ozone</strong><br>Forms on hot sunny days — common in Austin summers. Can irritate your throat and lungs, especially for kids, older adults, and anyone with asthma. Worst in the afternoon heat.</div></div>
-        </div>
-        <div class="poll-full">Ground-Level Ozone</div>
-        <div class="poll-num" id="pv-o3">—</div><div class="poll-unit">µg/m³</div>
-        <div class="poll-bar-wrap"><div class="poll-bar" id="pb-o3"></div></div>
-      </div>
-      <div class="poll-cell">
-        <div class="poll-cell-hd"><div class="poll-tag">PM 10</div>
-          <div class="info-wrap"><div class="info-btn">i</div><div class="tooltip"><strong>Dust &amp; Larger Particles</strong><br>Bigger particles from dust, pollen, mold, and construction. Your nose filters many of these, but high levels still cause irritation — especially on windy Central Texas days.</div></div>
-        </div>
-        <div class="poll-full">Dust &amp; Larger Particles</div>
-        <div class="poll-num" id="pv-pm10">—</div><div class="poll-unit">µg/m³</div>
-        <div class="poll-bar-wrap"><div class="poll-bar" id="pb-pm10"></div></div>
-      </div>
-      <div class="poll-cell">
-        <div class="poll-cell-hd"><div class="poll-tag">NO₂</div>
-          <div class="info-wrap"><div class="info-btn">i</div><div class="tooltip"><strong>Nitrogen Dioxide</strong><br>From vehicle traffic and gas appliances. Higher near busy roads. Can irritate airways and aggravate asthma — and Austin's traffic is only getting worse.</div></div>
-        </div>
-        <div class="poll-full">Traffic &amp; Combustion Gas</div>
-        <div class="poll-num" id="pv-no2">—</div><div class="poll-unit">µg/m³</div>
-        <div class="poll-bar-wrap"><div class="poll-bar" id="pb-no2"></div></div>
-      </div>
-      <div class="poll-cell">
-        <div class="poll-cell-hd"><div class="poll-tag">CO</div>
-          <div class="info-wrap"><div class="info-btn">i</div><div class="tooltip"><strong>Carbon Monoxide</strong><br>Colorless, odorless gas from burning fuel. Outdoor levels are usually low — but indoors, from gas stoves or attached garages, it can build up silently. High outdoor readings are a warning sign worth taking seriously.</div></div>
-        </div>
-        <div class="poll-full">Carbon Monoxide</div>
-        <div class="poll-num" id="pv-co">—</div><div class="poll-unit">µg/m³</div>
-        <div class="poll-bar-wrap"><div class="poll-bar" id="pb-co"></div></div>
-      </div>
-      <div class="poll-cell">
-        <div class="poll-cell-hd"><div class="poll-tag">SO₂</div>
-          <div class="info-wrap"><div class="info-btn">i</div><div class="tooltip"><strong>Sulfur Dioxide</strong><br>Comes mainly from power plants and industrial sites. Can irritate your nose and throat. Less common in Austin than in industrial cities, but worth watching on poor air quality days.</div></div>
-        </div>
-        <div class="poll-full">Industrial Gas</div>
-        <div class="poll-num" id="pv-so2">—</div><div class="poll-unit">µg/m³</div>
-        <div class="poll-bar-wrap"><div class="poll-bar" id="pb-so2"></div></div>
-      </div>
-      <div class="poll-cell">
-        <div class="poll-cell-hd"><div class="poll-tag">UV Index</div>
-          <div class="info-wrap"><div class="info-btn">i</div><div class="tooltip"><strong>UV Radiation Level</strong><br>Scale 0–11+. Under 3: low risk. Above 6: wear sunscreen. Above 8: limit direct sun, especially for kids. Austin regularly hits 9–11 in summer — one of the highest in the country.</div></div>
-        </div>
-        <div class="poll-full">Sun Radiation Strength</div>
-        <div class="poll-num" id="pv-uv">—</div><div class="poll-unit">scale 0–11+</div>
-        <div class="poll-bar-wrap"><div class="poll-bar" id="pb-uv"></div></div>
-      </div>
-      <div class="poll-cell">
-        <div class="poll-cell-hd"><div class="poll-tag">Dust</div>
-          <div class="info-wrap"><div class="info-btn">i</div><div class="tooltip"><strong>Airborne Dust</strong><br>Windblown soil and particles — Central Texas can get spikes from West Texas dust storms. Hard on your HVAC filters and can trigger eye irritation and allergy flare-ups.</div></div>
-        </div>
-        <div class="poll-full">Windblown Dust</div>
-        <div class="poll-num" id="pv-dust">—</div><div class="poll-unit">µg/m³</div>
-        <div class="poll-bar-wrap"><div class="poll-bar" id="pb-dust"></div></div>
-      </div>
+      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">PM 2.5</span><span class="info-wrap" data-tip="Tiny Particles — Smaller than a human hair, these get deep into your lungs. Wood smoke, car exhaust, and dust create them. The #1 reason outdoor air affects how you feel inside."><span class="info-btn">i</span></span></div><div class="poll-full">Tiny Airborne Particles</div><div class="poll-num" id="pv-pm25">—</div><div class="poll-unit">µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-pm25"></div></div></div>
+      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">Ozone O₃</span><span class="info-wrap" data-tip="Ground-Level Ozone — Forms on hot sunny days, common in Austin summers. Irritates throat and lungs, especially for kids and asthma sufferers. Worst in afternoon heat."><span class="info-btn">i</span></span></div><div class="poll-full">Ground-Level Ozone</div><div class="poll-num" id="pv-o3">—</div><div class="poll-unit">µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-o3"></div></div></div>
+      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">PM 10</span><span class="info-wrap" data-tip="Dust & Larger Particles — From dust, pollen, mold, construction. Your nose filters many of these, but high levels still irritate — especially on windy Central Texas days."><span class="info-btn">i</span></span></div><div class="poll-full">Dust &amp; Larger Particles</div><div class="poll-num" id="pv-pm10">—</div><div class="poll-unit">µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-pm10"></div></div></div>
+      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">NO₂</span><span class="info-wrap" data-tip="Nitrogen Dioxide — From vehicle traffic and gas appliances. Higher near busy roads. Can irritate airways and aggravate asthma. Austin's traffic makes this worth watching."><span class="info-btn">i</span></span></div><div class="poll-full">Traffic &amp; Combustion Gas</div><div class="poll-num" id="pv-no2">—</div><div class="poll-unit">µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-no2"></div></div></div>
+      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">CO</span><span class="info-wrap" data-tip="Carbon Monoxide — Colorless, odorless gas from burning fuel. Outdoor levels are usually low, but indoors — from gas stoves or attached garages — it can build up silently."><span class="info-btn">i</span></span></div><div class="poll-full">Carbon Monoxide</div><div class="poll-num" id="pv-co">—</div><div class="poll-unit">µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-co"></div></div></div>
+      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">SO₂</span><span class="info-wrap" data-tip="Sulfur Dioxide — Mainly from power plants and industrial sites. Can irritate your nose and throat. Less common in Austin but worth watching on bad air days."><span class="info-btn">i</span></span></div><div class="poll-full">Industrial Gas</div><div class="poll-num" id="pv-so2">—</div><div class="poll-unit">µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-so2"></div></div></div>
+      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">UV Index</span><span class="info-wrap" data-tip="UV Radiation — Scale 0–11+. Under 3: low. Above 6: wear sunscreen. Above 8: limit direct sun for kids. Austin regularly hits 9–11 in summer."><span class="info-btn">i</span></span></div><div class="poll-full">Sun Radiation Strength</div><div class="poll-num" id="pv-uv">—</div><div class="poll-unit">scale 0–11+</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-uv"></div></div></div>
+      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">Dust</span><span class="info-wrap" data-tip="Airborne Dust — Windblown soil and particles. Central Texas can get spikes from West Texas dust storms. Hard on HVAC filters and can trigger eye irritation."><span class="info-btn">i</span></span></div><div class="poll-full">Windblown Dust</div><div class="poll-num" id="pv-dust">—</div><div class="poll-unit">µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-dust"></div></div></div>
     </div>
   </div>
 
-  <!-- ══ 7-DAY FORECAST ══ -->
+  <!-- ── 7-DAY FORECAST ── -->
   <div class="sec-hdr">
     <div class="sec-title">7-Day AQI Forecast</div>
     <div class="sec-line"></div>
   </div>
   <div class="forecast-strip" id="forecastStrip"></div>
 
-  <!-- ══ TREND SPARKLINE ══ -->
-  <div class="trend-bar">
-    <div>
-      <div class="t-title">7-Day Trend</div>
-      <div class="t-sub" id="trendNote">Is air quality getting better or worse this week?</div>
+  <!-- ── 7-DAY TREND (full chart) ── -->
+  <div class="trend-card">
+    <div class="trend-top">
+      <div class="trend-title-col">
+        <div class="t-title">7-Day Air Quality Trend</div>
+        <div class="t-sub" id="trendSub">Is the air getting better or worse this week?</div>
+      </div>
+      <div class="trend-note-pill" id="trendPill" style="border:2px solid var(--border-hi);color:var(--text-dim);">—</div>
     </div>
-    <div class="sparkline-wrap">
-      <svg id="sparkSvg" viewBox="0 0 300 50" preserveAspectRatio="none"></svg>
+    <div class="trend-chart">
+      <svg id="trendSvg" viewBox="0 0 700 100" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="trend-legend" id="trendLegend"></div>
+  </div>
+
+  <!-- ── ALLERGY CALENDAR ── -->
+  <div class="sec-hdr">
+    <div class="sec-title">Austin Allergy Calendar</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="allergy-calendar">
+    <div class="cal-intro">Austin is one of the <strong>top 5 worst allergy cities in America</strong> — and unlike most places, something is almost always in bloom. This calendar shows the typical ebb and flow of Austin's allergens month by month so you can plan ahead.</div>
+    <div class="cal-wrap">
+      <table class="cal-table">
+        <thead><tr>
+          <th class="acol">Allergen</th>
+          <th id="cth0">Jan</th><th id="cth1">Feb</th><th id="cth2">Mar</th><th id="cth3">Apr</th>
+          <th id="cth4">May</th><th id="cth5">Jun</th><th id="cth6">Jul</th><th id="cth7">Aug</th>
+          <th id="cth8">Sep</th><th id="cth9">Oct</th><th id="cth10">Nov</th><th id="cth11">Dec</th>
+        </tr></thead>
+        <tbody id="calBody"></tbody>
+      </table>
+    </div>
+    <div class="cal-legend">
+      <div class="leg-item"><div class="cal-dot h">H</div> High — peak season, symptoms likely</div>
+      <div class="leg-item"><div class="cal-dot m">M</div> Moderate — present, some affected</div>
+      <div class="leg-item"><div class="cal-dot l">L</div> Low — minimal, most unaffected</div>
+      <div class="leg-item"><div class="cal-dot n">—</div> Not active</div>
+    </div>
+    <div class="cedar-callout">
+      🌲 <strong>Cedar Fever Season (December – February)</strong> — Mountain Cedar (Ashe Juniper) is Austin's most notorious allergen. During peak release, the pollen cloud can be so thick it looks like smoke rolling through the Hill Country. Symptoms include runny nose, itchy eyes, fatigue, and sometimes a low-grade fever — so intense that newcomers often mistake it for the flu. If you're new to Austin, your first Cedar season is typically the worst, as your immune system has had zero prior exposure.
     </div>
   </div>
 
-  <!-- ══ ADVISORY ══ -->
+  <!-- ── ADVISORY (moved below calendar) ── -->
   <div class="sec-hdr">
     <div class="sec-title">Today's Advisory</div>
     <div class="sec-line"></div>
@@ -756,112 +595,46 @@ body {
     </div>
   </div>
 
-  <!-- ══ ALLERGY CALENDAR ══ -->
-  <div class="sec-hdr">
-    <div class="sec-title">Austin Allergy Calendar</div>
-    <div class="sec-line"></div>
-  </div>
-  <div class="allergy-calendar">
-    <div class="cal-intro">
-      Austin is one of the <strong>top 5 worst allergy cities in America</strong> — and unlike most cities, something is almost always in bloom. This calendar shows the typical ebb and flow of Austin's main allergens throughout the year, so you can plan ahead and know what to expect each season.
-    </div>
-    <div class="cal-grid">
-      <table class="cal-table">
-        <thead>
-          <tr>
-            <th class="allergen-col">Allergen</th>
-            <th id="th0">Jan</th><th id="th1">Feb</th><th id="th2">Mar</th>
-            <th id="th3">Apr</th><th id="th4">May</th><th id="th5">Jun</th>
-            <th id="th6">Jul</th><th id="th7">Aug</th><th id="th8">Sep</th>
-            <th id="th9">Oct</th><th id="th10">Nov</th><th id="th11">Dec</th>
-          </tr>
-        </thead>
-        <tbody id="calBody"></tbody>
-      </table>
-    </div>
-    <div class="cal-legend">
-      <div class="leg-item"><div class="cal-dot high">H</div> High — peak season, symptoms likely for allergy sufferers</div>
-      <div class="leg-item"><div class="cal-dot mod">M</div> Moderate — present, some people affected</div>
-      <div class="leg-item"><div class="cal-dot low">L</div> Low — minimal levels, most people unaffected</div>
-      <div class="leg-item"><div class="cal-dot none">—</div> Not active this month</div>
-    </div>
-    <div style="margin-top:18px; padding:14px 18px; background:#fff7ed; border-left:4px solid #ea580c; font-size:13px; line-height:1.75; color:var(--text-mid);">
-      🌲 <strong style="color:#c2410c">Cedar Fever Season (December – February)</strong> — Mountain Cedar (Ashe Juniper) is Austin's most notorious allergen. During peak release, the pollen can be so heavy it looks like smoke rolling through the Hill Country. Symptoms include runny nose, itchy eyes, fatigue, and sometimes low-grade fever — leading many people to mistake it for the flu. If you're new to Austin, your first Cedar season is often the worst as your immune system has no prior exposure.
-    </div>
-  </div>
-
-  <!-- ══ IAQ TIPS ══ -->
+  <!-- ── IAQ TIPS ── -->
   <div class="sec-hdr">
     <div class="sec-title">Improving the Air Inside Your Home</div>
     <div class="sec-line"></div>
   </div>
   <div class="iaq-tips">
-    <div class="iaq-intro">
-      Most people spend 90% of their time indoors — and indoor air can actually be <strong>2 to 5 times more polluted</strong> than the air outside. The good news: small changes make a real difference.
-    </div>
+    <div class="iaq-intro">Most people spend 90% of their time indoors — and indoor air can be <strong>2 to 5 times more polluted</strong> than outdoor air. Small changes make a real difference.</div>
     <div class="tips-grid">
-      <div class="tip-card">
-        <div class="tip-icon">🔄</div>
-        <div class="tip-title">Change Your Air Filter Regularly</div>
-        <div class="tip-body">Your HVAC filter is your home's first line of defense. A standard 1-inch filter should be swapped out every <strong>30–60 days</strong>. Look for a MERV-8 or higher rating — the higher the number, the smaller the particles it catches. A clogged filter hurts air quality and makes your system work harder.</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🌬️</div>
-        <div class="tip-title">Ventilate Smartly</div>
-        <div class="tip-body">Open windows <strong>when outdoor AQI is Good or Moderate</strong> (below 100), ideally in the morning before the heat builds. On bad air or high-pollen days, keep things sealed up. Running bathroom and kitchen fans removes moisture, odors, and combustion gases before they build up inside.</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">💧</div>
-        <div class="tip-title">Keep Humidity in Check</div>
-        <div class="tip-body">Austin summers are humid. The sweet spot for indoor humidity is <strong>30–50%</strong> — low enough to discourage mold and dust mites, but not so dry that it irritates your airways. A dehumidifier in problem areas makes a noticeable difference in how the air feels and smells.</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🚫</div>
-        <div class="tip-title">Cut Back on Indoor Pollutants</div>
-        <div class="tip-body">Common indoor air offenders: <strong>scented candles, aerosol sprays, gas stoves, and synthetic air fresheners</strong>. These release VOCs into the air you breathe. Use the range hood when cooking, swap to fragrance-free cleaning products, and choose beeswax or soy candles if you like the ambiance.</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🌿</div>
-        <div class="tip-title">Add a Few Houseplants</div>
-        <div class="tip-body">Plants like <strong>peace lilies, snake plants, and spider plants</strong> absorb small amounts of common indoor pollutants and add oxygen. They're not a replacement for a good filter, but they help — and act as natural humidity indicators. Droopy leaves usually mean the air is too dry.</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🐾</div>
-        <div class="tip-title">Pet Owners: A Few Extra Steps</div>
-        <div class="tip-body">Pet dander is one of the most common indoor allergy triggers. Vacuum at least twice a week with a <strong>HEPA-filter vacuum</strong>, wash pet bedding weekly, and on high pollen days — wipe your pet's paws and coat when they come inside. They track allergens in every time.</div>
-      </div>
+      <div class="tip-card"><div class="tip-icon">🔄</div><div class="tip-title">Change Your Air Filter Regularly</div><div class="tip-body">Your HVAC filter is your home's first line of defense. Swap it every <strong>30–60 days</strong> and look for MERV-8 or higher. A clogged filter hurts air quality and makes your system work harder and cost more to run.</div></div>
+      <div class="tip-card"><div class="tip-icon">🌬️</div><div class="tip-title">Ventilate Smartly</div><div class="tip-body">Open windows when outdoor AQI is <strong>Good or Moderate (below 100)</strong>, ideally in the morning before heat builds. On high-pollen or bad-air days, keep things sealed up. Kitchen and bathroom fans remove moisture and gases before they build up inside.</div></div>
+      <div class="tip-card"><div class="tip-icon">💧</div><div class="tip-title">Keep Humidity in Check</div><div class="tip-body">Austin summers are humid. The sweet spot for indoor humidity is <strong>40–55%</strong> — low enough to discourage mold and dust mites, but comfortable for your airways and skin. A dehumidifier in problem areas makes a noticeable difference.</div></div>
+      <div class="tip-card"><div class="tip-icon">🚫</div><div class="tip-title">Cut Back on Indoor Pollutants</div><div class="tip-body">Common offenders: <strong>scented candles, aerosol sprays, gas stoves, and synthetic air fresheners</strong>. These release VOCs into the air you breathe. Use the range hood when cooking, choose fragrance-free cleaners, and swap to beeswax or soy candles.</div></div>
+      <div class="tip-card"><div class="tip-icon">🌿</div><div class="tip-title">Add a Few Houseplants</div><div class="tip-body">Plants like <strong>peace lilies, snake plants, and spider plants</strong> absorb small amounts of common indoor pollutants. They're not a replacement for a good filter, but they help — and droopy leaves usually mean the air is too dry.</div></div>
+      <div class="tip-card"><div class="tip-icon">🐾</div><div class="tip-title">Pet Owners: A Few Extra Steps</div><div class="tip-body">Pet dander is one of the most common indoor allergy triggers. Vacuum twice a week with a <strong>HEPA-filter vacuum</strong>, wash pet bedding weekly, and on high-pollen days — wipe your pet's paws and coat when they come inside. They track allergens in every time.</div></div>
     </div>
   </div>
 
-  <!-- ══ SOCIAL SHARE ══ -->
+  <!-- ── SOCIAL SHARE ── -->
   <div class="sec-hdr">
     <div class="sec-title">Share Today's Report</div>
     <div class="sec-line"></div>
   </div>
-  <div class="social-share">
-    <div class="ss-text">
-      <h3>Share with Your Neighborhood</h3>
-      <p>Post today's Austin air quality to your HOA group, neighborhood Facebook page, or Instagram story</p>
+  <div class="social-bar">
+    <div>
+      <div class="ss-h3">Share with Your Neighborhood</div>
+      <div class="ss-p">Post today's Austin air quality to your HOA group, neighborhood Facebook, or Instagram</div>
     </div>
     <div class="ss-btns">
-      <button class="btn-fb" onclick="shareFacebook()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        Share to Facebook
-      </button>
-      <button class="btn-ig" onclick="shareInstagram()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        Instagram Story
-      </button>
-      <button class="btn-copy" onclick="copyNewsletter()">📋 Copy Newsletter</button>
+      <button class="btn-fb" onclick="shareFacebook()"><svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook</button>
+      <button class="btn-ig" onclick="shareInstagram()"><svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> Instagram</button>
+      <button class="btn-gold" onclick="copyNewsletter()">📋 Copy Newsletter</button>
       <button class="btn-outline" onclick="copyJSON()">{ } JSON</button>
       <button class="btn-outline" onclick="window.print()">🖨 Print</button>
     </div>
   </div>
 
   <div class="api-block">
-    <div class="api-lbl">📡 Live Data Endpoint — Open-Meteo Air Quality API · Free · No API Key Required · CORS Enabled · Updates Hourly</div>
+    <div class="api-lbl">📡 Live Data Endpoint — Open-Meteo Air Quality API · Free · No API Key · CORS Enabled · Updates Hourly</div>
     <div class="api-code">https://air-quality-api.open-meteo.com/v1/air-quality?latitude=30.2672&amp;longitude=-97.7431&amp;current=us_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,uv_index&amp;hourly=us_aqi,pm2_5,pm10,ozone,nitrogen_dioxide,carbon_monoxide,sulphur_dioxide,grass_pollen,ragweed_pollen,birch_pollen,dust,uv_index&amp;forecast_days=7&amp;timezone=America%2FChicago</div>
-    <div class="api-meta">Austin TX · 30.2672°N 97.7431°W · JSON · Embed in backend for automated newsletter pulls · Open-Meteo CC BY 4.0</div>
+    <div class="api-meta">Austin TX · 30.2672°N 97.7431°W · JSON · Embed in backend for newsletter automation · Open-Meteo CC BY 4.0</div>
   </div>
 
 </div><!-- /main -->
@@ -871,189 +644,200 @@ body {
   <div class="footer-links">
     <a href="https://goldeagleservices.com" target="_blank">GoldEagleServices.com</a>
     <a href="tel:5124894653">512-489-GOLD</a>
-    <a href="https://open-meteo.com" target="_blank">Data: Open-Meteo</a>
+    <a href="https://open-meteo.com" target="_blank">Open-Meteo</a>
   </div>
 </footer>
 
+<!-- ── FLOATING TOOLTIP (single, JS-positioned) ── -->
+<div id="floatTip" style="position:fixed;background:#1a1710;border:1px solid var(--gold-3);padding:11px 14px;width:230px;font-size:12px;line-height:1.65;color:#f2efe8;font-family:'Open Sans',sans-serif;pointer-events:none;opacity:0;transition:opacity .15s;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,.3);display:none;"></div>
+
 <script>
-/* ══════════════════════════════
+/* ═══════════════════════════════════
+   TOOLTIP — single floating element, JS-positioned
+   Avoids all overflow:hidden clipping issues
+═══════════════════════════════════ */
+const floatTip = document.getElementById('floatTip');
+document.querySelectorAll('.info-wrap').forEach(wrap => {
+  const tip = wrap.dataset.tip;
+  if (!tip) return;
+  const btn = wrap.querySelector('.info-btn');
+  btn.addEventListener('mouseenter', e => {
+    floatTip.innerHTML = tip;
+    floatTip.style.display = 'block';
+    floatTip.style.opacity = '0';
+    // Position after display so we can measure
+    requestAnimationFrame(() => {
+      const r = btn.getBoundingClientRect();
+      const tw = floatTip.offsetWidth, th = floatTip.offsetHeight;
+      let left = r.left + r.width/2 - tw/2;
+      let top  = r.top - th - 10;
+      // clamp to viewport
+      left = Math.max(8, Math.min(left, window.innerWidth - tw - 8));
+      if (top < 8) top = r.bottom + 10; // flip below
+      floatTip.style.left = left + 'px';
+      floatTip.style.top  = top  + 'px';
+      floatTip.style.opacity = '1';
+    });
+  });
+  btn.addEventListener('mouseleave', () => {
+    floatTip.style.opacity = '0';
+    setTimeout(() => { floatTip.style.display = 'none'; }, 160);
+  });
+});
+
+/* ═══════════════════════════════════
    CONFIG
-══════════════════════════════ */
+═══════════════════════════════════ */
 const LAT = 30.2672, LON = -97.7431;
 let liveData = null;
 const LIVE_URL = 'https://keatingkuhn.github.io/Gold-Eagle-Services-AQI/';
-
 const API = 'https://air-quality-api.open-meteo.com/v1/air-quality'
-  + '?latitude=' + LAT + '&longitude=' + LON
+  + '?latitude='+LAT+'&longitude='+LON
   + '&current=us_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,uv_index'
   + '&hourly=us_aqi,pm2_5,pm10,ozone,nitrogen_dioxide,carbon_monoxide,sulphur_dioxide,grass_pollen,ragweed_pollen,birch_pollen,dust,uv_index'
   + '&forecast_days=7&timezone=America%2FChicago';
 
-/* ══════════════════════════════
-   AQI META
-══════════════════════════════ */
+/* ═══════════════════════════════════
+   AQI / POLLEN HELPERS
+═══════════════════════════════════ */
 function aqiMeta(v) {
-  if (v == null) return { status:'Unknown', color:'#aaa', pip:0, cat:'Unknown', desc:'No data.', family:'No data', familyColor:'#aaa' };
+  if (v==null) return {status:'Unknown',color:'#aaa',pip:0,cat:'Unknown',desc:'No data.',family:'No data',fc:'#aaa'};
   v = Math.round(v);
-  if (v <= 50)  return { status:'Good', color:'var(--good)', pip:0, cat:'Good',
-    family:'Great Day Outside ✓', familyColor:'var(--good)',
-    desc:'The air in Austin is clean right now. A great morning to open up the house, let fresh air in, and head outside without any concerns.' };
-  if (v <= 100) return { status:'Moderate', color:'var(--mod)', pip:1, cat:'Moderate',
-    family:'Fine for Most Kids & Pets', familyColor:'var(--mod)',
-    desc:'Air quality is acceptable for most people. If someone in your home is unusually sensitive — like a child with asthma — they may want to take it a bit easy outside during the warmest part of the afternoon.' };
-  if (v <= 150) return { status:'Sensitive Groups Affected', color:'var(--sens)', pip:2, cat:'Unhealthy for Some',
-    family:'Limit Outdoor Play for Kids', familyColor:'var(--sens)',
-    desc:'People with asthma, allergies, or breathing conditions should take it easy outside today. Kids and older adults are most at risk. Everyone else is generally fine, but it\'s a smart day to keep windows closed and run your air system.' };
-  if (v <= 200) return { status:'Unhealthy', color:'var(--bad)', pip:3, cat:'Unhealthy',
-    family:'Keep Kids & Pets Inside Today', familyColor:'var(--bad)',
-    desc:'Air quality is unhealthy for everyone right now. Keep the windows closed, run your AC on recirculate, and limit time outside — especially anything strenuous like running or yard work.' };
-  if (v <= 300) return { status:'Very Unhealthy', color:'var(--vbad)', pip:4, cat:'Very Unhealthy',
-    family:'Do Not Go Outside Today', familyColor:'var(--vbad)',
-    desc:'This is a serious air quality day for everyone. Stay indoors, keep all windows and doors closed, and make sure any air filtration or purification you have is running.' };
-  return { status:'Hazardous', color:'var(--haz)', pip:5, cat:'Hazardous',
-    family:'Stay Inside — Emergency Conditions', familyColor:'var(--haz)',
-    desc:'The air outside is hazardous for everyone right now. Do not go outside. Keep all windows, doors, and vents sealed. This is a rare but serious event.' };
+  if (v<=50)  return {status:'Good',color:'var(--good)',pip:0,cat:'Good',fc:'var(--good)',
+    family:'Great Day Outside ✓',
+    desc:'The air in Austin is clean right now. A great morning to open up the house, let fresh air in, and head outside without any concerns.'};
+  if (v<=100) return {status:'Moderate',color:'var(--mod)',pip:1,cat:'Moderate',fc:'var(--mod)',
+    family:'Fine for Most Kids & Pets',
+    desc:'Air quality is acceptable for most people. If someone in your home is unusually sensitive to air quality — like a child with asthma — they may want to take it a bit easy outside during the warmest part of the afternoon.'};
+  if (v<=150) return {status:'Sensitive Groups Affected',color:'var(--sens)',pip:2,cat:'Unhealthy for Some',fc:'var(--sens)',
+    family:'Limit Outdoor Play for Kids',
+    desc:'People with asthma, allergies, or breathing conditions should take it easy outside today. Kids and older adults are most at risk. Everyone else is generally fine, but it\'s a smart day to keep windows closed and run your air system.'};
+  if (v<=200) return {status:'Unhealthy',color:'var(--bad)',pip:3,cat:'Unhealthy',fc:'var(--bad)',
+    family:'Keep Kids & Pets Inside Today',
+    desc:'Air quality is unhealthy for everyone right now. Keep windows closed, run your AC on recirculate, and limit time outside — especially anything strenuous like running or yard work.'};
+  if (v<=300) return {status:'Very Unhealthy',color:'var(--vbad)',pip:4,cat:'Very Unhealthy',fc:'var(--vbad)',
+    family:'Do Not Go Outside Today',
+    desc:'This is a serious air quality day for everyone. Stay indoors, keep all windows and doors closed, and make sure any filtration you have is running.'};
+  return {status:'Hazardous',color:'var(--haz)',pip:5,cat:'Hazardous',fc:'var(--haz)',
+    family:'Stay Inside — Emergency Conditions',
+    desc:'The air outside is hazardous for everyone. Do not go outside. Keep all windows, doors, and vents sealed. This is rare but serious.'};
 }
 
 function pollenMeta(v) {
-  if (v == null) return { label:'No Data', color:'#aaa', bg:'#f5f5f5', ctx:'' };
-  if (v < 10)   return { label:'Low',      color:'var(--good)', bg:'#dcfce7', ctx:'Low pollen. Most allergy sufferers should feel comfortable outside.' };
-  if (v < 50)   return { label:'Moderate', color:'var(--mod)',  bg:'#fef9c3', ctx:'Moderate pollen. Sensitive individuals may notice some symptoms.' };
-  if (v < 200)  return { label:'High',     color:'var(--sens)', bg:'#ffedd5', ctx:'High pollen. Pre-medicate if you have allergies and limit outdoor time.' };
-  return              { label:'Very High', color:'var(--bad)',  bg:'#fee2e2', ctx:'Very high pollen. Stay indoors if possible. Shower after going outside.' };
+  if (v==null) return {label:'No Data',color:'#aaa',bg:'#f5f5f5'};
+  if (v<10)   return {label:'Low',      color:'var(--good)',bg:'#dcfce7'};
+  if (v<50)   return {label:'Moderate', color:'var(--mod)', bg:'#fef9c3'};
+  if (v<200)  return {label:'High',     color:'var(--sens)',bg:'#ffedd5'};
+  return            {label:'Very High', color:'var(--bad)', bg:'#fee2e2'};
 }
 
-/* ══════════════════════════════
-   DOM HELPERS
-══════════════════════════════ */
-const $  = id => document.getElementById(id);
-function set(id, txt) { const e = $(id); if(e) e.textContent = txt; }
-function setHTML(id, h) { const e = $(id); if(e) e.innerHTML = h; }
-function setBar(id, val, max) { const e = $(id); if(e) e.style.width = (val!=null ? Math.min(100,Math.abs(val)/max*100) : 0)+'%'; }
-function curIdx(times) {
-  const n = new Date(), p = x => String(x).padStart(2,'0');
-  const s = `${n.getFullYear()}-${p(n.getMonth()+1)}-${p(n.getDate())}T${p(n.getHours())}:00`;
-  const i = times.indexOf(s); return i >= 0 ? i : 0;
+/* ═══════════════════════════════════
+   DOM
+═══════════════════════════════════ */
+const $ = id => document.getElementById(id);
+function set(id,t){const e=$(id);if(e)e.textContent=t;}
+function setHTML(id,h){const e=$(id);if(e)e.innerHTML=h;}
+function setBar(id,val,max){const e=$(id);if(e)e.style.width=(val!=null?Math.min(100,Math.abs(val)/max*100):0)+'%';}
+function curIdx(times){
+  const n=new Date(),p=x=>String(x).padStart(2,'0');
+  const s=`${n.getFullYear()}-${p(n.getMonth()+1)}-${p(n.getDate())}T${p(n.getHours())}:00`;
+  const i=times.indexOf(s); return i>=0?i:0;
 }
-function fmtHr(h) { const a=h<12?'AM':'PM',d=h===0?12:h>12?h-12:h; return d+' '+a; }
+function fmtHr(h){const a=h<12?'AM':'PM',d=h===0?12:h>12?h-12:h;return d+' '+a;}
+function fmtDate(str){const d=new Date(str+'T12:00:00');return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
 
-/* ══════════════════════════════
+/* ═══════════════════════════════════
    CLOCK
-══════════════════════════════ */
-function tick() {
-  const n = new Date();
-  const t = n.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:'America/Chicago'});
-  const d = n.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',timeZone:'America/Chicago'});
-  set('topTime', d + '  ·  ' + t + ' CT');
+═══════════════════════════════════ */
+function tick(){
+  const n=new Date();
+  const t=n.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:'America/Chicago'});
+  const d=n.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',timeZone:'America/Chicago'});
+  set('topTime',d+'  ·  '+t+' CT');
 }
-tick(); setInterval(tick, 1000);
+tick(); setInterval(tick,1000);
 
-/* ══════════════════════════════
-   CEDAR FEVER BANNER
-══════════════════════════════ */
-function checkCedarSeason() {
-  const m = new Date().getMonth(); // 0=Jan
-  if (m === 11 || m === 0 || m === 1) {
-    $('cedarBanner').style.display = 'flex';
-    $('cedarTag').style.display = 'inline-block';
+/* ═══════════════════════════════════
+   CEDAR SEASON
+═══════════════════════════════════ */
+(function(){
+  const m=new Date().getMonth();
+  if(m===11||m===0||m===1){
+    $('cedarBanner').style.display='flex';
+    $('cedarTag').style.display='inline-block';
   }
-}
-checkCedarSeason();
+})();
 
-/* ══════════════════════════════
+/* ═══════════════════════════════════
    ALLERGY CALENDAR
-══════════════════════════════ */
+═══════════════════════════════════ */
 const ALLERGENS = [
-  { name:'🌲 Mountain Cedar', months:[2,2,0,0,0,0,0,0,0,0,1,2], cedar:true },
-  { name:'🌳 Oak / Elm',      months:[0,1,2,2,1,0,0,0,0,0,0,0] },
-  { name:'🌿 Grass',          months:[0,0,1,2,2,2,2,2,1,1,0,0] },
-  { name:'🌾 Ragweed',        months:[0,0,0,0,0,0,1,2,2,2,1,0] },
-  { name:'🌴 Mountain Cedar 2nd Surge', months:[0,0,0,0,0,0,0,0,0,0,1,2], cedar:true },
-  { name:'🍂 Mold Spores',    months:[1,1,1,2,2,2,2,2,2,2,1,1] },
+  {name:'🌲 Mountain Cedar', levels:[2,2,0,0,0,0,0,0,0,0,1,2]},
+  {name:'🌳 Oak & Elm Trees', levels:[0,1,2,2,1,0,0,0,0,0,0,0]},
+  {name:'🌻 Pecan & Ash',     levels:[0,0,1,2,2,1,0,0,0,0,0,0]},
+  {name:'🌿 Grass Pollen',    levels:[0,0,1,2,2,2,2,2,1,0,0,0]},
+  {name:'🌾 Ragweed & Weeds', levels:[0,0,0,0,0,1,1,2,2,2,1,0]},
+  {name:'🍂 Mold Spores',     levels:[1,1,1,2,2,2,2,2,2,2,1,1]},
 ];
-// Deduplicate / show cleaner rows
-const ALLERGENS_CLEAN = [
-  { name:'🌲 Mountain Cedar', months:[2,2,0,0,0,0,0,0,0,0,1,2], cedar:true },
-  { name:'🌳 Oak & Elm Trees', months:[0,1,2,2,1,0,0,0,0,0,0,0] },
-  { name:'🌿 Grass Pollen',   months:[0,0,1,2,2,2,2,2,1,0,0,0] },
-  { name:'🌾 Ragweed & Weeds',months:[0,0,0,0,0,1,1,2,2,2,1,0] },
-  { name:'🌻 Pecan / Ash',    months:[0,0,1,2,2,1,0,0,0,0,0,0] },
-  { name:'🍂 Mold Spores',    months:[1,1,1,2,2,2,2,2,2,2,1,1] },
-];
-function buildCalendar() {
-  const curMonth = new Date().getMonth();
-  // Highlight current month header
-  for (let i=0;i<12;i++) {
-    const th = $('th'+i);
-    if (th && i===curMonth) { th.style.color='var(--gold-3)'; th.style.fontWeight='900'; }
-  }
-  const tbody = $('calBody');
-  if (!tbody) return;
-  tbody.innerHTML = ALLERGENS_CLEAN.map(a => {
-    const tds = a.months.map((level, i) => {
-      const isNow = i === curMonth;
-      const dotClass = level===2?'high':level===1?'mod':level===0.5?'low':'none';
-      const dotLabel = level===2?'H':level===1?'M':level===0.5?'L':'—';
-      return `<td style="${isNow?'background:rgba(171,128,36,0.06)':''}">
-        <div class="cal-dot ${dotClass}">${dotLabel}</div>
-      </td>`;
+(function buildCal(){
+  const cm=new Date().getMonth();
+  for(let i=0;i<12;i++){const th=$('cth'+i);if(th&&i===cm){th.style.color='var(--gold-3)';th.style.fontWeight='900';}}
+  const body=$('calBody');
+  if(!body)return;
+  body.innerHTML=ALLERGENS.map(a=>{
+    const tds=a.levels.map((lv,i)=>{
+      const now=i===cm;
+      const cls=lv===2?'h':lv===1?'m':lv===0.5?'l':'n';
+      const lbl=lv===2?'H':lv===1?'M':lv===0.5?'L':'—';
+      return `<td class="${now?'cal-now-col':''}"><div class="cal-dot ${cls}">${lbl}</div></td>`;
     }).join('');
-    return `<tr>
-      <td class="allergen-name">${a.name}${a.cedar&&(curMonth===11||curMonth===0||curMonth===1)?'<br><span class="cedar-note">⚠ Cedar Fever Active</span>':''}</td>
-      ${tds}
-    </tr>`;
+    const isCedar=a.name.includes('Cedar');
+    const cedarFlag=(isCedar&&(cm===11||cm===0||cm===1))?'<br><span class="cedar-note">⚠ Active Now</span>':'';
+    return `<tr><td class="aname">${a.name}${cedarFlag}</td>${tds}</tr>`;
   }).join('');
-}
-buildCalendar();
+})();
 
-/* ══════════════════════════════
+/* ═══════════════════════════════════
    RENDER
-══════════════════════════════ */
-function render(data) {
-  $('errBox').style.display = 'none';
-  const c = data.current, h = data.hourly;
-  const hIdx = curIdx(h.time);
-  const aqi = c.us_aqi;
-  const meta = aqiMeta(aqi);
+═══════════════════════════════════ */
+function render(data){
+  $('errBox').style.display='none';
+  const c=data.current, h=data.hourly;
+  const hIdx=curIdx(h.time);
 
-  // AQI number
-  const ne = $('aqiNum'); ne.textContent = aqi!=null?aqi:'—'; ne.style.color = meta.color;
-  const se = $('aqiStatus'); se.textContent = meta.status; se.style.color = meta.color;
-  const pe = $('aqiPill'); pe.textContent = meta.cat; pe.style.borderColor=meta.color; pe.style.color=meta.color;
-  set('aqiDesc', meta.desc);
-  for(let i=0;i<6;i++) { $('vp'+i)?.classList.toggle('on',i===meta.pip); $('sb'+i)?.classList.toggle('on',i===meta.pip); }
+  /* AQI */
+  const aqi=c.us_aqi, meta=aqiMeta(aqi);
+  const ne=$('aqiNum'); ne.textContent=aqi!=null?aqi:'—'; ne.style.color=meta.color;
+  const se=$('aqiStatus'); se.textContent=meta.status; se.style.color=meta.color;
+  const pe=$('aqiPill'); pe.textContent=meta.cat; pe.style.borderColor=meta.color; pe.style.color=meta.color;
+  set('aqiDesc',meta.desc);
+  for(let i=0;i<6;i++){$('vp'+i)?.classList.toggle('on',i===meta.pip);$('sb'+i)?.classList.toggle('on',i===meta.pip);}
 
-  // Family badge
-  const fv = $('familyVal'); fv.textContent=meta.family; fv.style.color=meta.familyColor;
-  $('familyBadge').style.borderColor=meta.familyColor+'55';
+  /* Family */
+  const fv=$('familyVal'); fv.textContent=meta.family; fv.style.color=meta.fc;
+  $('familyBadge').style.borderColor=meta.fc+'66';
 
-  // Compare to yesterday (use hourly data ~24h ago)
-  const yIdx = Math.max(0, hIdx - 24);
-  const yAqi = h.us_aqi[yIdx];
-  if (yAqi != null && aqi != null) {
-    const diff = aqi - yAqi;
-    const cl = $('compareLine');
-    cl.style.display = 'flex';
-    $('compareIcon').textContent = diff < -5 ? '📉' : diff > 5 ? '📈' : '➡';
-    $('compareText').textContent = diff < -5
-      ? `Better than yesterday (was ${Math.round(yAqi)})`
-      : diff > 5
-      ? `Worse than yesterday (was ${Math.round(yAqi)})`
-      : `Similar to yesterday (was ${Math.round(yAqi)})`;
-    $('compareText').style.color = diff < -5 ? 'var(--good)' : diff > 5 ? 'var(--bad)' : 'var(--text-dim)';
+  /* Compare yesterday */
+  const yAqi=h.us_aqi[Math.max(0,hIdx-24)];
+  if(yAqi!=null&&aqi!=null){
+    const d=aqi-yAqi,cl=$('compareLine');
+    cl.style.display='flex';
+    $('compareIcon').textContent=d<-5?'📉':d>5?'📈':'➡';
+    $('compareText').textContent=d<-5?`Better than yesterday (was ${Math.round(yAqi)})`:d>5?`Worse than yesterday (was ${Math.round(yAqi)})`:`Similar to yesterday (was ${Math.round(yAqi)})`;
+    $('compareText').style.color=d<-5?'var(--good)':d>5?'var(--bad)':'var(--text-dim)';
   }
 
-  // Pollutants
-  const polls = [
-    {id:'pm25',val:c.pm2_5,max:55.5}, {id:'o3',val:c.ozone,max:105},
-    {id:'pm10',val:c.pm10,max:155},   {id:'no2',val:c.nitrogen_dioxide,max:100},
-    {id:'co',val:c.carbon_monoxide,max:9500}, {id:'so2',val:c.sulphur_dioxide,max:185},
-    {id:'uv',val:c.uv_index,max:11},  {id:'dust',val:h.dust?.[hIdx],max:100},
+  /* Pollutants */
+  const polls=[
+    {id:'pm25',val:c.pm2_5,max:55.5},{id:'o3',val:c.ozone,max:105},
+    {id:'pm10',val:c.pm10,max:155},  {id:'no2',val:c.nitrogen_dioxide,max:100},
+    {id:'co',val:c.carbon_monoxide,max:9500},{id:'so2',val:c.sulphur_dioxide,max:185},
+    {id:'uv',val:c.uv_index,max:11}, {id:'dust',val:h.dust?.[hIdx],max:100},
   ];
-  polls.forEach(p => { const e=$('pv-'+p.id); if(e) e.textContent=p.val!=null?p.val.toFixed(1):'—'; });
+  polls.forEach(p=>{const e=$('pv-'+p.id);if(e)e.textContent=p.val!=null?p.val.toFixed(1):'—';});
   setTimeout(()=>polls.forEach(p=>setBar('pb-'+p.id,p.val,p.max)),200);
 
-  // Dominant
+  /* Dominant */
   const cands=[
     {name:'Tiny Particles (PM2.5)',s:c.pm2_5!=null?c.pm2_5/55.5:0},
     {name:'Ozone',s:c.ozone!=null?c.ozone/105:0},
@@ -1062,48 +846,44 @@ function render(data) {
     {name:'Carbon Monoxide',s:c.carbon_monoxide!=null?c.carbon_monoxide/9500:0},
   ];
   cands.sort((a,b)=>b.s-a.s);
-  set('qs-dom', cands[0].name);
-
+  set('qs-dom',cands[0].name);
   const ce=$('qs-cat'); ce.textContent=meta.cat; ce.style.color=meta.color;
 
-  // Best time outside
-  const today=[]; const nowH=new Date().getHours();
+  /* Best time */
+  const today=[];
   for(let i=hIdx;i<Math.min(hIdx+14,h.time.length);i++){
     const hr=parseInt(h.time[i].split('T')[1]);
-    const v=h.us_aqi[i];
-    if(v!=null) today.push({hour:hr,aqi:v,idx:i});
+    if(h.us_aqi[i]!=null) today.push({hour:hr,aqi:h.us_aqi[i]});
   }
-  if(today.length){ today.sort((a,b)=>a.aqi-b.aqi); const b=today[0]; set('qs-besttime',fmtHr(b.hour)+' – '+fmtHr(b.hour+1)); }
-  else set('qs-besttime','See chart');
+  if(today.length){today.sort((a,b)=>a.aqi-b.aqi);const b=today[0];set('qs-besttime',fmtHr(b.hour)+' – '+fmtHr(b.hour+1));}
 
-  // Pollen quick stat
-  const grass=h.grass_pollen?.[hIdx]??null, ragweed=h.ragweed_pollen?.[hIdx]??null, birch=h.birch_pollen?.[hIdx]??null;
+  /* Pollen quick stat */
+  const grass=h.grass_pollen?.[hIdx]??null;
+  const ragweed=h.ragweed_pollen?.[hIdx]??null;
+  const birch=h.birch_pollen?.[hIdx]??null;
   const combined=(grass||0)+(ragweed||0)+(birch||0);
-  const pp=pollenMeta(combined); const pe2=$('qs-pollen'); pe2.textContent=pp.label; pe2.style.color=pp.color;
+  const pp=pollenMeta(combined);
+  const pqe=$('qs-pollen'); pqe.textContent=pp.label; pqe.style.color=pp.color;
 
-  // Hourly bars
-  renderHourly(h,hIdx);
-
-  // Pollen tiles
+  /* Pollen hero rows — THE FIX: read from hourly arrays at hIdx */
   const setP=(numId,barId,badgeId,val)=>{
     const m=pollenMeta(val);
-    const ne=$( numId); ne.textContent=val!=null?val.toFixed(1):'—'; ne.style.color=m.color;
-    // bar
-    const be=$(barId); if(be){be.style.background=m.color; setTimeout(()=>{be.style.width=Math.min(100,(val||0)/200*100)+'%'},200);}
+    const ne=$(numId); ne.textContent=val!=null?val.toFixed(1):'—'; ne.style.color=m.color;
+    const be=$(barId); if(be){be.style.background=m.color; setTimeout(()=>{be.style.width=Math.min(100,(val||0)/200*100)+'%';},250);}
     const bge=$(badgeId); bge.textContent=m.label; bge.style.background=m.bg; bge.style.color=m.color; bge.style.border='1.5px solid '+m.color+'60';
   };
-  setP('pc-grass','ptb-grass','ptbadge-grass',grass);
-  setP('pc-ragweed','ptb-ragweed','ptbadge-ragweed',ragweed);
-  setP('pc-birch','ptb-birch','ptbadge-birch',birch);
+  setP('p-grass',  'pbar-grass',  'pbadge-grass',  h.grass_pollen?.[hIdx]??null);
+  setP('p-ragweed','pbar-ragweed','pbadge-ragweed', h.ragweed_pollen?.[hIdx]??null);
+  setP('p-birch',  'pbar-birch',  'pbadge-birch',  h.birch_pollen?.[hIdx]??null);
 
-  // Forecast
+  renderHourly(h,hIdx);
   renderForecast(h);
-  renderSparkline(h);
+  renderTrend(h);
 
-  // Advisory
-  const polNote=(combined>50)?' Pollen is elevated today too — if you have allergies, showering after time outside helps a lot.':'';
+  /* Advisory */
+  const polNote=(combined>50)?' Pollen is elevated today too — if you have allergies, showering after time outside helps.':'';
   set('advTitle',
-    aqi<=50?'Clean Air Morning — Austin is Looking Good Today':
+    aqi<=50 ?'Clean Air Morning — Austin is Looking Good Today':
     aqi<=100?'Decent Air Day — A Few Things Worth Knowing':
     aqi<=150?'Heads Up for Allergy and Asthma Sufferers Today':
     aqi<=200?'Unhealthy Air Today — Best to Stay In':
@@ -1115,117 +895,175 @@ function render(data) {
   set('lastUpdate','Updated '+new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',timeZone:'America/Chicago'})+' CT');
 }
 
-/* ══════════════════════════════
+/* ═══════════════════════════════════
    HOURLY BARS
-══════════════════════════════ */
-function renderHourly(h,hIdx) {
+═══════════════════════════════════ */
+function renderHourly(h,hIdx){
   const DNS=['12a','1a','2a','3a','4a','5a','6a','7a','8a','9a','10a','11a','12p','1p','2p','3p','4p','5p','6p','7p','8p','9p','10p','11p'];
   const slice=[];
-  for(let i=hIdx;i<Math.min(hIdx+12,h.time.length);i++){
-    const hr=parseInt(h.time[i].split('T')[1]);
-    slice.push({hour:hr,aqi:h.us_aqi[i]});
-  }
+  for(let i=hIdx;i<Math.min(hIdx+12,h.time.length);i++) slice.push({hour:parseInt(h.time[i].split('T')[1]),aqi:h.us_aqi[i]});
   const mx=Math.max(...slice.map(s=>s.aqi||0),1);
-  // best time note
-  const sorted=[...slice].filter(s=>s.aqi!=null).sort((a,b)=>a.aqi-b.aqi);
-  if(sorted.length) set('hsNote','Best window: '+fmtHr(sorted[0].hour)+' – '+fmtHr(sorted[0].hour+1)+' (AQI '+sorted[0].aqi+')');
-
+  const best=[...slice].filter(s=>s.aqi!=null).sort((a,b)=>a.aqi-b.aqi)[0];
+  if(best) set('hsNote','Best window: '+fmtHr(best.hour)+' – '+fmtHr(best.hour+1)+' (AQI '+best.aqi+')');
   $('hourlyBars').innerHTML=slice.map((s,i)=>{
-    const pct=s.aqi!=null?Math.max(4,(s.aqi/mx)*100):4;
-    const m=aqiMeta(s.aqi); const isNow=i===0;
-    return `<div class="hs-bar-col">
-      <div class="hs-bar-outer"><div class="hs-bar-inner" style="height:${pct}%;background:${m.color};opacity:${isNow?1:0.5}"></div></div>
-      <div class="hs-hr-lbl" style="color:${isNow?'var(--gold-3)':'var(--text-dim)'};font-weight:${isNow?900:600}">${DNS[s.hour]}</div>
+    const pct=s.aqi!=null?Math.max(5,(s.aqi/mx)*100):5;
+    const m=aqiMeta(s.aqi);const isNow=i===0;
+    return `<div class="hs-col">
+      <div class="hs-outer"><div class="hs-inner" style="height:${pct}%;background:${m.color};opacity:${isNow?1:.5}"></div></div>
+      <div class="hs-lbl" style="color:${isNow?'var(--gold-3)':'var(--text-dim)'};font-weight:${isNow?900:600}">${DNS[s.hour]}</div>
     </div>`;
   }).join('');
 }
 
-/* ══════════════════════════════
-   FORECAST
-══════════════════════════════ */
-function renderForecast(h) {
-  const dayMap={};
+/* ═══════════════════════════════════
+   7-DAY FORECAST — bucket all 168 hours
+═══════════════════════════════════ */
+function buildDayMap(h){
+  const dm={};
   (h.time||[]).forEach((t,i)=>{
     const d=t.split('T')[0];
-    if(h.us_aqi[i]!=null){if(!dayMap[d])dayMap[d]=[];dayMap[d].push(h.us_aqi[i]);}
+    const v=h.us_aqi[i];
+    if(v!=null){if(!dm[d])dm[d]=[];dm[d].push(v);}
   });
-  // Take up to 7 days
-  const days=Object.keys(dayMap).slice(0,7);
+  return dm;
+}
+
+function renderForecast(h){
+  const dm=buildDayMap(h);
+  const days=Object.keys(dm).sort().slice(0,7); // ensure 7 days, sorted
   const todayStr=new Date().toISOString().split('T')[0];
   const DNS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   $('forecastStrip').innerHTML=days.map((date,idx)=>{
-    const vals=dayMap[date];
+    const vals=dm[date];
     const avg=Math.round(vals.reduce((a,b)=>a+b,0)/vals.length);
     const m=aqiMeta(avg);
     const dow=new Date(date+'T12:00:00').getDay();
     const name=idx===0?'Today':DNS[dow];
     const pct=Math.min(100,avg/200*100);
+    const dateLabel=fmtDate(date);
     return `<div class="fc-card ${date===todayStr?'today':''}">
       <div class="fc-name">${name}</div>
       <div class="fc-num" style="color:${m.color}">${avg}</div>
-      <div class="fc-status">${m.status.split(' ')[0]}</div>
+      <div class="fc-cat">${m.status}</div>
       <div class="fc-track"><div class="fc-fill" style="width:${pct}%;background:${m.color}"></div></div>
+      <div class="fc-date">${dateLabel}</div>
     </div>`;
   }).join('');
 }
 
-/* ══════════════════════════════
-   SPARKLINE
-══════════════════════════════ */
-function renderSparkline(h) {
-  const dayMap={};
-  (h.time||[]).forEach((t,i)=>{
-    const d=t.split('T')[0];
-    if(h.us_aqi[i]!=null){if(!dayMap[d])dayMap[d]=[];dayMap[d].push(h.us_aqi[i]);}
-  });
-  const days=Object.keys(dayMap).slice(0,7);
-  const avgs=days.map(d=>Math.round(dayMap[d].reduce((a,b)=>a+b,0)/dayMap[d].length));
+/* ═══════════════════════════════════
+   7-DAY TREND — full proper chart
+═══════════════════════════════════ */
+function renderTrend(h){
+  const dm=buildDayMap(h);
+  const days=Object.keys(dm).sort().slice(0,7);
+  const avgs=days.map(d=>Math.round(dm[d].reduce((a,b)=>a+b,0)/dm[d].length));
   if(avgs.length<2) return;
-  const mn=Math.min(...avgs), mx=Math.max(...avgs,mn+1);
-  const W=300,H=50,pad=4;
-  const pts=avgs.map((v,i)=>[pad+(i/(avgs.length-1))*(W-pad*2),H-pad-((v-mn)/(mx-mn))*(H-pad*2)]);
-  const path=pts.map((p,i)=>(i===0?`M${p[0]},${p[1]}`:`L${p[0]},${p[1]}`)).join(' ');
-  const first=avgs[0],last=avgs[avgs.length-1];
-  const trend=last<first-5?'📉 Air quality is improving this week':last>first+5?'📈 Air quality is declining this week':'➡ Air quality is holding steady this week';
-  const tc=last<first-5?'var(--good)':last>first+5?'var(--bad)':'var(--text-dim)';
-  $('sparkSvg').innerHTML=`<defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f0d64e"/><stop offset="100%" stop-color="#ab8024"/></linearGradient></defs>
-    <path d="${path}" fill="none" stroke="url(#sg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    ${pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="${aqiMeta(avgs[i]).color}" stroke="#fff" stroke-width="1.5"/>`).join('')}`;
-  set('trendNote',trend); $('trendNote').style.color=tc;
-}
 
-/* ══════════════════════════════
-   SOCIAL SHARE
-══════════════════════════════ */
-function buildShareText() {
-  if(!liveData) return 'Check out the Austin AQI Dashboard by Gold Eagle Services!';
-  const c=liveData.current, h=liveData.hourly;
-  const hIdx=curIdx(h.time);
-  const meta=aqiMeta(c.us_aqi);
-  const grass=h.grass_pollen?.[hIdx], ragweed=h.ragweed_pollen?.[hIdx], birch=h.birch_pollen?.[hIdx];
-  const pp=pollenMeta((grass||0)+(ragweed||0)+(birch||0));
-  return `🌬️ Austin Air Quality Update\n\nAQI: ${c.us_aqi} — ${meta.status}\nPollen: ${pp.label}\n\n${meta.desc}\n\n📍 Austin, TX · Updated ${new Date().toLocaleDateString()}\nPowered by Gold Eagle Services · 512-489-GOLD\n${LIVE_URL}`;
-}
-function shareFacebook() {
-  const url = encodeURIComponent(LIVE_URL);
-  const txt = encodeURIComponent(buildShareText());
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${txt}`,'_blank','width=600,height=500');
-}
-function shareInstagram() {
-  // Instagram doesn't support direct URL sharing — copy text and open Instagram
-  const txt = buildShareText();
-  navigator.clipboard.writeText(txt).then(()=>{
-    alert('✅ Caption copied to clipboard!\n\nInstagram doesn\'t allow direct posting from websites.\n\nHere\'s what to do:\n1. Open Instagram\n2. Create a new Story or Post\n3. Paste the caption (already copied!)\n4. Add a screenshot of this dashboard as the image\n\nTip: Use the Print button to get a clean screenshot.');
-  }).catch(()=>{
-    alert('Open Instagram and post today\'s AQI:\n\n'+txt);
+  const W=700, H=100, padL=40, padR=20, padT=15, padB=25;
+  const mn=Math.max(0,Math.min(...avgs)-15);
+  const mx=Math.max(...avgs)+15;
+  const xS=i=>(padL + i/(avgs.length-1)*(W-padL-padR));
+  const yS=v=>(padT + (1-(v-mn)/(mx-mn))*(H-padT-padB));
+
+  const DNS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const labels=days.map((d,i)=>{const dow=new Date(d+'T12:00:00').getDay();return i===0?'Today':DNS[dow];});
+
+  // Area fill path
+  const pts=avgs.map((v,i)=>[xS(i),yS(v)]);
+  const line=pts.map((p,i)=>(i===0?`M${p[0]},${p[1]}`:`L${p[0]},${p[1]}`)).join(' ');
+  const area=line+` L${pts[pts.length-1][0]},${H-padB} L${pts[0][0]},${H-padB} Z`;
+
+  // AQI zone bands (background)
+  const zones=[
+    {max:50,  color:'rgba(22,163,74,.06)'},
+    {max:100, color:'rgba(202,138,4,.06)'},
+    {max:150, color:'rgba(234,88,12,.06)'},
+    {max:200, color:'rgba(220,38,38,.06)'},
+    {max:300, color:'rgba(147,51,234,.06)'},
+  ];
+  let zoneSvg='';
+  let prevY=H-padB;
+  for(const z of zones){
+    const y=yS(z.max); if(y<padT) break;
+    const bandH=prevY-y;
+    zoneSvg+=`<rect x="${padL}" y="${y}" width="${W-padL-padR}" height="${bandH}" fill="${z.color}"/>`;
+    prevY=y;
+  }
+
+  // Y-axis gridlines + labels
+  const yTicks=[0,50,100,150,200];
+  let gridSvg='', yLblSvg='';
+  yTicks.forEach(v=>{
+    const y=yS(v);
+    if(y>=padT&&y<=H-padB){
+      gridSvg+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="rgba(0,0,0,.07)" stroke-width="1"/>`;
+      yLblSvg+=`<text x="${padL-5}" y="${y+4}" text-anchor="end" font-size="9" fill="#8a8070" font-family="Montserrat,sans-serif">${v}</text>`;
+    }
   });
+
+  // X-axis labels + dots
+  let xLblSvg='', dotSvg='';
+  pts.forEach(([x,y],i)=>{
+    const m=aqiMeta(avgs[i]);
+    const isToday=i===0;
+    dotSvg+=`<circle cx="${x}" cy="${y}" r="${isToday?6:4.5}" fill="${m.color}" stroke="#fff" stroke-width="${isToday?2.5:1.5}"/>`;
+    // AQI label above dot
+    dotSvg+=`<text x="${x}" y="${y-10}" text-anchor="middle" font-size="11" font-weight="800" fill="${m.color}" font-family="Montserrat,sans-serif">${avgs[i]}</text>`;
+    xLblSvg+=`<text x="${x}" y="${H-padB+14}" text-anchor="middle" font-size="9.5" fill="${isToday?'var(--gold-3)':'#8a8070'}" font-weight="${isToday?800:600}" font-family="Montserrat,sans-serif">${labels[i]}</text>`;
+  });
+
+  $('trendSvg').innerHTML=`
+    <defs>
+      <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#d7b740" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#d7b740" stop-opacity="0.02"/>
+      </linearGradient>
+      <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#f0d64e"/>
+        <stop offset="100%" stop-color="#ab8024"/>
+      </linearGradient>
+    </defs>
+    ${zoneSvg}${gridSvg}${yLblSvg}
+    <path d="${area}" fill="url(#areaGrad)"/>
+    <path d="${line}" fill="none" stroke="url(#lineGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    ${dotSvg}${xLblSvg}
+  `;
+
+  // Trend note
+  const first=avgs[0],last=avgs[avgs.length-1];
+  const trend=last<first-5?'📉 Improving this week':last>first+5?'📈 Declining this week':'➡ Holding steady';
+  const tc=last<first-5?'var(--good)':last>first+5?'var(--bad)':'var(--text-dim)';
+  const pill=$('trendPill');
+  pill.textContent=trend; pill.style.color=tc; pill.style.borderColor=tc+'80';
+  set('trendSub',`Daily average AQI — ${days[0]} to ${days[days.length-1]}`);
+
+  // Legend
+  const aqiZones=[{label:'Good (0–50)',color:'var(--good)'},{label:'Moderate (51–100)',color:'var(--mod)'},{label:'Unhealthy for Some (101–150)',color:'var(--sens)'},{label:'Unhealthy (151–200)',color:'var(--bad)'}];
+  $('trendLegend').innerHTML=aqiZones.map(z=>`<div class="tl-item"><div class="tl-dot" style="background:${z.color}"></div>${z.label}</div>`).join('');
 }
 
-/* ══════════════════════════════
+/* ═══════════════════════════════════
+   SOCIAL SHARE
+═══════════════════════════════════ */
+function buildShareText(){
+  if(!liveData) return 'Check out today\'s Austin Air Quality Dashboard by Gold Eagle Services!\n'+LIVE_URL;
+  const c=liveData.current,h=liveData.hourly,hIdx=curIdx(h.time);
+  const meta=aqiMeta(c.us_aqi);
+  const grass=h.grass_pollen?.[hIdx],ragweed=h.ragweed_pollen?.[hIdx],birch=h.birch_pollen?.[hIdx];
+  const pp=pollenMeta((grass||0)+(ragweed||0)+(birch||0));
+  return `🌬️ Austin Air Quality — ${new Date().toLocaleDateString()}\n\nAQI: ${c.us_aqi} — ${meta.status}\nPollen: ${pp.label}\n\n${meta.desc}\n\n📍 Austin, TX\nPowered by Gold Eagle Services · 512-489-GOLD\n🔗 ${LIVE_URL}`;
+}
+function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(LIVE_URL)+'&quote='+encodeURIComponent(buildShareText()),'_blank','width=600,height=500');}
+function shareInstagram(){
+  navigator.clipboard.writeText(buildShareText()).then(()=>alert('✅ Caption copied!\n\nInstagram doesn\'t allow direct posting from websites.\n\n1. Open Instagram\n2. Create a Story or Post\n3. Paste the caption — it\'s already copied!\n4. Screenshot this dashboard as your image\n\nTip: Use the Print button for a clean screenshot.')).catch(()=>alert('Caption:\n\n'+buildShareText()));
+}
+
+/* ═══════════════════════════════════
    NEWSLETTER / JSON
-══════════════════════════════ */
-function copyNewsletter() {
-  if(!liveData){alert('Data not loaded yet — click Refresh.');return;}
+═══════════════════════════════════ */
+function copyNewsletter(){
+  if(!liveData){alert('Click Refresh to load data first.');return;}
   const c=liveData.current,h=liveData.hourly,hIdx=curIdx(h.time);
   const meta=aqiMeta(c.us_aqi);
   const now=new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
@@ -1238,50 +1076,49 @@ function copyNewsletter() {
     `  Tiny Particles (PM2.5):  ${c.pm2_5?.toFixed(1)??'—'} µg/m³`,
     `  Ozone:                   ${c.ozone?.toFixed(1)??'—'} µg/m³`,
     `  Dust Particles (PM10):   ${c.pm10?.toFixed(1)??'—'} µg/m³`,
-    `  Traffic Gas (NO₂):       ${c.nitrogen_dioxide?.toFixed(1)??'—'} µg/m³`,
     `  UV Index:                ${c.uv_index?.toFixed(1)??'—'}`, '',
     'POLLEN:',
-    `  Grass:   ${h.grass_pollen?.[hIdx]?.toFixed(1)??'—'} grains/m³  (${pollenMeta(h.grass_pollen?.[hIdx]).label})`,
-    `  Ragweed: ${h.ragweed_pollen?.[hIdx]?.toFixed(1)??'—'} grains/m³  (${pollenMeta(h.ragweed_pollen?.[hIdx]).label})`,
-    `  Tree/Cedar: ${h.birch_pollen?.[hIdx]?.toFixed(1)??'—'} grains/m³  (${pollenMeta(h.birch_pollen?.[hIdx]).label})`, '',
+    `  Grass:       ${h.grass_pollen?.[hIdx]?.toFixed(1)??'—'} grains/m³  (${pollenMeta(h.grass_pollen?.[hIdx]).label})`,
+    `  Ragweed:     ${h.ragweed_pollen?.[hIdx]?.toFixed(1)??'—'} grains/m³  (${pollenMeta(h.ragweed_pollen?.[hIdx]).label})`,
+    `  Tree/Cedar:  ${h.birch_pollen?.[hIdx]?.toFixed(1)??'—'} grains/m³  (${pollenMeta(h.birch_pollen?.[hIdx]).label})`, '',
     bar,'Gold Eagle Services — Austin Indoor Air Quality',
     'Cooling · Heating · ERV Systems · Duct Optimization · Dehumidifiers',
-    '📞 512-489-GOLD  |  🌐 GoldEagleServices.com  |  24/7',
+    '📞 512-489-GOLD  |  🌐 GoldEagleServices.com  |  Available 24/7',
   ].join('\n');
-  navigator.clipboard.writeText(txt).then(()=>alert('Newsletter text copied! Paste into Mailchimp, Klaviyo, or your email editor.')).catch(()=>{const w=window.open('','_blank');w.document.write('<pre style="font:13px monospace;padding:20px">'+txt+'</pre>');});
+  navigator.clipboard.writeText(txt).then(()=>alert('Newsletter text copied!')).catch(()=>{const w=window.open('','_blank');w.document.write('<pre style="font:13px monospace;padding:20px">'+txt+'</pre>');});
 }
-function copyJSON() {
-  if(!liveData){alert('Data not loaded — click Refresh.');return;}
+function copyJSON(){
+  if(!liveData){alert('Click Refresh to load data first.');return;}
   const c=liveData.current,h=liveData.hourly,hIdx=curIdx(h.time);
   const meta=aqiMeta(c.us_aqi);
-  const out={source:'Gold Eagle Services AQI Dashboard',dataProvider:'Open-Meteo (CC BY 4.0)',location:{city:'Austin',state:'TX',lat:LAT,lon:LON},timestamp:new Date().toISOString(),aqi:{value:c.us_aqi,category:meta.status,description:meta.desc},pollutants:{pm2_5:c.pm2_5,pm10:c.pm10,ozone:c.ozone,no2:c.nitrogen_dioxide,co:c.carbon_monoxide,so2:c.sulphur_dioxide,uv_index:c.uv_index},pollen:{grass:h.grass_pollen?.[hIdx]??null,ragweed:h.ragweed_pollen?.[hIdx]??null,birch:h.birch_pollen?.[hIdx]??null},contact:{phone:'512-489-GOLD',website:'GoldEagleServices.com',available:'24/7'}};
+  const out={source:'Gold Eagle Services AQI Dashboard',dataProvider:'Open-Meteo (CC BY 4.0)',location:{city:'Austin',state:'TX',lat:LAT,lon:LON},timestamp:new Date().toISOString(),aqi:{value:c.us_aqi,category:meta.status,description:meta.desc},pollutants:{pm2_5:c.pm2_5,pm10:c.pm10,ozone:c.ozone,no2:c.nitrogen_dioxide,co:c.carbon_monoxide,so2:c.sulphur_dioxide,uv:c.uv_index},pollen:{grass:h.grass_pollen?.[hIdx]??null,ragweed:h.ragweed_pollen?.[hIdx]??null,birch:h.birch_pollen?.[hIdx]??null},contact:{phone:'512-489-GOLD',website:'GoldEagleServices.com',available:'24/7'}};
   const s=JSON.stringify(out,null,2);
   navigator.clipboard.writeText(s).then(()=>alert('JSON copied!')).catch(()=>{const w=window.open('','_blank');w.document.write('<pre style="font:12px monospace;padding:20px">'+s+'</pre>');});
 }
 
-/* ══════════════════════════════
+/* ═══════════════════════════════════
    FETCH
-══════════════════════════════ */
-async function loadData() {
+═══════════════════════════════════ */
+async function loadData(){
   const btn=document.querySelector('.btn-refresh');
-  if(btn) btn.textContent='↻ Loading...';
+  if(btn)btn.textContent='↻ Loading...';
   $('loader').classList.remove('hidden');
   $('errBox').style.display='none';
-  try {
+  try{
     const res=await fetch(API);
     if(!res.ok) throw new Error('HTTP '+res.status);
     const data=await res.json();
     if(!data?.current) throw new Error('Bad response');
     liveData=data; render(data);
-  } catch(err) {
+  }catch(err){
     console.error('AQI Error:',err);
     $('errBox').style.display='block';
     set('aqiStatus','Data unavailable');
-    set('aqiDesc','Could not reach the air quality API. Works perfectly when hosted live.');
+    set('aqiDesc','Could not reach the air quality API. Works perfectly when hosted live at your GitHub Pages URL.');
     set('lastUpdate','Failed — click Refresh');
-  } finally {
+  }finally{
     $('loader').classList.add('hidden');
-    if(btn) btn.textContent='↻ Refresh';
+    if(btn)btn.textContent='↻ Refresh';
   }
 }
 

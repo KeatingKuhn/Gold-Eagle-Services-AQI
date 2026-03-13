@@ -73,59 +73,68 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 /* PAGE TITLE — split hero layout */
 .page-title{display:grid;grid-template-columns:1fr auto;align-items:stretch;gap:0;background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);border-bottom:1px solid var(--border);max-width:1400px;margin:0 auto;width:100%;}
 .page-title-outer{background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);border-bottom:1px solid var(--border);}
-.pt-left{padding:32px 36px 28px 36px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;}
-.pt-main{font-family:var(--fh);font-weight:900;font-size:clamp(26px,3.8vw,52px);letter-spacing:-1.5px;line-height:1;color:var(--gold-3);}
-.pt-rule{display:flex;align-items:center;gap:12px;margin:10px 0;}
-.pt-ln{width:60px;height:2px;background:var(--grad);}
-.pt-gem{width:7px;height:7px;background:var(--gold-2);transform:rotate(45deg);}
-.pt-sub{font-family:var(--fb);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);}
-.pt-meta{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
-.pt-chip{font-size:11px;color:var(--text-dim);display:flex;align-items:center;gap:5px;}
-.pt-chip .dot{width:4px;height:4px;border-radius:50%;background:var(--gold-3);flex-shrink:0;}
+.pt-left{padding:22px 32px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.pt-main{font-family:var(--fh);font-weight:900;font-size:clamp(20px,3vw,42px);letter-spacing:-1px;line-height:1.05;color:var(--gold-3);}
+.pt-rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px 0 6px;}
+.pt-ln{width:44px;height:2px;background:var(--grad);}
+.pt-gem{width:6px;height:6px;background:var(--gold-2);transform:rotate(45deg);}
+.pt-sub{font-family:var(--fb);font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);}
+.pt-tagline{font-family:var(--fb);font-size:12px;color:var(--text-mid);line-height:1.6;max-width:320px;margin-top:8px;}
+.pt-tagline strong{color:var(--gold-3);font-weight:700;}
+.pt-meta{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;flex-wrap:wrap;}
+.pt-chip{font-size:10px;color:var(--text-dim);display:flex;align-items:center;gap:4px;}
+.pt-chip .dot{width:3px;height:3px;border-radius:50%;background:var(--gold-3);flex-shrink:0;}
+.pt-aqi-chip{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:5px 14px;border:2px solid var(--border-hi);background:var(--bg-sub);}
+.pt-aqi-label{font-size:8px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);}
+.pt-aqi-val{font-family:var(--fh);font-weight:900;font-size:20px;line-height:1;}
+.pt-aqi-cat{font-size:10px;font-family:var(--fh);font-weight:700;letter-spacing:1px;text-transform:uppercase;}
 
 /* WEATHER HERO — right panel */
-.wx-hero{display:flex;flex-direction:column;width:680px;flex-shrink:0;border-left:1px solid var(--border);}
+.wx-hero{display:flex;flex-direction:column;width:700px;flex-shrink:0;border-left:1px solid var(--border);}
 
-/* Temp cell */
-.wx-main{display:flex;align-items:center;gap:20px;padding:20px 24px;border-bottom:1px solid var(--border);background:#fff;}
-.wx-icon{font-size:52px;line-height:1;flex-shrink:0;width:58px;text-align:center;}
-.wx-temp-col{display:flex;flex-direction:column;gap:4px;}
-.wx-primary-row{display:flex;align-items:baseline;gap:16px;}
-.wx-temp{font-family:var(--fh);font-weight:900;font-size:58px;line-height:1;color:var(--gold-3);}
-.wx-temp sup{font-size:20px;font-weight:700;color:var(--text-dim);vertical-align:super;}
-.wx-feels-block{display:flex;flex-direction:column;padding-bottom:2px;}
-.wx-feels-label{font-size:9px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:1px;}
-.wx-feels-val{font-family:var(--fh);font-weight:800;font-size:30px;line-height:1;color:var(--text-mid);}
-.wx-feels-unit{font-size:14px;color:var(--text-dim);font-weight:400;}
-.wx-desc{font-family:var(--fh);font-weight:700;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-top:2px;}
-.wx-hilo{display:flex;gap:14px;margin-top:6px;}
-.wx-hi{font-family:var(--fh);font-size:13px;font-weight:800;color:var(--sens);}
-.wx-lo{font-family:var(--fh);font-size:13px;font-weight:800;color:var(--gold-3);}
+/* Temp cell — compact */
+.wx-main{display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid var(--border);background:#fff;}
+.wx-icon{font-size:40px;line-height:1;flex-shrink:0;width:46px;text-align:center;}
+.wx-temp-col{display:flex;flex-direction:column;gap:1px;flex:1;}
+.wx-primary-row{display:flex;align-items:flex-end;gap:18px;}
+.wx-curr-block{display:flex;flex-direction:column;}
+.wx-curr-label{font-size:7px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:1px;}
+.wx-temp{font-family:var(--fh);font-weight:900;font-size:48px;line-height:1;color:var(--gold-3);}
+.wx-temp sup{font-size:16px;font-weight:700;color:var(--text-dim);vertical-align:super;}
+.wx-feels-block{display:flex;flex-direction:column;padding-bottom:3px;}
+.wx-feels-label{font-size:7px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:1px;}
+.wx-feels-val{font-family:var(--fh);font-weight:800;font-size:24px;line-height:1;color:var(--text-mid);}
+.wx-feels-unit{font-size:12px;color:var(--text-dim);font-weight:400;}
+.wx-desc{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-top:3px;}
+.wx-hilo{display:flex;gap:10px;margin-top:2px;align-items:center;}
+.wx-hi{font-family:var(--fh);font-size:11px;font-weight:800;color:var(--sens);}
+.wx-lo{font-family:var(--fh);font-size:11px;font-weight:800;color:var(--gold-3);}
 
-/* 2×2 stats grid */
+/* 2×2 stats grid — compact */
 .wx-stats{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);flex:1;}
-.wx-stat{padding:14px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:column;justify-content:flex-start;transition:background .2s;background:#fff;}
+.wx-stat{padding:9px 14px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:column;justify-content:flex-start;transition:background .2s;background:#fff;}
 .wx-stat:nth-child(2n){border-right:none;}
 .wx-stat:nth-child(3),.wx-stat:nth-child(4){border-bottom:none;}
 .wx-stat:hover{background:var(--bg-sub);}
-.wx-stat-icon{font-size:18px;margin-bottom:5px;line-height:1;height:22px;display:flex;align-items:center;}
-.wx-stat-label{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:3px;}
-.wx-stat-val{font-family:var(--fh);font-weight:900;font-size:26px;line-height:1;color:var(--text-full);}
-.wx-stat-unit-inline{font-size:12px;color:var(--text-dim);font-weight:400;}
-.wx-stat-sub{font-size:10px;color:var(--text-dim);margin-top:3px;line-height:1.4;}
-.wx-stat-sub2{font-family:var(--fh);font-weight:700;font-size:11px;color:var(--text-dim);margin-top:2px;}
-.hum-bar{width:100%;height:3px;background:rgba(0,0,0,.07);margin-top:6px;border-radius:1px;overflow:hidden;position:relative;}
+.wx-stat-icon{font-size:14px;margin-bottom:3px;line-height:1;height:17px;display:flex;align-items:center;}
+.wx-stat-label{font-family:var(--fh);font-weight:700;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:2px;}
+.wx-stat-val{font-family:var(--fh);font-weight:900;font-size:20px;line-height:1;color:var(--text-full);}
+.wx-stat-unit-inline{font-size:10px;color:var(--text-dim);font-weight:400;}
+.wx-stat-sub{font-size:10px;color:var(--text-dim);margin-top:2px;line-height:1.3;}
+.wx-stat-sub2{font-family:var(--fh);font-weight:700;font-size:10px;color:var(--text-dim);margin-top:1px;}
+.hum-bar{width:100%;height:3px;background:rgba(0,0,0,.07);margin-top:4px;border-radius:1px;overflow:hidden;position:relative;}
 .hum-fill{height:100%;background:var(--grad-h);transition:width .8s ease;width:0;}
 .hum-good{position:absolute;left:40%;width:15%;height:100%;background:rgba(22,163,74,.3);top:0;}
 
-/* HOURLY WEATHER STRIP — sits directly below wx-hero, same width */
+/* HOURLY WEATHER STRIP — directly below wx-hero */
 .wx-hourly-outer{max-width:1400px;margin:0 auto;width:100%;}
-.wx-hourly-strip{background:#fff;border:1px solid var(--border);border-top:none;box-shadow:var(--sh-sm);display:flex;align-items:center;gap:20px;padding:14px 24px;margin-bottom:0;}
+.wx-hourly-strip{background:#fff;border:1px solid var(--border);border-top:none;box-shadow:var(--sh-sm);display:flex;align-items:center;gap:20px;padding:11px 18px;}
 .wx-hourly-strip .hs-label .hs-title{font-family:var(--fh);font-weight:800;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-3);margin-bottom:2px;}
 .wx-hourly-strip .hs-label .hs-note{font-size:11px;color:var(--text-dim);}
 
-/* HOURLY AQI STRIP */
-.aqi-hourly-strip{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:16px 20px;display:flex;align-items:center;gap:20px;margin-bottom:4px;flex-wrap:wrap;}
+/* HOURLY AQI STRIP — full width, label inline with bars */
+.aqi-hourly-strip{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:14px 20px;display:flex;align-items:center;gap:20px;margin-bottom:4px;}
+.hs-label{flex-shrink:0;min-width:130px;}
 .hs-label .hs-title{font-family:var(--fh);font-weight:800;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-3);margin-bottom:3px;}
 .hs-label .hs-note{font-size:11px;color:var(--text-dim);}
 .hs-bars{display:flex;gap:3px;flex:1;min-width:200px;align-items:flex-end;height:52px;}
@@ -372,28 +381,42 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 <!-- PAGE TITLE + WEATHER HERO (split layout) -->
 <div class="page-title-outer">
 <div class="page-title">
-  <!-- LEFT: Identity -->
+  <!-- LEFT: Identity — centered -->
   <div class="pt-left">
-    <div class="pt-main">Austin Air Quality Dashboard</div>
-    <div class="pt-rule"><div class="pt-ln"></div><div class="pt-gem"></div></div>
+    <div class="pt-main">Austin Air Quality<br>Dashboard</div>
+    <div class="pt-rule"><div class="pt-ln"></div><div class="pt-gem"></div><div class="pt-ln"></div></div>
     <div class="pt-sub">Air Quality Index · US EPA Standard</div>
+    <div class="pt-tagline">Live outdoor air quality, pollen, and weather for <strong>Travis County, Texas</strong> — updated every hour.</div>
     <div class="pt-meta">
-      <div class="pt-chip"><div class="dot"></div>📍 Travis County, Texas</div>
+      <div class="pt-chip"><div class="dot"></div>📍 Travis County, TX</div>
       <div class="pt-chip"><div class="dot"></div><span id="lastUpdate">Loading...</span></div>
       <div class="pt-chip"><div class="dot"></div>30.27°N 97.74°W</div>
+    </div>
+    <div class="pt-aqi-chip">
+      <div>
+        <div class="pt-aqi-label">Current AQI</div>
+        <div class="pt-aqi-val" id="ptAqiVal">—</div>
+      </div>
+      <div style="width:1px;background:var(--border-hi);align-self:stretch;margin:0 2px;"></div>
+      <div>
+        <div class="pt-aqi-label">Status</div>
+        <div class="pt-aqi-cat" id="ptAqiCat">Loading...</div>
+      </div>
     </div>
   </div>
   <!-- RIGHT: Current conditions -->
   <div class="wx-hero" id="wxHero">
-    <!-- Temp row -->
     <div class="wx-main">
       <div class="wx-icon" id="wxIcon">🌤️</div>
       <div class="wx-temp-col">
         <div class="wx-primary-row">
-          <div class="wx-temp"><span id="wxTemp">—</span><sup>°F</sup></div>
+          <div class="wx-curr-block">
+            <div class="wx-curr-label">Current</div>
+            <div class="wx-temp"><span id="wxTemp">—</span><sup>°F</sup></div>
+          </div>
           <div class="wx-feels-block">
             <div class="wx-feels-label">Feels like</div>
-            <div class="wx-feels-val"><span id="wxFeels">—</span><span class="wx-feels-unit">°</span></div>
+            <div class="wx-feels-val"><span id="wxFeels">—</span><span class="wx-feels-unit">°F</span></div>
           </div>
         </div>
         <div class="wx-desc" id="wxDesc">Loading weather...</div>
@@ -404,9 +427,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
         </div>
       </div>
     </div>
-    <!-- 2×2 stats grid -->
     <div class="wx-stats">
-      <!-- Row 1: Humidity, Wind -->
       <div class="wx-stat">
         <div class="wx-stat-icon">💧</div>
         <div class="wx-stat-label">Humidity</div>
@@ -421,7 +442,6 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
         <div class="wx-stat-val"><span id="wxWind">—</span><span class="wx-stat-unit-inline"> mph</span></div>
         <div class="wx-stat-sub" id="wxWindNote">—</div>
       </div>
-      <!-- Row 2: Cloud Cover, Visibility -->
       <div class="wx-stat">
         <div class="wx-stat-icon">☁️</div>
         <div class="wx-stat-label">Cloud Cover</div>
@@ -437,7 +457,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
     </div>
   </div>
 </div>
-<!-- Hourly weather strip — same width as hero, directly below -->
+<!-- Hourly weather strip — directly below hero, full width -->
 <div class="wx-hourly-outer">
   <div class="wx-hourly-strip">
     <div class="hs-label">
@@ -581,11 +601,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
     </div>
   </div><!-- /hero-grid -->
 
-  <!-- HOURLY AQI — below AQI + pollen cards -->
-  <div class="sec-hdr">
-    <div class="sec-title">Today's Hourly Air Quality</div>
-    <div class="sec-line"></div>
-  </div>
+  <!-- HOURLY AQI — below AQI + pollen cards, label inline -->
   <div class="aqi-hourly-strip">
     <div class="hs-label">
       <div class="hs-title">Best Time Outside</div>
@@ -991,11 +1007,14 @@ function render(data){
   const c=data.current,h=data.hourly,hIdx=curIdx(h.time);
   const aqi=c.us_aqi,meta=aqiMeta(aqi);
 
-  /* AQI card */
+  /* AQI card + header chip */
   const ne=$('aqiNum');ne.textContent=aqi!=null?aqi:'—';ne.style.color=meta.color;
   const se=$('aqiStatus');se.textContent=meta.status;se.style.color=meta.color;
   const pe=$('aqiPill');pe.textContent=meta.cat;pe.style.borderColor=meta.color;pe.style.color=meta.color;
   set('aqiDesc',meta.desc);
+  /* Mirror AQI into header chip */
+  const pv=$('ptAqiVal');if(pv){pv.textContent=aqi!=null?aqi:'—';pv.style.color=meta.color;}
+  const pc=$('ptAqiCat');if(pc){pc.textContent=meta.status;pc.style.color=meta.color;}
   for(let i=0;i<6;i++){$('vp'+i)?.classList.toggle('on',i===meta.pip);$('sb'+i)?.classList.toggle('on',i===meta.pip);}
   const fv=$('familyVal');fv.textContent=meta.family;fv.style.color=meta.fc;
   $('familyBadge').style.borderColor=meta.fc+'66';

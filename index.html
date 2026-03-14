@@ -76,11 +76,15 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 
 /* HERO — 3-column: AQI panel | Identity center | Weather right */
 .page-title-outer{background:#fff;border-bottom:2px solid var(--gold-2);}
-.page-title{display:grid;grid-template-columns:2.2fr 1.5fr 1.8fr;align-items:stretch;gap:0;background:#fff;max-width:1400px;margin:0 auto;width:100%;}
+.page-title{display:grid;grid-template-columns:2.2fr 1.7fr 1.6fr;align-items:stretch;gap:0;background:#fff;max-width:1400px;margin:0 auto;width:100%;}
 
 /* LEFT PANEL — AQI summary */
 .pt-aqi-panel{display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;border-right:1px solid var(--border);padding:16px 22px;}
-.pt-aqi-eyebrow{font-family:var(--fh);font-weight:700;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;}
+.pt-aqi-num-row{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;}
+.pt-aqi-left-label{display:flex;flex-direction:column;align-items:flex-end;}
+.pt-aqi-eyebrow{font-family:var(--fh);font-weight:700;font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dim);line-height:1.6;}
+.pt-compare-pill{display:flex;flex-direction:column;align-items:flex-start;font-size:10px;color:var(--text-mid);max-width:70px;line-height:1.4;opacity:0;transition:opacity .3s;}
+.pt-compare-pill.vis{opacity:1;}
 .pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(60px,7vw,96px);line-height:.9;transition:color .4s;}
 .pt-aqi-status{font-family:var(--fh);font-weight:800;font-size:22px;margin-top:8px;transition:color .4s;}
 .pt-compare{font-size:12px;color:var(--text-mid);margin-top:4px;display:none;align-items:center;justify-content:center;gap:6px;}
@@ -112,7 +116,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .pt-ln{width:44px;height:2px;background:var(--grad);}
 .pt-gem{width:6px;height:6px;background:var(--gold-2);transform:rotate(45deg);}
 .pt-sub{font-family:var(--fb);font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);}
-.pt-tagline{font-family:var(--fb);font-size:12px;color:var(--text-mid);line-height:1.65;max-width:340px;margin-top:10px;}
+.pt-tagline{font-family:var(--fb);font-size:14px;color:var(--text-mid);line-height:1.6;max-width:320px;margin-top:10px;}
 .pt-tagline strong{color:var(--gold-3);}
 .pt-meta{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:14px;flex-wrap:wrap;}
 .pt-chip{font-size:10px;color:var(--text-mid);display:flex;align-items:center;gap:5px;padding:4px 10px;border:1px solid var(--border);background:var(--bg-sub);border-radius:2px;font-family:var(--fh);font-weight:600;letter-spacing:.3px;transition:border-color .2s;}
@@ -126,19 +130,19 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .wx-primary-row{display:flex;align-items:flex-end;gap:14px;}
 .wx-curr-block{display:flex;flex-direction:column;}
 .wx-curr-label{font-size:7px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:2px;}
-.wx-temp{font-family:var(--fh);font-weight:900;font-size:54px;line-height:1;color:var(--gold-3);}
+.wx-temp{font-family:var(--fh);font-weight:900;font-size:46px;line-height:1;color:var(--gold-3);}
 .wx-temp sup{font-size:15px;font-weight:700;color:var(--text-dim);vertical-align:super;}
 .wx-feels-block{display:flex;flex-direction:column;padding-bottom:3px;}
 .wx-feels-label{font-size:7px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:2px;}
-.wx-feels-val{font-family:var(--fh);font-weight:800;font-size:26px;line-height:1;color:var(--text-mid);}
+.wx-feels-val{font-family:var(--fh);font-weight:800;font-size:22px;line-height:1;color:var(--text-mid);}
 .wx-feels-unit{font-size:12px;color:var(--text-dim);font-weight:400;}
 .wx-desc{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-top:3px;}
 .wx-hilo{display:flex;align-items:baseline;gap:8px;margin-top:4px;flex-wrap:wrap;}
-.wx-humid-block{display:flex;flex-direction:column;padding-bottom:3px;margin-left:6px;}
-.wx-humid-val{font-family:var(--fh);font-weight:800;font-size:20px;line-height:1;color:var(--text-mid);}
-.wx-humid-dew{font-size:10px;color:var(--text-dim);margin-top:2px;}
-.wx-hi{font-family:var(--fh);font-size:11px;font-weight:800;color:var(--sens);}
-.wx-lo{font-family:var(--fh);font-size:11px;font-weight:800;color:var(--gold-3);}
+.wx-humid-block{display:flex;flex-direction:column;padding:12px 14px;margin-left:auto;border-left:1px solid var(--border);align-self:stretch;justify-content:center;}
+.wx-humid-val{font-family:var(--fh);font-weight:900;font-size:40px;line-height:1;color:var(--text-mid);}
+.wx-humid-dew{font-size:11px;color:var(--text-dim);margin-top:3px;}
+.wx-hi{font-family:var(--fh);font-size:14px;font-weight:800;color:var(--sens);}
+.wx-lo{font-family:var(--fh);font-size:14px;font-weight:800;color:var(--gold-3);}
 .wx-stats{display:grid;grid-template-columns:repeat(2,1fr);flex:1;}
 .wx-stat{padding:10px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:row;align-items:center;justify-content:space-between;transition:background .2s;background:#fff;gap:10px;}
 .wx-stat:nth-child(2n){border-right:none;}
@@ -406,13 +410,19 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
   <!-- LEFT: AQI panel -->
   <div class="pt-aqi-panel">
     <div>
-      <div class="pt-aqi-eyebrow">Current Air Quality Index</div>
-      <div class="pt-aqi-big" id="aqiNum">—</div>
-      <div class="pt-aqi-status" id="aqiStatus">Loading...</div>
-      <div class="pt-compare" id="ptCompare">
-        <span class="pt-compare-icon" id="ptCompareIcon"></span>
-        <span id="ptCompareText"></span>
+      <div class="pt-aqi-num-row">
+        <div class="pt-aqi-left-label">
+          <div class="pt-aqi-eyebrow">Current</div>
+          <div class="pt-aqi-eyebrow">Air Quality</div>
+          <div class="pt-aqi-eyebrow">Index</div>
+        </div>
+        <div class="pt-aqi-big" id="aqiNum">—</div>
+        <div class="pt-compare-pill" id="ptCompare">
+          <span id="ptCompareIcon"></span>
+          <span id="ptCompareText"></span>
+        </div>
       </div>
+      <div class="pt-aqi-status" id="aqiStatus">Loading...</div>
       <div class="pt-badges-row">
         <div class="pt-family" id="ptFamily">
           <div class="pt-family-label">👨‍👩‍👧 Kids &amp; Pets</div>
@@ -452,8 +462,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
   <div class="pt-center">
     <div class="pt-main">Austin<br>Air Quality<br>Dashboard</div>
     <div class="pt-rule"><div class="pt-ln"></div><div class="pt-gem"></div><div class="pt-ln"></div></div>
-    <div class="pt-sub">Air Quality Index · US EPA Standard</div>
-    <div class="pt-tagline">Live air, pollen &amp; weather for <strong>Travis County, TX</strong> — updated hourly.</div>
+    <div class="pt-tagline">Live air, pollen &amp; weather for <strong>Travis County, TX</strong> - updated hourly.</div>
     <div class="pt-meta">
       <div class="pt-chip">📍 Travis County, TX</div>
       <div class="pt-chip">🌐 30.27°N 97.74°W</div>
@@ -504,7 +513,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
       </div>
       <div class="wx-stat">
         <div class="wx-stat-icon">🌧️</div>
-        <div class="wx-stat-label">Precipitation</div>
+        <div class="wx-stat-label">Precip</div>
         <div class="wx-stat-val"><span id="wxPrecip">—</span><span class="wx-stat-unit-inline">"</span></div>
       </div>
       <div class="wx-stat">
@@ -1092,7 +1101,7 @@ function render(data){
   const yAqi=h.us_aqi[Math.max(0,hIdx-24)];
   if(yAqi!=null&&aqi!=null){
     const d=aqi-yAqi;
-    const cl=$('ptCompare');if(cl)cl.style.display='flex';
+    const cl=$('ptCompare');if(cl)cl.classList.add('vis');
     const icon=d<-5?'📉':d>5?'📈':'➡';
     const txt=d<-5?`Better than yesterday (was ${Math.round(yAqi)})`:d>5?`Worse than yesterday (was ${Math.round(yAqi)})`:`Similar to yesterday (was ${Math.round(yAqi)})`;
     const col=d<-5?'var(--good)':d>5?'var(--bad)':'var(--text-dim)';
@@ -1357,28 +1366,6 @@ async function loadData(){
   }
 }
 
-
-/* ═══ TOOLTIPS ═══ */
-(function(){
-  const tip=document.createElement('div');
-  tip.id='tipEl';
-  tip.style.cssText='position:fixed;z-index:9999;background:#1a1710;color:#fff;font-size:12px;font-family:var(--fb);line-height:1.5;max-width:260px;padding:8px 12px;border-radius:2px;pointer-events:none;opacity:0;transition:opacity .15s;box-shadow:0 4px 12px rgba(0,0,0,.3);';
-  document.body.appendChild(tip);
-  document.querySelectorAll('[data-tip]').forEach(el=>{
-    const btn=el.querySelector('.info-btn')||el;
-    btn.addEventListener('mouseenter',e=>{
-      tip.textContent=el.getAttribute('data-tip');
-      tip.style.opacity='1';
-    });
-    btn.addEventListener('mousemove',e=>{
-      let x=e.clientX+14,y=e.clientY-10;
-      if(x+270>window.innerWidth)x=e.clientX-274;
-      if(y+80>window.innerHeight)y=e.clientY-90;
-      tip.style.left=x+'px';tip.style.top=y+'px';
-    });
-    btn.addEventListener('mouseleave',()=>{tip.style.opacity='0';});
-  });
-})();
 window.addEventListener('DOMContentLoaded',()=>{loadData();setInterval(loadData,30*60*1000);});
 </script>
 </body>

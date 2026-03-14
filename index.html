@@ -38,17 +38,17 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .brand-eagle{font-size:24px;}
 .brand-text{display:flex;flex-direction:row;align-items:center;gap:10px;}
 .brand-name{font-family:var(--fh);font-weight:900;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-3);}
-.brand-sub{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);padding-left:10px;border-left:1px solid var(--border);}
+.brand-sub{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);padding-left:10px;border-left:1px solid var(--border);}
 .brand-contact{display:flex;align-items:center;gap:12px;margin-left:20px;padding-left:20px;border-left:1px solid var(--border);}
 .brand-phone{font-family:var(--fh);font-weight:700;font-size:12px;color:var(--gold-3);}
-.brand-web{font-size:11px;color:var(--text-dim);text-decoration:none;transition:color .2s;}
+.brand-web{font-size:12px;color:var(--text-dim);text-decoration:none;transition:color .2s;}
 .brand-web:hover{color:var(--gold-3);}
 .topbar-r{display:flex;align-items:center;gap:14px;}
-.live-dot{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--text-mid);}
+.live-dot{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-mid);}
 .live-dot::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--good);flex-shrink:0;animation:pulse-g 2s infinite;}
 @keyframes pulse-g{0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,.4)}50%{box-shadow:0 0 0 5px rgba(22,163,74,0)}}
 #topTime{font-family:var(--fh);font-weight:600;font-size:12px;color:var(--text-mid);}
-.btn-refresh{background:none;border:1.5px solid var(--border-hi);cursor:pointer;color:var(--gold-3);font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;transition:all .2s;}
+.btn-refresh{background:none;border:1.5px solid var(--border-hi);cursor:pointer;color:var(--gold-3);font-family:var(--fh);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;transition:all .2s;}
 .btn-refresh:hover{background:var(--gold-3);color:#fff;}
 
 /* CEDAR BANNER */
@@ -66,7 +66,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 
 /* TOOLTIP */
 .info-wrap{position:relative;display:inline-flex;align-items:center;margin-left:5px;vertical-align:middle;}
-.info-btn{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border-hi);background:rgba(171,128,36,.12);color:var(--gold-3);font-size:9px;font-weight:900;font-family:var(--fh);cursor:help;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;line-height:16px;text-align:center;vertical-align:middle;}
+.info-btn{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border-hi);background:rgba(171,128,36,.12);color:var(--gold-3);font-size:9px;font-weight:900;font-family:var(--fh);cursor:help;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;line-height:1;text-align:center;vertical-align:middle;padding:0;}
 .info-btn:hover{background:var(--gold-3);color:#fff;border-color:var(--gold-3);}
 
 /* SEC HEADER */
@@ -611,7 +611,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
   <div class="pollen-hero">
       <div class="pch-hdr">
         Pollen &amp; Allergens — Typical for <span id="pollenMonthLabel" style="color:var(--gold-3);margin-left:5px">this month</span>
-        <span class="info-wrap" data-tip="Austin seasonal pollen averages from the National Allergy Bureau. Shows typical levels for the current month — updated each month. Dust is a live sensor reading. Austin is consistently one of the top 5 worst allergy cities in the US."><span class="info-btn">i</span></span>
+        <span class="info-wrap" data-tip="Austin seasonal pollen averages from the National Allergy Bureau. Shows typical levels for the current month — updated each month. Austin is consistently one of the top 5 worst allergy cities in the US."><span class="info-btn">i</span></span>
       </div>
       <div class="pollen-rows">
 
@@ -1077,27 +1077,17 @@ function renderWeather(wx){
   // Humidity+Dew combined note
   if(humid!=null){
     const note=humid<30?'Very dry — can irritate airways':humid<40?'Dry — watch for static':humid<60?'✓ Comfortable (40–60%)':humid<70?'Getting humid — mold risk rising':'⚠ High — mold & dust mite alert';
-    set('wxHumidNote',note);
-    const bar=$('wxHumBar');if(bar)setTimeout(()=>{bar.style.width=Math.min(100,humid)+'%';},300);
   }
 
   // Wind
   if(wind!=null&&windDeg!=null){
     const dir=WIND_DIR(windDeg);
-    set('wxWindNote',wind<5?`${dir} — calm, pollen settles`:wind<15?`${dir} — light breeze`:wind<25?`${dir} — breezy, pollen dispersing`:`${dir} — windy, pollen & dust elevated`);
-  }
-
-  // Cloud cover
-  if(cloud!=null){
-    set('wxCloud',Math.round(cloud));
-    set('wxCloudNote',cloud<20?'Clear sky — high UV risk':cloud<50?'Partly cloudy':cloud<80?'Mostly cloudy':'Overcast — UV reduced');
   }
 
   // Visibility (API returns meters, convert to miles)
   if(vis!=null){
     const visMi=(vis/1609.34);
     set('wxVis',visMi>=10?'10+':visMi.toFixed(1));
-    set('wxVisNote',visMi>=7?'Excellent':visMi>=4?'Good':visMi>=2?'Moderate — check air quality':'⚠ Poor — high particulates likely');
     const visEl=$('wxVis');if(visEl){const vp=visEl.closest('.wx-stat-val');if(vp)vp.style.color=visMi>=7?'var(--good)':visMi>=4?'var(--mod)':'var(--bad)';}
   }
 
@@ -1109,7 +1099,6 @@ function renderWeather(wx){
   if(uv!=null){
     const uvR=Math.round(uv);
     set('wxUV',uvR);
-    set('wxUVNote',uvR<=2?'Low — no protection needed':uvR<=5?'Moderate — wear sunscreen':uvR<=7?'High — limit midday sun':uvR<=10?'Very high — seek shade':'Extreme — stay inside');
     const uvEl=$('wxUV');if(uvEl){uvEl.style.color=uvR<=2?'var(--good)':uvR<=5?'var(--mod)':uvR<=7?'var(--sens)':uvR<=10?'var(--bad)':'var(--haz)';}
   }
 }
@@ -1185,7 +1174,7 @@ function render(data){
     const hr=parseInt(h.time[i].split('T')[1]);
     if(h.us_aqi[i]!=null)today.push({hour:hr,aqi:h.us_aqi[i]});
   }
-  if(today.length){today.sort((a,b)=>a.aqi-b.aqi);const b=today[0];const bt=fmtHr(b.hour)+' – '+fmtHr(b.hour+1);set('qs-besttime',bt);const pcbt=$('ptCenterBest');if(pcbt)pcbt.textContent=bt;}
+  if(today.length){today.sort((a,b)=>a.aqi-b.aqi);const b=today[0];const bt=fmtHr(b.hour)+' – '+fmtHr(b.hour+1);set('qs-besttime',bt);}
 
   /* Pollen — seasonal baselines + live dust */
   const sp=getSeasonalPollen();
@@ -1220,7 +1209,6 @@ function render(data){
   const pp=pollenMeta(pollenAvg);
   const pqe=$('qs-pollen');pqe.textContent=pp.label;pqe.style.color=pp.color;
   /* Center panel stats */
-  const pcb=$('ptCenterPollen');if(pcb){pcb.textContent=pp.label;pcb.style.color=pp.color;}
   /* AQI panel dust */
   if(liveDust!=null){
     const dm=pollenMeta(liveDust);

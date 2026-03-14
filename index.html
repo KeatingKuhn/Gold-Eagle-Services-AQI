@@ -79,14 +79,14 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .page-title{display:grid;grid-template-columns:2.5fr 1.7fr 1.4fr;align-items:stretch;gap:0;background:#fff;max-width:1400px;margin:0 auto;width:100%;}
 
 /* LEFT PANEL — AQI summary */
-.pt-aqi-panel{display:flex;flex-direction:column;justify-content:space-between;align-items:stretch;text-align:center;border-right:1px solid var(--border);padding:20px 24px 16px;}
+.pt-aqi-panel{display:flex;flex-direction:column;justify-content:space-between;align-items:stretch;text-align:center;border-right:1px solid var(--border);padding:24px 22px 20px;}
 
-/* eyebrow badge — compact gold tag top-center */
-.pt-aqi-eyebrow-wrap{display:inline-flex;align-items:center;justify-content:center;background:var(--grad);padding:8px 20px;border-radius:3px;margin-bottom:12px;align-self:center;}
-.pt-aqi-eyebrow{font-family:var(--fh);font-weight:900;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#1a1710;line-height:1;}
+/* eyebrow badge — tall vertical pill left of number */
+.pt-aqi-eyebrow-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--grad);padding:12px 10px;border-radius:3px;gap:3px;flex-shrink:0;}
+.pt-aqi-eyebrow{font-family:var(--fh);font-weight:900;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:#1a1710;line-height:1;writing-mode:initial;}
 
-/* number + compare row */
-.pt-aqi-num-row{display:flex;align-items:flex-end;justify-content:center;gap:10px;}
+/* number + compare row: badge | number | compare */
+.pt-aqi-num-row{display:flex;align-items:center;justify-content:center;gap:12px;}
 .pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(72px,8vw,110px);line-height:.88;transition:color .4s;flex-shrink:0;}
 
 /* status word */
@@ -131,7 +131,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .pt-sl-name{font-family:var(--fh);font-weight:700;font-size:9px;color:var(--text-dim);margin-top:2px;text-transform:uppercase;}
 
 /* CENTER PANEL — brand identity */
-.pt-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px 28px;border-right:1px solid var(--border);}
+.pt-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 24px;border-right:1px solid var(--border);}
 .pt-main{font-family:var(--fh);font-weight:900;font-size:clamp(20px,2.6vw,38px);letter-spacing:-1px;line-height:1.05;color:var(--gold-3);}
 .pt-rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:12px 0 10px;}
 .pt-ln{width:44px;height:2px;background:var(--grad);}
@@ -147,7 +147,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .wx-hero{display:flex;flex-direction:column;border-left:1px solid var(--border);}
 .wx-main{display:flex;align-items:stretch;gap:0;border-bottom:1px solid var(--border);background:#fff;}
 .wx-icon{font-size:38px;line-height:1;flex-shrink:0;width:50px;padding:0 0 0 12px;display:flex;align-items:center;justify-content:center;}
-.wx-temp-col{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:2px;flex:3;padding:14px 10px;}
+.wx-temp-col{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:2px;flex:3;padding:18px 8px;}
 .wx-primary-row{display:flex;align-items:flex-end;gap:12px;justify-content:center;}
 .wx-curr-block{display:flex;flex-direction:column;}
 .wx-curr-label{font-size:8px;font-family:var(--fh);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:3px;}
@@ -159,7 +159,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .wx-feels-unit{font-size:12px;color:var(--text-dim);font-weight:400;}
 .wx-desc{font-family:var(--fh);font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-top:4px;}
 .wx-hilo{display:flex;align-items:baseline;gap:10px;margin-top:5px;}
-.wx-humid-block{display:flex;flex-direction:column;flex:2;padding:10px 16px;border-left:1px solid var(--border);justify-content:center;align-items:center;text-align:center;gap:2px;}
+.wx-humid-block{display:flex;flex-direction:column;flex:2;padding:18px 16px;border-left:1px solid var(--border);justify-content:center;align-items:center;text-align:center;gap:2px;}
 .wx-humid-num-row{display:flex;align-items:flex-end;gap:4px;justify-content:center;}
 .wx-humid-icon-inline{font-size:32px;line-height:1;margin-bottom:2px;}
 .wx-humid-val{font-family:var(--fh);font-weight:900;font-size:44px;line-height:1;color:var(--text-full);transition:color .4s;}
@@ -168,7 +168,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .wx-hi{font-family:var(--fh);font-size:14px;font-weight:800;color:var(--sens);}
 .wx-lo{font-family:var(--fh);font-size:14px;font-weight:800;color:var(--gold-3);}
 .wx-stats{display:grid;grid-template-columns:repeat(2,1fr);flex:1;}
-.wx-stat{padding:10px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:row;align-items:center;justify-content:space-between;transition:background .2s;background:#fff;gap:10px;}
+.wx-stat{padding:14px 14px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:row;align-items:center;justify-content:space-between;transition:background .2s;background:#fff;gap:10px;}
 .wx-stat:nth-child(2n){border-right:none;}
 .wx-stat:nth-child(3),.wx-stat:nth-child(4){border-bottom:none;}
 .wx-stat:hover{background:var(--bg-sub);}
@@ -225,9 +225,10 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .p-bar{height:100%;transition:width 1.2s ease;width:0%;}
 .p-badge{padding:4px 10px;font-family:var(--fh);font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;border-radius:1px;margin-top:8px;}
 
-/* QUICK STATS — horizontal row */
-.qs-row{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-bottom:4px;}
-.qs-tile{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:22px 18px;position:relative;overflow:hidden;transition:background .2s,box-shadow .2s;display:flex;flex-direction:row;align-items:center;gap:12px;}
+/* QUICK STATS — full width strip */
+.qs-outer{background:var(--bg);border-top:2px solid var(--gold-2);border-bottom:2px solid var(--gold-2);}
+.qs-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;max-width:1400px;margin:0 auto;}
+.qs-tile{background:#fff;border-right:1px solid var(--border);border-left:none;border-top:none;border-bottom:none;box-shadow:none;padding:22px 24px;position:relative;overflow:hidden;transition:background .2s,box-shadow .2s;display:flex;flex-direction:row;align-items:center;gap:14px;}
 .qs-tile::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
 .qs-tile:hover{background:var(--bg-sub);box-shadow:var(--sh-md);}
 .qs-tile:hover::after{transform:scaleX(1);}
@@ -433,11 +434,14 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 
   <!-- LEFT: AQI panel -->
   <div class="pt-aqi-panel">
-    <div style="display:flex;flex-direction:column;align-items:center;">
-      <div class="pt-aqi-eyebrow-wrap">
-        <span class="pt-aqi-eyebrow">Current Air Quality Index</span>
-      </div>
+    <div style="display:flex;flex-direction:column;align-items:center;width:100%;">
       <div class="pt-aqi-num-row">
+        <div class="pt-aqi-eyebrow-wrap">
+          <span class="pt-aqi-eyebrow">Current</span>
+          <span class="pt-aqi-eyebrow">Air</span>
+          <span class="pt-aqi-eyebrow">Quality</span>
+          <span class="pt-aqi-eyebrow">Index</span>
+        </div>
         <div class="pt-aqi-big" id="aqiNum">—</div>
         <div class="pt-compare-pill" id="ptCompare">
           <span class="cmp-icon" id="ptCompareIcon"></span>
@@ -558,14 +562,9 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 </div>
 </div>
 
-<div class="main">
-
-  <div class="err-box" id="errBox">
-    <p>⚠️ <strong>Live data unavailable.</strong> Check your internet connection or click Refresh. If you're viewing this on GitHub Pages, data loads automatically.</p>
-  </div>
-
-  <!-- QUICK STATS — full-width horizontal row -->
-  <div class="qs-row" style="margin-top:24px;">
+<!-- QUICK STATS — full width, outside .main padding -->
+<div class="qs-outer">
+  <div class="qs-row">
     <div class="qs-tile">
       <div class="qs-icon">💨</div>
       <div class="qs-body">
@@ -606,6 +605,13 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
         <div class="qs-note">µg/m³ · live reading</div>
       </div>
     </div>
+  </div>
+</div><!-- /qs-outer -->
+
+<div class="main">
+
+  <div class="err-box" id="errBox">
+    <p>⚠️ <strong>Live data unavailable.</strong> Check your internet connection or click Refresh. If you're viewing this on GitHub Pages, data loads automatically.</p>
   </div>
 
   <!-- POLLEN CARD — full width -->

@@ -76,17 +76,17 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 
 /* HERO — 3-column: AQI panel | Identity center | Weather right */
 .page-title-outer{background:#fff;border-bottom:2px solid var(--gold-2);}
-.page-title{display:grid;grid-template-columns:2.2fr 1.7fr 1.6fr;align-items:stretch;gap:0;background:#fff;max-width:1400px;margin:0 auto;width:100%;}
+.page-title{display:grid;grid-template-columns:2.5fr 1.7fr 1.4fr;align-items:stretch;gap:0;background:#fff;max-width:1400px;margin:0 auto;width:100%;}
 
 /* LEFT PANEL — AQI summary */
 .pt-aqi-panel{display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;border-right:1px solid var(--border);padding:16px 22px;}
 .pt-aqi-num-row{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:4px 0;}
 .pt-aqi-left-label{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--grad);padding:10px 12px;border-radius:3px;gap:2px;min-width:64px;}
 .pt-aqi-eyebrow{font-family:var(--fh);font-weight:900;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#000;line-height:1.5;}
-.pt-compare-pill{display:flex;flex-direction:column;align-items:flex-start;gap:4px;opacity:0;transition:opacity .3s;min-width:82px;padding:8px 10px;border:1px solid var(--border);background:var(--bg-sub);border-radius:3px;}
+.pt-compare-pill{display:flex;flex-direction:row;align-items:center;gap:8px;opacity:0;transition:opacity .3s;width:100%;padding:7px 12px;border:1px solid var(--border);background:var(--bg-sub);border-radius:3px;margin-top:7px;}
 .pt-compare-pill.vis{opacity:1;}
-.pt-compare-pill .cmp-icon{font-size:18px;line-height:1;}
-.pt-compare-pill .cmp-text{font-family:var(--fh);font-weight:700;font-size:11px;color:var(--text-mid);line-height:1.4;}
+.pt-compare-pill .cmp-icon{font-size:15px;line-height:1;flex-shrink:0;}
+.pt-compare-pill .cmp-text{font-family:var(--fh);font-weight:700;font-size:12px;color:var(--text-mid);line-height:1.3;}
 .pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(60px,7vw,96px);line-height:.9;transition:color .4s;}
 .pt-aqi-status{font-family:var(--fh);font-weight:800;font-size:22px;margin-top:8px;transition:color .4s;}
 .pt-compare{font-size:12px;color:var(--text-mid);margin-top:4px;display:none;align-items:center;justify-content:center;gap:6px;}
@@ -173,7 +173,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .hs-label{flex-shrink:0;min-width:130px;}
 .hs-label .hs-title{font-family:var(--fh);font-weight:800;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-3);margin-bottom:3px;}
 .hs-label .hs-note{font-size:11px;color:var(--text-dim);}
-.hs-bars{display:flex;gap:3px;flex:1;min-width:200px;align-items:flex-end;height:80px;}
+.hs-bars{display:flex;gap:3px;flex:1;min-width:200px;align-items:flex-end;height:96px;}
 .hs-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;height:100%;justify-content:flex-end;}
 .hs-outer{width:100%;flex:1;background:rgba(0,0,0,.05);display:flex;align-items:flex-end;overflow:hidden;}
 .hs-inner{width:100%;transition:height .8s ease;min-height:3px;}
@@ -419,24 +419,16 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
           <div class="pt-aqi-eyebrow">Index</div>
         </div>
         <div class="pt-aqi-big" id="aqiNum">—</div>
-        <div class="pt-compare-pill" id="ptCompare">
-          <span class="cmp-icon" id="ptCompareIcon"></span>
-          <span class="cmp-text" id="ptCompareText"></span>
-        </div>
       </div>
       <div class="pt-aqi-status" id="aqiStatus">Loading...</div>
+      <div class="pt-compare-pill" id="ptCompare">
+        <span class="cmp-icon" id="ptCompareIcon"></span>
+        <span class="cmp-text" id="ptCompareText"></span>
+      </div>
       <div class="pt-badges-row">
-        <div class="pt-family" id="ptFamily">
+        <div class="pt-family" id="ptFamily" style="flex:1;">
           <div class="pt-family-label">👨‍👩‍👧 Kids &amp; Pets</div>
           <div class="pt-family-val" id="ptFamilyVal">Checking...</div>
-        </div>
-        <div class="pt-dust">
-          <div class="pt-dust-label">🍂 Dust</div>
-          <div class="pt-dust-row">
-            <span class="pt-dust-val" id="ptDustVal">—</span>
-            <span class="pt-dust-unit">µg/m³</span>
-            <span class="pt-dust-badge" id="ptDustBadge">—</span>
-          </div>
         </div>
       </div>
     </div>
@@ -553,6 +545,12 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
         <div class="qs-label">Main Concern <span class="info-wrap" data-tip="The single pollutant driving today's AQI the most — measured relative to its safety threshold."><span class="info-btn">i</span></span></div>
         <div class="qs-val" id="qs-dom">—</div>
         <div class="qs-note">Primary pollutant right now</div>
+        <div class="qs-dust-row">
+          <span class="qs-dust-label">🍂 Dust:</span>
+          <span class="qs-dust-val" id="ptDustVal">—</span>
+          <span class="qs-dust-unit">µg/m³</span>
+          <span class="qs-dust-badge" id="ptDustBadge">—</span>
+        </div>
       </div>
     </div>
     <div class="qs-tile">

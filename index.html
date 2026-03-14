@@ -71,60 +71,97 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .sec-line{flex:1;height:2px;background:linear-gradient(90deg,var(--gold-2),transparent);}
 
 /* PAGE TITLE — split hero layout */
-.page-title{display:grid;grid-template-columns:1fr auto;align-items:stretch;gap:0;background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);border-bottom:1px solid var(--border);max-width:1400px;margin:0 auto;width:100%;}
-.page-title-outer{background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);border-bottom:1px solid var(--border);}
-.pt-left{padding:22px 32px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
-.pt-main{font-family:var(--fh);font-weight:900;font-size:clamp(20px,3vw,42px);letter-spacing:-1px;line-height:1.05;color:var(--gold-3);}
-.pt-rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px 0 6px;}
+.page-title{display:grid;grid-template-columns:1fr auto;align-items:stretch;gap:0;background:#fff;border-bottom:1px solid var(--border);max-width:1400px;margin:0 auto;width:100%;}
+.page-title-outer{background:#fff;border-bottom:2px solid var(--gold-2);}
+
+/* LEFT PANEL */
+.pt-left{padding:24px 36px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;min-height:280px;}
+.pt-top{display:flex;flex-direction:column;align-items:center;}
+.pt-main{font-family:var(--fh);font-weight:900;font-size:clamp(24px,3.6vw,50px);letter-spacing:-1.5px;line-height:1;color:var(--gold-3);}
+.pt-rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:10px 0 8px;}
 .pt-ln{width:44px;height:2px;background:var(--grad);}
 .pt-gem{width:6px;height:6px;background:var(--gold-2);transform:rotate(45deg);}
 .pt-sub{font-family:var(--fb);font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);}
 .pt-tagline{font-family:var(--fb);font-size:12px;color:var(--text-mid);line-height:1.6;max-width:320px;margin-top:8px;}
-.pt-tagline strong{color:var(--gold-3);font-weight:700;}
-.pt-meta{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;flex-wrap:wrap;}
+.pt-tagline strong{color:var(--gold-3);}
+.pt-stat-row{display:flex;gap:0;border:1px solid var(--border);width:100%;margin:0;}
+.pt-stat{flex:1;padding:12px 8px;text-align:center;border-right:1px solid var(--border);background:var(--bg-sub);}
+.pt-stat:last-child{border-right:none;}
+.pt-stat-label{font-family:var(--fh);font-weight:700;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px;}
+.pt-stat-val{font-family:var(--fh);font-weight:900;font-size:16px;line-height:1;}
+.pt-stat-note{font-size:10px;color:var(--text-dim);margin-top:3px;}
+.pt-bottom{display:flex;flex-direction:column;align-items:center;gap:7px;width:100%;}
+.pt-meta{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
 .pt-chip{font-size:10px;color:var(--text-dim);display:flex;align-items:center;gap:4px;}
 .pt-chip .dot{width:3px;height:3px;border-radius:50%;background:var(--gold-3);flex-shrink:0;}
-.pt-aqi-chip{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:5px 14px;border:2px solid var(--border-hi);background:var(--bg-sub);}
-.pt-aqi-label{font-size:8px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);}
-.pt-aqi-val{font-family:var(--fh);font-weight:900;font-size:20px;line-height:1;}
-.pt-aqi-cat{font-size:10px;font-family:var(--fh);font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.pt-aqi-chip{display:flex;width:100%;border:2px solid var(--border-hi);background:var(--bg-sub);}
+.pt-aqi-seg{flex:1;padding:10px 8px;text-align:center;border-right:1px solid var(--border);}
+.pt-aqi-seg:last-child{border-right:none;}
+.pt-aqi-label{font-size:8px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:3px;}
+.pt-aqi-val{font-family:var(--fh);font-weight:900;font-size:26px;line-height:1;}
+.pt-aqi-cat{font-size:11px;font-family:var(--fh);font-weight:800;}
 
 /* WEATHER HERO — right panel */
-.wx-hero{display:flex;flex-direction:column;width:700px;flex-shrink:0;border-left:1px solid var(--border);}
-
-/* Temp cell — compact */
-.wx-main{display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid var(--border);background:#fff;}
-.wx-icon{font-size:40px;line-height:1;flex-shrink:0;width:46px;text-align:center;}
-.wx-temp-col{display:flex;flex-direction:column;gap:1px;flex:1;}
-.wx-primary-row{display:flex;align-items:flex-end;gap:18px;}
+.wx-hero{display:flex;flex-direction:column;width:720px;flex-shrink:0;border-left:1px solid var(--border);}
+.wx-main{display:flex;align-items:stretch;border-bottom:1px solid var(--border);background:#fff;}
+.wx-main-left{display:flex;align-items:center;gap:14px;padding:16px 20px;border-right:1px solid var(--border);flex-shrink:0;}
+.wx-icon{font-size:44px;line-height:1;flex-shrink:0;width:50px;text-align:center;}
+.wx-temp-col{display:flex;flex-direction:column;justify-content:center;gap:3px;}
+.wx-primary-row{display:flex;align-items:flex-end;gap:16px;}
 .wx-curr-block{display:flex;flex-direction:column;}
-.wx-curr-label{font-size:7px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:1px;}
-.wx-temp{font-family:var(--fh);font-weight:900;font-size:48px;line-height:1;color:var(--gold-3);}
-.wx-temp sup{font-size:16px;font-weight:700;color:var(--text-dim);vertical-align:super;}
-.wx-feels-block{display:flex;flex-direction:column;padding-bottom:3px;}
-.wx-feels-label{font-size:7px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:1px;}
-.wx-feels-val{font-family:var(--fh);font-weight:800;font-size:24px;line-height:1;color:var(--text-mid);}
-.wx-feels-unit{font-size:12px;color:var(--text-dim);font-weight:400;}
-.wx-desc{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-top:3px;}
-.wx-hilo{display:flex;gap:10px;margin-top:2px;align-items:center;}
-.wx-hi{font-family:var(--fh);font-size:11px;font-weight:800;color:var(--sens);}
-.wx-lo{font-family:var(--fh);font-size:11px;font-weight:800;color:var(--gold-3);}
-
-/* 2×2 stats grid — compact */
-.wx-stats{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);flex:1;}
-.wx-stat{padding:9px 14px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:column;justify-content:flex-start;transition:background .2s;background:#fff;}
-.wx-stat:nth-child(2n){border-right:none;}
-.wx-stat:nth-child(3),.wx-stat:nth-child(4){border-bottom:none;}
+.wx-curr-label{font-size:8px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:2px;}
+.wx-temp{font-family:var(--fh);font-weight:900;font-size:52px;line-height:1;color:var(--gold-3);}
+.wx-temp sup{font-size:17px;font-weight:700;color:var(--text-dim);vertical-align:super;}
+.wx-feels-block{display:flex;flex-direction:column;padding-bottom:4px;}
+.wx-feels-label{font-size:8px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:2px;}
+.wx-feels-val{font-family:var(--fh);font-weight:800;font-size:26px;line-height:1;color:var(--text-mid);}
+.wx-feels-unit{font-size:13px;color:var(--text-dim);font-weight:400;}
+.wx-desc{font-family:var(--fh);font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-top:4px;}
+.wx-hilo{display:flex;gap:12px;margin-top:4px;}
+.wx-hi{font-family:var(--fh);font-size:12px;font-weight:800;color:var(--sens);}
+.wx-lo{font-family:var(--fh);font-size:12px;font-weight:800;color:var(--gold-3);}
+.wx-summary{flex:1;display:flex;flex-direction:column;justify-content:center;padding:14px 18px;background:var(--bg-sub);gap:7px;}
+.wx-summary-row{display:flex;align-items:baseline;gap:8px;font-size:12px;color:var(--text-mid);}
+.wx-summary-row strong{font-family:var(--fh);font-weight:800;color:var(--text-full);font-size:12px;min-width:36px;}
+.wx-stats{display:grid;grid-template-columns:repeat(3,1fr);flex:1;}
+.wx-stat{padding:14px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:column;transition:background .2s;background:#fff;}
+.wx-stat:nth-child(3n){border-right:none;}
+.wx-stat:nth-child(4),.wx-stat:nth-child(5),.wx-stat:nth-child(6){border-bottom:none;}
 .wx-stat:hover{background:var(--bg-sub);}
-.wx-stat-icon{font-size:14px;margin-bottom:3px;line-height:1;height:17px;display:flex;align-items:center;}
-.wx-stat-label{font-family:var(--fh);font-weight:700;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:2px;}
-.wx-stat-val{font-family:var(--fh);font-weight:900;font-size:20px;line-height:1;color:var(--text-full);}
-.wx-stat-unit-inline{font-size:10px;color:var(--text-dim);font-weight:400;}
-.wx-stat-sub{font-size:10px;color:var(--text-dim);margin-top:2px;line-height:1.3;}
-.wx-stat-sub2{font-family:var(--fh);font-weight:700;font-size:10px;color:var(--text-dim);margin-top:1px;}
-.hum-bar{width:100%;height:3px;background:rgba(0,0,0,.07);margin-top:4px;border-radius:1px;overflow:hidden;position:relative;}
+.wx-stat-icon{font-size:16px;line-height:1;height:20px;display:flex;align-items:center;margin-bottom:6px;}
+.wx-stat-label{font-family:var(--fh);font-weight:700;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px;}
+.wx-stat-val{font-family:var(--fh);font-weight:900;font-size:24px;line-height:1;color:var(--text-full);}
+.wx-stat-unit-inline{font-size:11px;color:var(--text-dim);font-weight:400;}
+.wx-stat-sub{font-size:10px;color:var(--text-dim);margin-top:5px;line-height:1.4;}
+.wx-stat-sub2{font-family:var(--fh);font-weight:700;font-size:11px;color:var(--text-dim);margin-top:3px;}
+.hum-bar{width:100%;height:3px;background:rgba(0,0,0,.07);margin-top:6px;border-radius:1px;overflow:hidden;position:relative;}
 .hum-fill{height:100%;background:var(--grad-h);transition:width .8s ease;width:0;}
 .hum-good{position:absolute;left:40%;width:15%;height:100%;background:rgba(22,163,74,.3);top:0;}
+
+/* AQI CARD */
+.aqi-card{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-md);padding:30px 32px 24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;text-align:center;align-items:center;}
+.aqi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad);}
+.aqi-eyebrow{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;}
+.aqi-num-row{display:flex;align-items:flex-end;gap:14px;justify-content:center;}
+.aqi-number{font-family:var(--fh);font-weight:900;font-size:clamp(100px,12vw,160px);line-height:.85;transition:color .4s;}
+.aqi-vert{display:flex;flex-direction:column-reverse;gap:4px;padding-bottom:8px;}
+.vp{width:10px;height:24px;border-radius:2px;opacity:.12;transition:opacity .4s,transform .4s;}
+.vp.on{opacity:1;transform:scaleX(1.5);}
+.aqi-status{font-family:var(--fh);font-weight:800;font-size:clamp(18px,2.6vw,28px);margin-top:10px;transition:color .4s;}
+.aqi-pill{display:inline-flex;align-items:center;justify-content:center;margin-top:6px;padding:4px 14px;border:2px solid;font-family:var(--fh);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.aqi-desc{font-size:13px;line-height:1.8;color:var(--text-mid);margin-top:14px;max-width:380px;}
+.compare-line{font-size:13px;color:var(--text-mid);margin-top:10px;display:none;align-items:center;justify-content:center;gap:8px;}
+.compare-line .ci{font-family:var(--fh);font-weight:700;}
+.family-badge{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;padding:10px 20px;border:2px solid var(--border-hi);background:var(--bg-sub);width:100%;}
+.fb-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);font-family:var(--fh);font-weight:700;}
+.fb-val{font-size:14px;font-weight:800;font-family:var(--fh);margin-top:2px;}
+.aqi-scale-row{display:flex;gap:3px;margin-top:20px;width:100%;}
+.sb{flex:1;height:8px;border-radius:2px;opacity:.15;transition:opacity .4s;}
+.sb.on{opacity:1;}
+.sc-labels{display:flex;justify-content:space-between;margin-top:6px;width:100%;}
+.sc-lbl{display:flex;flex-direction:column;align-items:center;flex:1;}
+.sc-lbl-num{font-family:var(--fh);font-weight:800;font-size:10px;color:var(--text-mid);}
+.sc-lbl-name{font-family:var(--fh);font-weight:600;font-size:8px;color:var(--text-dim);margin-top:1px;text-transform:uppercase;}
 
 /* HOURLY WEATHER STRIP — directly below wx-hero */
 .wx-hourly-outer{max-width:1400px;margin:0 auto;width:100%;}
@@ -381,50 +418,86 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 <!-- PAGE TITLE + WEATHER HERO (split layout) -->
 <div class="page-title-outer">
 <div class="page-title">
-  <!-- LEFT: Identity — centered -->
+  <!-- LEFT: Identity — space-between -->
   <div class="pt-left">
-    <div class="pt-main">Austin Air Quality<br>Dashboard</div>
-    <div class="pt-rule"><div class="pt-ln"></div><div class="pt-gem"></div><div class="pt-ln"></div></div>
-    <div class="pt-sub">Air Quality Index · US EPA Standard</div>
-    <div class="pt-tagline">Live outdoor air quality, pollen, and weather for <strong>Travis County, Texas</strong> — updated every hour.</div>
-    <div class="pt-meta">
-      <div class="pt-chip"><div class="dot"></div>📍 Travis County, TX</div>
-      <div class="pt-chip"><div class="dot"></div><span id="lastUpdate">Loading...</span></div>
-      <div class="pt-chip"><div class="dot"></div>30.27°N 97.74°W</div>
+    <!-- Top: title + subtitle -->
+    <div class="pt-top">
+      <div class="pt-main">Austin Air Quality<br>Dashboard</div>
+      <div class="pt-rule"><div class="pt-ln"></div><div class="pt-gem"></div><div class="pt-ln"></div></div>
+      <div class="pt-sub">Air Quality Index · US EPA Standard</div>
+      <div class="pt-tagline">Live air quality, pollen &amp; weather for <strong>Travis County, TX</strong> — updated hourly.</div>
     </div>
-    <div class="pt-aqi-chip">
-      <div>
-        <div class="pt-aqi-label">Current AQI</div>
-        <div class="pt-aqi-val" id="ptAqiVal">—</div>
+    <!-- Middle: quick stat tiles -->
+    <div class="pt-stat-row">
+      <div class="pt-stat">
+        <div class="pt-stat-label">Best Time Outside</div>
+        <div class="pt-stat-val" id="ptBestTime" style="font-size:14px;color:var(--gold-3)">—</div>
+        <div class="pt-stat-note">Lowest AQI today</div>
       </div>
-      <div style="width:1px;background:var(--border-hi);align-self:stretch;margin:0 2px;"></div>
-      <div>
-        <div class="pt-aqi-label">Status</div>
-        <div class="pt-aqi-cat" id="ptAqiCat">Loading...</div>
+      <div class="pt-stat">
+        <div class="pt-stat-label">Pollen Load</div>
+        <div class="pt-stat-val" id="ptPollen" style="color:var(--mod)">—</div>
+        <div class="pt-stat-note">Seasonal typical</div>
+      </div>
+      <div class="pt-stat">
+        <div class="pt-stat-label">Main Concern</div>
+        <div class="pt-stat-val" id="ptDom" style="font-size:11px;color:var(--text-mid);line-height:1.2">—</div>
+        <div class="pt-stat-note">Primary pollutant</div>
+      </div>
+    </div>
+    <!-- Bottom: location chips + AQI badge -->
+    <div class="pt-bottom">
+      <div class="pt-meta">
+        <div class="pt-chip"><div class="dot"></div>📍 Travis County, TX</div>
+        <div class="pt-chip"><div class="dot"></div><span id="lastUpdate">Loading...</span></div>
+        <div class="pt-chip"><div class="dot"></div>30.27°N 97.74°W</div>
+      </div>
+      <div class="pt-aqi-chip">
+        <div class="pt-aqi-seg">
+          <div class="pt-aqi-label">Current AQI</div>
+          <div class="pt-aqi-val" id="ptAqiVal">—</div>
+        </div>
+        <div class="pt-aqi-seg">
+          <div class="pt-aqi-label">Status</div>
+          <div class="pt-aqi-cat" id="ptAqiCat">Loading...</div>
+        </div>
+        <div class="pt-aqi-seg">
+          <div class="pt-aqi-label">Kids &amp; Pets</div>
+          <div class="pt-aqi-cat" id="ptFamily" style="font-size:9px">Checking...</div>
+        </div>
       </div>
     </div>
   </div>
   <!-- RIGHT: Current conditions -->
   <div class="wx-hero" id="wxHero">
     <div class="wx-main">
-      <div class="wx-icon" id="wxIcon">🌤️</div>
-      <div class="wx-temp-col">
-        <div class="wx-primary-row">
-          <div class="wx-curr-block">
-            <div class="wx-curr-label">Current</div>
-            <div class="wx-temp"><span id="wxTemp">—</span><sup>°F</sup></div>
+      <div class="wx-main-left">
+        <div class="wx-icon" id="wxIcon">🌤️</div>
+        <div class="wx-temp-col">
+          <div class="wx-primary-row">
+            <div class="wx-curr-block">
+              <div class="wx-curr-label">Current</div>
+              <div class="wx-temp"><span id="wxTemp">—</span><sup>°F</sup></div>
+            </div>
+            <div class="wx-feels-block">
+              <div class="wx-feels-label">Feels like</div>
+              <div class="wx-feels-val"><span id="wxFeels">—</span><span class="wx-feels-unit">°F</span></div>
+            </div>
           </div>
-          <div class="wx-feels-block">
-            <div class="wx-feels-label">Feels like</div>
-            <div class="wx-feels-val"><span id="wxFeels">—</span><span class="wx-feels-unit">°F</span></div>
+          <div class="wx-desc" id="wxDesc">Loading weather...</div>
+          <div class="wx-hilo">
+            <span class="wx-hi">↑ <span id="wxHi">—</span>°F today</span>
+            <span style="color:var(--border-hi)">·</span>
+            <span class="wx-lo">↓ <span id="wxLo">—</span>°F tonight</span>
           </div>
         </div>
-        <div class="wx-desc" id="wxDesc">Loading weather...</div>
-        <div class="wx-hilo">
-          <span class="wx-hi">↑ <span id="wxHi">—</span>°F today</span>
-          <span style="color:var(--border-hi)">·</span>
-          <span class="wx-lo">↓ <span id="wxLo">—</span>°F tonight</span>
-        </div>
+      </div>
+      <div class="wx-summary" id="wxSummary">
+        <div class="wx-summary-row"><strong id="wxSumDesc">—</strong></div>
+        <div class="wx-summary-row">💧 Humidity <strong><span id="wxSumHumid">—</span>%</strong> · Dew pt <strong><span id="wxSumDew">—</span>°F</strong></div>
+        <div class="wx-summary-row">💨 Wind <strong><span id="wxSumWind">—</span> mph</strong> <span id="wxSumWindDir" style="color:var(--text-dim);font-size:11px"></span></div>
+        <div class="wx-summary-row">☁️ Cloud <strong><span id="wxSumCloud">—</span>%</strong> · UV <strong><span id="wxSumUV">—</span></strong> · Vis <strong><span id="wxSumVis">—</span> mi</strong></div>
+        <div class="wx-summary-row">🌧️ Precip <strong><span id="wxSumPrecip">—</span>"</strong> past hour</div>
       </div>
     </div>
     <div class="wx-stats">
@@ -432,7 +505,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
         <div class="wx-stat-icon">💧</div>
         <div class="wx-stat-label">Humidity</div>
         <div class="wx-stat-val"><span id="wxHumid">—</span><span class="wx-stat-unit-inline">%</span></div>
-        <div class="wx-stat-sub2">Dew point: <span id="wxDew">—</span>°F</div>
+        <div class="wx-stat-sub2">Dew pt: <span id="wxDew">—</span>°F</div>
         <div class="wx-stat-sub" id="wxHumidNote">—</div>
         <div class="hum-bar"><div class="hum-good"></div><div class="hum-fill" id="wxHumBar"></div></div>
       </div>
@@ -441,6 +514,12 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
         <div class="wx-stat-label">Wind</div>
         <div class="wx-stat-val"><span id="wxWind">—</span><span class="wx-stat-unit-inline"> mph</span></div>
         <div class="wx-stat-sub" id="wxWindNote">—</div>
+      </div>
+      <div class="wx-stat">
+        <div class="wx-stat-icon">🌧️</div>
+        <div class="wx-stat-label">Precipitation</div>
+        <div class="wx-stat-val"><span id="wxPrecip">—</span><span class="wx-stat-unit-inline">"</span></div>
+        <div class="wx-stat-sub">Past hour</div>
       </div>
       <div class="wx-stat">
         <div class="wx-stat-icon">☁️</div>
@@ -453,6 +532,12 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
         <div class="wx-stat-label">Visibility</div>
         <div class="wx-stat-val"><span id="wxVis">—</span><span class="wx-stat-unit-inline"> mi</span></div>
         <div class="wx-stat-sub" id="wxVisNote">—</div>
+      </div>
+      <div class="wx-stat">
+        <div class="wx-stat-icon">☀️</div>
+        <div class="wx-stat-label">UV Index</div>
+        <div class="wx-stat-val" id="wxUV">—</div>
+        <div class="wx-stat-sub" id="wxUVNote">—</div>
       </div>
     </div>
   </div>
@@ -514,7 +599,14 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
           <div class="sb" id="sb4" style="background:var(--vbad)"></div>
           <div class="sb" id="sb5" style="background:var(--haz)"></div>
         </div>
-        <div class="sc-labels"><span>0 Good</span><span>51</span><span>101</span><span>151</span><span>201</span><span>300+ Hazardous</span></div>
+        <div class="sc-labels">
+          <div class="sc-lbl"><span class="sc-lbl-num" style="color:var(--good)">0</span><span class="sc-lbl-name">Good</span></div>
+          <div class="sc-lbl"><span class="sc-lbl-num" style="color:var(--mod)">51</span><span class="sc-lbl-name">Moderate</span></div>
+          <div class="sc-lbl"><span class="sc-lbl-num" style="color:var(--sens)">101</span><span class="sc-lbl-name">Sensitive</span></div>
+          <div class="sc-lbl"><span class="sc-lbl-num" style="color:var(--bad)">151</span><span class="sc-lbl-name">Unhealthy</span></div>
+          <div class="sc-lbl"><span class="sc-lbl-num" style="color:var(--vbad)">201</span><span class="sc-lbl-name">Very Unhealthy</span></div>
+          <div class="sc-lbl"><span class="sc-lbl-num" style="color:var(--haz)">301</span><span class="sc-lbl-name">Hazardous</span></div>
+        </div>
       </div>
     </div>
 
@@ -832,7 +924,7 @@ const API='https://air-quality-api.open-meteo.com/v1/air-quality'
 const WX_API='https://api.open-meteo.com/v1/forecast'
   +'?latitude='+LAT+'&longitude='+LON
   +'&current=temperature_2m,apparent_temperature,relative_humidity_2m,dew_point_2m'
-  +',weather_code,wind_speed_10m,wind_direction_10m,precipitation,cloud_cover,visibility'
+  +',weather_code,wind_speed_10m,wind_direction_10m,precipitation,cloud_cover,visibility,uv_index'
   +'&hourly=temperature_2m,apparent_temperature'
   +'&daily=temperature_2m_max,temperature_2m_min'
   +'&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch'
@@ -923,7 +1015,7 @@ const WIND_DIR=v=>['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW
 
 function renderWeather(wx){
   const c=wx.current;if(!c)return;
-  const{temperature_2m:temp,apparent_temperature:feels,relative_humidity_2m:humid,dew_point_2m:dew,wind_speed_10m:wind,wind_direction_10m:windDeg,weather_code:code=1,cloud_cover:cloud,visibility:vis}=c;
+  const{temperature_2m:temp,apparent_temperature:feels,relative_humidity_2m:humid,dew_point_2m:dew,wind_speed_10m:wind,wind_direction_10m:windDeg,weather_code:code=1,cloud_cover:cloud,visibility:vis,precipitation:precip,uv_index:uv}=c;
 
   set('wxIcon',WX_ICONS[code]??'🌤️');
   set('wxTemp',temp!=null?Math.round(temp):'—');
@@ -932,6 +1024,16 @@ function renderWeather(wx){
   set('wxHumid',humid!=null?Math.round(humid):'—');
   set('wxDew',dew!=null?Math.round(dew):'—');
   set('wxWind',wind!=null?Math.round(wind):'—');
+  // Summary panel mirrors
+  set('wxSumDesc',WX_CODES[code]??'Austin, TX');
+  set('wxSumHumid',humid!=null?Math.round(humid):'—');
+  set('wxSumDew',dew!=null?Math.round(dew):'—');
+  set('wxSumWind',wind!=null?Math.round(wind):'—');
+  set('wxSumCloud',cloud!=null?Math.round(cloud):'—');
+  set('wxSumVis',vis!=null?((vis/1609.34)>=10?'10+':(vis/1609.34).toFixed(1)):'—');
+  set('wxSumUV',uv!=null?Math.round(uv):'—');
+  set('wxSumPrecip',precip!=null?precip.toFixed(2):'0.00');
+  if(wind!=null&&windDeg!=null)set('wxSumWindDir','('+WIND_DIR(windDeg)+')');
 
   // Hi/Lo from daily
   if(wx.daily){
@@ -964,6 +1066,16 @@ function renderWeather(wx){
     const visMi=(vis/1609.34);
     set('wxVis',visMi>=10?'10+':visMi.toFixed(1));
     set('wxVisNote',visMi>=7?'Excellent':visMi>=4?'Good':visMi>=2?'Moderate — check air quality':'⚠ Poor — high particulates likely');
+  }
+
+  // Precipitation
+  set('wxPrecip',precip!=null?precip.toFixed(2):'0.00');
+
+  // UV index
+  if(uv!=null){
+    const uvR=Math.round(uv);
+    set('wxUV',uvR);
+    set('wxUVNote',uvR<=2?'Low — no protection needed':uvR<=5?'Moderate — wear sunscreen':uvR<=7?'High — limit midday sun':uvR<=10?'Very high — seek shade':'Extreme — stay inside');
   }
 
   // Hourly weather bars
@@ -1015,6 +1127,7 @@ function render(data){
   /* Mirror AQI into header chip */
   const pv=$('ptAqiVal');if(pv){pv.textContent=aqi!=null?aqi:'—';pv.style.color=meta.color;}
   const pc=$('ptAqiCat');if(pc){pc.textContent=meta.status;pc.style.color=meta.color;}
+  const pf=$('ptFamily');if(pf){pf.textContent=meta.family;pf.style.color=meta.fc;}
   for(let i=0;i<6;i++){$('vp'+i)?.classList.toggle('on',i===meta.pip);$('sb'+i)?.classList.toggle('on',i===meta.pip);}
   const fv=$('familyVal');fv.textContent=meta.family;fv.style.color=meta.fc;
   $('familyBadge').style.borderColor=meta.fc+'66';
@@ -1048,6 +1161,7 @@ function render(data){
   ];
   cands.sort((a,b)=>b.s-a.s);
   set('qs-dom',cands[0].name);
+  const ptd=$('ptDom');if(ptd)ptd.textContent=cands[0].name;
   const ce=$('qs-cat');ce.textContent=meta.cat;ce.style.color=meta.color;
 
   /* Best time */
@@ -1056,7 +1170,7 @@ function render(data){
     const hr=parseInt(h.time[i].split('T')[1]);
     if(h.us_aqi[i]!=null)today.push({hour:hr,aqi:h.us_aqi[i]});
   }
-  if(today.length){today.sort((a,b)=>a.aqi-b.aqi);const b=today[0];set('qs-besttime',fmtHr(b.hour)+' – '+fmtHr(b.hour+1));}
+  if(today.length){today.sort((a,b)=>a.aqi-b.aqi);const b=today[0];const bt=fmtHr(b.hour)+' – '+fmtHr(b.hour+1);set('qs-besttime',bt);const ptbt=$('ptBestTime');if(ptbt)ptbt.textContent=bt;}
 
   /* Pollen — seasonal baselines + live dust */
   const sp=getSeasonalPollen();
@@ -1090,6 +1204,7 @@ function render(data){
   const pollenAvg=(sp.grass+sp.ragweed+sp.tree+(sp.mold/20))/3;
   const pp=pollenMeta(pollenAvg);
   const pqe=$('qs-pollen');pqe.textContent=pp.label;pqe.style.color=pp.color;
+  const ptp=$('ptPollen');if(ptp){ptp.textContent=pp.label;ptp.style.color=pp.color;}
 
   renderHourly(h,hIdx);
   renderForecast(h);

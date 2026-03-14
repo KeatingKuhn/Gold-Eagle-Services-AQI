@@ -79,13 +79,13 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .page-title{display:grid;grid-template-columns:2.2fr 1.5fr 1.8fr;align-items:stretch;gap:0;background:#fff;max-width:1400px;margin:0 auto;width:100%;}
 
 /* LEFT PANEL — AQI summary */
-.pt-aqi-panel{display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;border-right:1px solid var(--border);padding:20px 24px;}
+.pt-aqi-panel{display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;border-right:1px solid var(--border);padding:16px 22px;}
 .pt-aqi-eyebrow{font-family:var(--fh);font-weight:700;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;}
-.pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(80px,10vw,140px);line-height:.85;transition:color .4s;}
-.pt-aqi-status{font-family:var(--fh);font-weight:800;font-size:20px;margin-top:10px;transition:color .4s;}
-.pt-compare{font-size:12px;color:var(--text-mid);margin-top:6px;display:none;align-items:center;justify-content:center;gap:6px;}
+.pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(60px,7vw,96px);line-height:.9;transition:color .4s;}
+.pt-aqi-status{font-family:var(--fh);font-weight:800;font-size:22px;margin-top:8px;transition:color .4s;}
+.pt-compare{font-size:12px;color:var(--text-mid);margin-top:4px;display:none;align-items:center;justify-content:center;gap:6px;}
 .pt-compare-icon{font-size:14px;}
-.pt-badges-row{display:flex;gap:6px;margin-top:10px;width:100%;}
+.pt-badges-row{display:flex;gap:6px;margin-top:8px;width:100%;}
 .pt-family{flex:1;padding:8px 10px;border:1px solid var(--border);background:var(--bg-sub);}
 .pt-family-label{font-size:7px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:2px;text-align:center;}
 .pt-family-val{font-size:11px;font-family:var(--fh);font-weight:800;line-height:1.2;}
@@ -96,14 +96,14 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .pt-dust-unit{font-size:10px;color:var(--text-dim);}
 .pt-dust-badge{font-family:var(--fh);font-weight:800;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-left:4px;}
 .pt-dust-note{font-size:9px;color:var(--text-dim);margin-top:2px;}
-.pt-scale{margin-top:8px;width:100%;}
-.pt-scale-bar{display:flex;gap:2px;height:6px;margin-bottom:5px;}
+.pt-scale{margin-top:6px;width:100%;}
+.pt-scale-bar{display:flex;gap:2px;height:8px;margin-bottom:6px;}
 .pt-sb{flex:1;border-radius:1px;opacity:.18;transition:opacity .4s;}
 .pt-sb.on{opacity:1;}
 .pt-scale-labels{display:flex;justify-content:space-between;margin-top:4px;}
 .pt-sl{display:flex;flex-direction:column;align-items:center;flex:1;}
-.pt-sl-num{font-family:var(--fh);font-weight:800;font-size:9px;}
-.pt-sl-name{font-family:var(--fh);font-weight:600;font-size:7px;color:var(--text-dim);margin-top:1px;text-transform:uppercase;}
+.pt-sl-num{font-family:var(--fh);font-weight:800;font-size:11px;}
+.pt-sl-name{font-family:var(--fh);font-weight:700;font-size:9px;color:var(--text-dim);margin-top:2px;text-transform:uppercase;}
 
 /* CENTER PANEL — brand identity */
 .pt-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px 28px;border-right:1px solid var(--border);}
@@ -121,8 +121,8 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 /* RIGHT PANEL — weather */
 .wx-hero{display:flex;flex-direction:column;border-left:1px solid var(--border);}
 .wx-main{display:flex;align-items:center;gap:0;border-bottom:1px solid var(--border);background:#fff;}
-.wx-icon{font-size:44px;line-height:1;flex-shrink:0;width:70px;text-align:center;padding:18px 0;border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;align-self:stretch;}
-.wx-temp-col{display:flex;flex-direction:column;justify-content:center;gap:3px;flex:1;padding:16px 18px;}
+.wx-icon{font-size:44px;line-height:1;flex-shrink:0;width:58px;text-align:center;padding:0 4px 0 16px;display:flex;align-items:center;justify-content:center;}
+.wx-temp-col{display:flex;flex-direction:column;justify-content:center;gap:2px;flex:1;padding:14px 16px 14px 10px;}
 .wx-primary-row{display:flex;align-items:flex-end;gap:14px;}
 .wx-curr-block{display:flex;flex-direction:column;}
 .wx-curr-label{font-size:7px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:2px;}
@@ -134,17 +134,19 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .wx-feels-unit{font-size:12px;color:var(--text-dim);font-weight:400;}
 .wx-desc{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-top:3px;}
 .wx-hilo{display:flex;align-items:baseline;gap:8px;margin-top:4px;flex-wrap:wrap;}
-.wx-hum{font-family:var(--fh);font-size:11px;font-weight:700;color:var(--text-mid);}
+.wx-humid-block{display:flex;flex-direction:column;padding-bottom:3px;margin-left:6px;}
+.wx-humid-val{font-family:var(--fh);font-weight:800;font-size:20px;line-height:1;color:var(--text-mid);}
+.wx-humid-dew{font-size:10px;color:var(--text-dim);margin-top:2px;}
 .wx-hi{font-family:var(--fh);font-size:11px;font-weight:800;color:var(--sens);}
 .wx-lo{font-family:var(--fh);font-size:11px;font-weight:800;color:var(--gold-3);}
 .wx-stats{display:grid;grid-template-columns:repeat(2,1fr);flex:1;}
-.wx-stat{padding:12px 8px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:column;align-items:center;text-align:center;transition:background .2s;background:#fff;justify-content:center;}
+.wx-stat{padding:10px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:row;align-items:center;justify-content:space-between;transition:background .2s;background:#fff;gap:10px;}
 .wx-stat:nth-child(2n){border-right:none;}
 .wx-stat:nth-child(3),.wx-stat:nth-child(4){border-bottom:none;}
 .wx-stat:hover{background:var(--bg-sub);}
-.wx-stat-icon{font-size:14px;line-height:1;height:18px;display:flex;align-items:center;margin-bottom:4px;}
-.wx-stat-label{font-family:var(--fh);font-weight:700;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:3px;}
-.wx-stat-val{font-family:var(--fh);font-weight:900;font-size:22px;line-height:1;color:var(--text-full);}
+.wx-stat-icon{font-size:18px;line-height:1;flex-shrink:0;}
+.wx-stat-label{font-family:var(--fh);font-weight:700;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);flex:1;}
+.wx-stat-val{font-family:var(--fh);font-weight:900;font-size:20px;line-height:1;color:var(--text-full);text-align:right;flex-shrink:0;}
 .wx-stat-unit-inline{font-size:10px;color:var(--text-dim);font-weight:400;}
 .wx-stat-sub{font-size:9px;color:var(--text-dim);margin-top:3px;line-height:1.3;}
 .hum-bar{width:90%;height:3px;background:rgba(0,0,0,.07);margin-top:6px;border-radius:1px;overflow:hidden;position:relative;}
@@ -475,14 +477,17 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
             <div class="wx-feels-label">Feels like</div>
             <div class="wx-feels-val"><span id="wxFeels">—</span><span class="wx-feels-unit">°F</span></div>
           </div>
+          <div class="wx-humid-block">
+            <div class="wx-curr-label">Humidity</div>
+            <div class="wx-humid-val">💧 <span id="wxHumid">—</span>%</div>
+            <div class="wx-humid-dew">Dew <span id="wxDew">—</span>°F</div>
+          </div>
         </div>
         <div class="wx-desc" id="wxDesc">Loading weather...</div>
         <div class="wx-hilo">
           <span class="wx-hi">↑ <span id="wxHi">—</span>°F</span>
           <span style="color:var(--border-hi)">·</span>
           <span class="wx-lo">↓ <span id="wxLo">—</span>°F</span>
-          <span style="color:var(--border-hi);margin:0 4px;">·</span>
-          <span class="wx-hum">💧 <span id="wxHumid">—</span>% <span style="font-size:10px;color:var(--text-dim);font-weight:400">/ <span id="wxDew">—</span>°F dp</span></span>
         </div>
       </div>
     </div>

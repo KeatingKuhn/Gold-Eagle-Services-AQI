@@ -79,31 +79,30 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .page-title{display:grid;grid-template-columns:2.5fr 1.7fr 1.4fr;align-items:stretch;gap:0;background:#fff;max-width:1400px;margin:0 auto;width:100%;}
 
 /* LEFT PANEL — AQI summary */
-.pt-aqi-panel{display:flex;flex-direction:column;justify-content:center;align-items:stretch;text-align:center;border-right:1px solid var(--border);padding:26px 26px 22px;gap:12px;}
+.pt-aqi-panel{display:flex;flex-direction:column;justify-content:space-between;align-items:stretch;border-right:1px solid var(--border);padding:22px 26px 18px;}
 
-/* eyebrow badge — tall vertical pill left of number */
-.pt-aqi-eyebrow-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--grad);padding:16px 12px;border-radius:3px;gap:4px;flex-shrink:0;}
-.pt-aqi-eyebrow{font-family:var(--fh);font-weight:900;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#1a1710;line-height:1.2;}
+/* eyebrow badge — horizontal pill, above number */
+.pt-aqi-eyebrow-wrap{display:inline-flex;align-items:center;justify-content:center;background:var(--grad);padding:6px 18px;border-radius:3px;align-self:flex-start;}
+.pt-aqi-eyebrow{font-family:var(--fh);font-weight:900;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#1a1710;line-height:1;}
 
-/* number + compare row: badge | number | compare */
-.pt-aqi-num-row{display:flex;align-items:center;justify-content:center;gap:12px;}
-.pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(72px,8vw,110px);line-height:.88;transition:color .4s;flex-shrink:0;}
+/* big number — alone, centered, dominant */
+.pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(80px,9vw,120px);line-height:.88;transition:color .4s;display:block;text-align:center;margin-top:6px;}
 
 /* status word */
-.pt-aqi-status{font-family:var(--fh);font-weight:800;font-size:26px;margin-top:0;transition:color .4s;text-align:center;}
+.pt-aqi-status{font-family:var(--fh);font-weight:800;font-size:26px;transition:color .4s;text-align:center;margin-top:4px;}
 
-/* compare — offset right of number, stacked */
-.pt-compare-pill{display:none;flex-direction:column;align-items:flex-start;gap:3px;padding-bottom:8px;opacity:0;}
-.pt-compare-pill.vis{display:flex;opacity:1;}
-.pt-compare-pill .cmp-icon{font-size:18px;line-height:1;}
+/* compare — its own small bordered box, sits below status */
+.pt-compare-pill{display:none;align-items:center;gap:8px;margin-top:8px;padding:8px 14px;border:1px solid var(--border);background:var(--bg-sub);border-radius:3px;align-self:center;}
+.pt-compare-pill.vis{display:flex;}
+.pt-compare-pill .cmp-icon{font-size:16px;line-height:1;flex-shrink:0;}
 .pt-compare-pill .cmp-label{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);}
-.pt-compare-pill .cmp-text{font-family:var(--fh);font-weight:900;font-size:16px;line-height:1;}
+.pt-compare-pill .cmp-text{font-family:var(--fh);font-weight:900;font-size:15px;line-height:1;}
 
-/* info row — single cell */
-.pt-info-single{width:100%;margin-top:0;padding:14px 16px;border:1px solid var(--border);background:var(--bg-sub);display:flex;flex-direction:column;align-items:center;text-align:center;}
+/* kids & pets — label left, value right */
+.pt-info-single{width:100%;padding:11px 16px;border:1px solid var(--border);background:var(--bg-sub);display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;}
 .pt-info-cell{padding:8px 10px;border:1px solid var(--border);background:var(--bg-sub);display:flex;flex-direction:column;align-items:center;text-align:center;}
-.pt-info-label{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:5px;}
-.pt-info-val{font-family:var(--fh);font-weight:800;font-size:16px;line-height:1.2;color:var(--text-full);}
+.pt-info-label{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);flex-shrink:0;}
+.pt-info-val{font-family:var(--fh);font-weight:800;font-size:15px;line-height:1.2;color:var(--text-full);text-align:right;}
 .pt-info-sub{display:flex;align-items:center;gap:3px;justify-content:center;margin-top:3px;}
 .pt-dust-num{font-family:var(--fh);font-weight:900;font-size:18px;line-height:1;color:var(--text-full);}
 .pt-dust-unit{font-size:9px;color:var(--text-dim);}
@@ -121,7 +120,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .pt-dust-row{display:flex;}
 .pt-dust-val{font-family:var(--fh);font-weight:900;font-size:18px;}
 .pt-dust-note{font-size:9px;}
-.pt-scale{margin-top:0;width:100%;}
+.pt-scale{width:100%;}
 .pt-scale-bar{display:flex;gap:2px;height:8px;margin-bottom:6px;}
 .pt-sb{flex:1;border-radius:1px;opacity:.18;transition:opacity .4s;}
 .pt-sb.on{opacity:1;}
@@ -434,30 +433,24 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 
   <!-- LEFT: AQI panel -->
   <div class="pt-aqi-panel">
-    <div style="display:flex;flex-direction:column;align-items:center;width:100%;gap:0;">
-      <div class="pt-aqi-num-row">
-        <div class="pt-aqi-eyebrow-wrap">
-          <span class="pt-aqi-eyebrow">Current</span>
-          <span class="pt-aqi-eyebrow">Air</span>
-          <span class="pt-aqi-eyebrow">Quality</span>
-          <span class="pt-aqi-eyebrow">Index</span>
-        </div>
-        <div class="pt-aqi-big" id="aqiNum">—</div>
-        <div class="pt-compare-pill" id="ptCompare">
-          <span class="cmp-icon" id="ptCompareIcon"></span>
-          <span class="cmp-label">Yesterday's AQI</span>
-          <span class="cmp-text" id="ptCompareText"></span>
-        </div>
+    <div style="display:flex;flex-direction:column;align-items:stretch;">
+      <div class="pt-aqi-eyebrow-wrap">
+        <span class="pt-aqi-eyebrow">Current Air Quality Index</span>
       </div>
+      <div class="pt-aqi-big" id="aqiNum">—</div>
       <div class="pt-aqi-status" id="aqiStatus">Loading...</div>
-      <div class="pt-info-single">
+      <div class="pt-compare-pill" id="ptCompare">
+        <span class="cmp-icon" id="ptCompareIcon"></span>
+        <span class="cmp-label">Yesterday's AQI</span>
+        <span class="cmp-text" id="ptCompareText"></span>
+      </div>
+      <div class="pt-info-single" style="margin-top:10px;">
         <div class="pt-info-label">👨‍👩‍👧 Kids &amp; Pets Today</div>
         <div class="pt-info-val" id="ptFamilyVal">Checking...</div>
       </div>
       <!-- dust IDs kept for JS — hidden -->
       <span id="ptDustVal" style="display:none"></span>
       <span id="ptDustBadge" style="display:none"></span>
-      <!-- legacy hidden — JS still targets these -->
       <div id="ptFamily" style="display:none;"></div>
     </div>
     <div class="pt-scale">

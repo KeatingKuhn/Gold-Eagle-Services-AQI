@@ -81,23 +81,20 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 /* LEFT PANEL — AQI summary */
 .pt-aqi-panel{display:flex;flex-direction:column;justify-content:space-between;align-items:stretch;border-right:1px solid var(--border);padding:22px 26px 18px;}
 
-/* badge + number row */
-.pt-aqi-top-row{display:flex;align-items:center;justify-content:space-between;gap:0;width:100%;}
-.pt-aqi-eyebrow-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--grad);padding:0;border-radius:4px;width:clamp(80px,9vw,120px);height:clamp(80px,9vw,120px);flex-shrink:0;}
-.pt-aqi-eyebrow{font-family:var(--fh);font-weight:900;font-size:clamp(8px,1vw,11px);letter-spacing:2.5px;text-transform:uppercase;color:#1a1710;line-height:1.7;text-align:center;}
-.pt-aqi-num-col{display:flex;flex-direction:column;align-items:center;}
+.pt-aqi-eyebrow-wrap{display:inline-flex;align-items:center;background:var(--grad);padding:5px 16px;border-radius:2px;align-self:flex-start;margin-bottom:4px;}
+.pt-aqi-eyebrow{font-family:var(--fh);font-weight:900;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#1a1710;line-height:1;}
+.pt-aqi-num-col{display:flex;flex-direction:column;align-items:center;width:100%;}
 /* big number */
-.pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(80px,9vw,120px);line-height:.88;transition:color .4s;flex-shrink:0;}
+.pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(80px,9vw,120px);line-height:.88;transition:color .4s;display:block;text-align:center;}
 
 /* status word */
-.pt-aqi-status{font-family:var(--fh);font-weight:800;font-size:26px;transition:color .4s;text-align:center;margin-top:2px;}
+.pt-aqi-status{font-family:var(--fh);font-weight:800;font-size:26px;transition:color .4s;text-align:center;margin-top:4px;}
 
-/* compare — its own small bordered box, sits below status */
-.pt-compare-pill{display:none;align-items:center;gap:8px;margin-top:8px;padding:8px 14px;border:1px solid var(--border);background:var(--bg-sub);border-radius:3px;align-self:center;}
+.pt-compare-pill{display:none;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--border);background:var(--bg-sub);border-radius:3px;}
 .pt-compare-pill.vis{display:flex;}
-.pt-compare-pill .cmp-icon{font-size:16px;line-height:1;flex-shrink:0;}
-.pt-compare-pill .cmp-label{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);}
-.pt-compare-pill .cmp-text{font-family:var(--fh);font-weight:900;font-size:15px;line-height:1;}
+.pt-compare-pill .cmp-icon{font-size:14px;line-height:1;flex-shrink:0;}
+.pt-compare-pill .cmp-label{font-family:var(--fh);font-weight:700;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);}
+.pt-compare-pill .cmp-text{font-family:var(--fh);font-weight:900;font-size:13px;line-height:1;}
 
 /* kids & pets — label left, value right */
 .pt-info-single{width:100%;padding:11px 16px;border:1px solid var(--border);background:var(--bg-sub);display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;}
@@ -434,23 +431,18 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 
   <!-- LEFT: AQI panel -->
   <div class="pt-aqi-panel">
-    <div style="display:flex;flex-direction:column;align-items:stretch;">
-      <div class="pt-aqi-top-row">
-        <div class="pt-aqi-eyebrow-wrap">
-          <span class="pt-aqi-eyebrow">Current</span>
-          <span class="pt-aqi-eyebrow">Air</span>
-          <span class="pt-aqi-eyebrow">Quality</span>
-          <span class="pt-aqi-eyebrow">Index</span>
-        </div>
-        <div class="pt-aqi-num-col">
-          <div class="pt-aqi-big" id="aqiNum">—</div>
-          <div class="pt-aqi-status" id="aqiStatus">Loading...</div>
-        </div>
+    <div style="display:flex;flex-direction:column;align-items:stretch;gap:10px;">
+      <div class="pt-aqi-eyebrow-wrap">
+        <span class="pt-aqi-eyebrow">Current Air Quality Index</span>
       </div>
-      <div class="pt-compare-pill" id="ptCompare">
-        <span class="cmp-icon" id="ptCompareIcon"></span>
-        <span class="cmp-label">Yesterday's AQI</span>
-        <span class="cmp-text" id="ptCompareText"></span>
+      <div class="pt-aqi-num-col">
+        <div class="pt-aqi-big" id="aqiNum">—</div>
+        <div class="pt-aqi-status" id="aqiStatus">Loading...</div>
+        <div class="pt-compare-pill" id="ptCompare">
+          <span class="cmp-icon" id="ptCompareIcon"></span>
+          <span class="cmp-label">Yesterday's AQI</span>
+          <span class="cmp-text" id="ptCompareText"></span>
+        </div>
       </div>
       <div class="pt-info-single" style="margin-top:10px;">
         <div class="pt-info-label">👨‍👩‍👧 Kids &amp; Pets Today</div>

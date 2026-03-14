@@ -81,12 +81,12 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 /* LEFT PANEL — AQI summary */
 .pt-aqi-panel{display:flex;flex-direction:column;justify-content:space-between;align-items:stretch;border-right:1px solid var(--border);padding:22px 26px 18px;}
 
-/* eyebrow badge — horizontal pill, above number */
-.pt-aqi-eyebrow-wrap{display:inline-flex;align-items:center;justify-content:center;background:var(--grad);padding:6px 18px;border-radius:3px;align-self:flex-start;}
-.pt-aqi-eyebrow{font-family:var(--fh);font-weight:900;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#1a1710;line-height:1;}
-
-/* big number — alone, centered, dominant */
-.pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(80px,9vw,120px);line-height:.88;transition:color .4s;display:block;text-align:center;margin-top:6px;}
+/* badge + number row */
+.pt-aqi-top-row{display:flex;align-items:center;justify-content:center;gap:24px;}
+.pt-aqi-eyebrow-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--grad);padding:0;border-radius:4px;width:clamp(80px,9vw,120px);height:clamp(80px,9vw,120px);flex-shrink:0;}
+.pt-aqi-eyebrow{font-family:var(--fh);font-weight:900;font-size:clamp(8px,1vw,11px);letter-spacing:2.5px;text-transform:uppercase;color:#1a1710;line-height:1.7;text-align:center;}
+/* big number */
+.pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(80px,9vw,120px);line-height:.88;transition:color .4s;flex-shrink:0;}
 
 /* status word */
 .pt-aqi-status{font-family:var(--fh);font-weight:800;font-size:26px;transition:color .4s;text-align:center;margin-top:4px;}
@@ -434,10 +434,15 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
   <!-- LEFT: AQI panel -->
   <div class="pt-aqi-panel">
     <div style="display:flex;flex-direction:column;align-items:stretch;">
-      <div class="pt-aqi-eyebrow-wrap">
-        <span class="pt-aqi-eyebrow">Current Air Quality Index</span>
+      <div class="pt-aqi-top-row">
+        <div class="pt-aqi-eyebrow-wrap">
+          <span class="pt-aqi-eyebrow">Current</span>
+          <span class="pt-aqi-eyebrow">Air</span>
+          <span class="pt-aqi-eyebrow">Quality</span>
+          <span class="pt-aqi-eyebrow">Index</span>
+        </div>
+        <div class="pt-aqi-big" id="aqiNum">—</div>
       </div>
-      <div class="pt-aqi-big" id="aqiNum">—</div>
       <div class="pt-aqi-status" id="aqiStatus">Loading...</div>
       <div class="pt-compare-pill" id="ptCompare">
         <span class="cmp-icon" id="ptCompareIcon"></span>

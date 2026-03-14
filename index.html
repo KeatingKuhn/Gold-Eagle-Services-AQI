@@ -164,8 +164,6 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .hs-lbl{font-size:9px;font-family:var(--fh);font-weight:700;color:var(--text-dim);white-space:nowrap;}
 
 /* HERO 50/50 */
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:4px;align-items:stretch;}
-
 /* AQI CARD */
 .aqi-desc{font-size:14px;line-height:1.8;color:var(--text-mid);margin-top:16px;max-width:360px;}
 .family-badge{display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:10px 16px;border:2px solid var(--border-hi);background:var(--bg-sub);}
@@ -188,52 +186,59 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .p-bar{height:100%;transition:width 1.2s ease;width:0%;}
 .p-badge{padding:5px 12px;font-family:var(--fh);font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;flex-shrink:0;white-space:nowrap;border-radius:1px;}
 
-/* QUICK STATS */
-.qs-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:4px;height:100%;}
-.qs-tile{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:20px 16px;position:relative;overflow:visible;transition:all .2s;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;}
-.qs-tile:hover{box-shadow:var(--sh-md);transform:translateY(-1px);}
+/* QUICK STATS — horizontal row */
+.qs-row{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:4px;}
+.qs-tile{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:20px 24px;position:relative;overflow:hidden;transition:background .2s,box-shadow .2s;display:flex;flex-direction:row;align-items:center;gap:16px;}
 .qs-tile::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.qs-tile:hover{background:var(--bg-sub);box-shadow:var(--sh-md);}
 .qs-tile:hover::after{transform:scaleX(1);}
-.qs-icon{font-size:26px;margin-bottom:8px;}
-.qs-label{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:5px;display:flex;align-items:center;justify-content:center;}
-.qs-val{font-family:var(--fh);font-weight:900;font-size:26px;line-height:1.1;color:var(--gold-3);}
+.qs-icon{font-size:28px;flex-shrink:0;opacity:.85;}
+.qs-body{display:flex;flex-direction:column;}
+.qs-label{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:5px;display:flex;align-items:center;gap:4px;}
+.qs-val{font-family:var(--fh);font-weight:900;font-size:24px;line-height:1;color:var(--gold-3);}
 .qs-val.co{color:inherit;}
-.qs-note{font-size:11px;color:var(--text-dim);margin-top:4px;}
+.qs-note{font-size:11px;color:var(--text-dim);margin-top:4px;line-height:1.3;}
 
-/* POLLUTANT TABLE */
+/* POLLUTANT TABLE — leaderboard layout */
 .poll-section{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);margin-bottom:4px;overflow:visible;}
-.poll-section-hdr{padding:16px 20px 12px;border-bottom:1px solid var(--border);font-family:var(--fh);font-weight:800;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;}
-.poll-grid{display:grid;grid-template-columns:repeat(4,1fr);}
-.poll-cell{padding:16px 16px 12px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:background .2s;position:relative;overflow:visible;}
+.poll-section-hdr{padding:14px 24px 12px;border-bottom:1px solid var(--border);font-family:var(--fh);font-weight:800;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;}
+.poll-grid{display:flex;flex-direction:column;}
+.poll-cell{padding:14px 24px;border-bottom:1px solid var(--border);transition:background .2s;position:relative;display:grid;grid-template-columns:200px 110px 1fr 90px;align-items:center;gap:20px;}
+.poll-cell:last-child{border-bottom:none;}
 .poll-cell:hover{background:var(--bg-sub);}
-.poll-cell:nth-child(4n){border-right:none;}
-.poll-cell:nth-last-child(-n+4){border-bottom:none;}
-.poll-cell-hd{display:flex;align-items:center;margin-bottom:2px;}
-.poll-tag{font-family:var(--fh);font-weight:700;font-size:11px;letter-spacing:1.5px;color:var(--gold-3);}
-.poll-full{font-size:11px;color:var(--text-dim);margin-bottom:5px;}
-.poll-num{font-family:var(--fh);font-weight:900;font-size:30px;line-height:1;transition:color .4s;}
-.poll-unit{font-size:11px;color:var(--text-dim);margin-top:1px;}
-.poll-limit{font-size:10px;color:var(--text-dim);margin-top:4px;}
+.poll-cell-hd{display:flex;flex-direction:column;}
+.poll-tag{font-family:var(--fh);font-weight:800;font-size:12px;letter-spacing:1px;color:var(--text-full);}
+.poll-full{font-size:11px;color:var(--text-dim);margin-top:2px;}
+.poll-num-block{display:flex;flex-direction:column;}
+.poll-num{font-family:var(--fh);font-weight:900;font-size:28px;line-height:1;transition:color .4s;}
+.poll-unit{font-size:10px;color:var(--text-dim);margin-top:2px;}
+.poll-bar-col{display:flex;flex-direction:column;gap:4px;}
+.poll-limit{font-size:10px;color:var(--text-dim);}
 .poll-limit span{font-weight:700;color:var(--text-mid);}
-.poll-bar-wrap{width:100%;height:4px;background:rgba(0,0,0,.07);border-radius:1px;margin-top:6px;overflow:hidden;}
-.poll-bar{height:100%;transition:width 1.2s cubic-bezier(.4,0,.2,1),background .4s;}
+.poll-bar-wrap{width:100%;height:6px;background:rgba(0,0,0,.06);border-radius:3px;overflow:hidden;}
+.poll-bar{height:100%;border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1),background .4s;}
+.poll-badge{padding:4px 10px;font-family:var(--fh);font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;border-radius:2px;text-align:center;white-space:nowrap;}
 
 /* FORECAST + TREND COMBINED */
 .forecast-combo{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);margin-bottom:4px;}
 .forecast-strip{display:grid;grid-template-columns:repeat(5,1fr);width:100%;border-bottom:1px solid var(--border);}
-.fc-card{background:#fff;border-right:1px solid var(--border);padding:18px 8px 14px;text-align:center;transition:all .2s;}
+.fc-card{background:#fff;border-right:1px solid var(--border);padding:0;text-align:center;transition:background .2s;display:flex;flex-direction:column;position:relative;overflow:hidden;}
 .fc-card:last-child{border-right:none;}
 .fc-card:hover{background:var(--bg-sub);}
-.fc-card:hover .fc-num{color:var(--fc-color);}
-.fc-card:hover .fc-fill{background:var(--fc-color)!important;}
-.fc-card.today{border-top:3px solid var(--gold-2);background:var(--bg-sub);}
-.fc-name{font-family:var(--fh);font-weight:700;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+.fc-accent{height:5px;width:100%;background:var(--fc-color,var(--gold-2));opacity:.35;transition:opacity .2s;flex-shrink:0;}
+.fc-card.today .fc-accent{opacity:1;}
+.fc-card:hover .fc-accent{opacity:.8;}
+.fc-body{padding:20px 12px 16px;display:flex;flex-direction:column;align-items:center;flex:1;}
+.fc-name{font-family:var(--fh);font-weight:700;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
 .fc-card.today .fc-name{color:var(--gold-3);}
-.fc-num{font-family:var(--fh);font-weight:900;font-size:34px;line-height:1;color:var(--text-full);transition:color .2s;}
-.fc-cat{font-size:10px;color:var(--text-dim);margin-top:3px;font-family:var(--fh);font-weight:600;line-height:1.3;}
-.fc-track{width:100%;height:3px;background:rgba(0,0,0,.07);margin-top:10px;overflow:hidden;}
-.fc-fill{height:100%;transition:width 1s ease,background .2s;}
-.fc-date{font-size:10px;color:var(--text-dim);margin-top:4px;}
+.fc-num{font-family:var(--fh);font-weight:900;font-size:38px;line-height:1;color:var(--fc-color,var(--text-full));transition:opacity .2s;opacity:.75;}
+.fc-card.today .fc-num{opacity:1;}
+.fc-card:hover .fc-num{opacity:1;}
+.fc-cat{font-size:10px;color:var(--text-dim);margin-top:4px;font-family:var(--fh);font-weight:700;letter-spacing:.5px;}
+.fc-range{font-size:10px;margin-top:8px;font-family:var(--fh);font-weight:600;display:flex;gap:10px;align-items:center;}
+.fc-range-lo{color:var(--good);}
+.fc-range-hi{color:var(--sens);}
+.fc-date{font-size:10px;color:var(--text-dim);margin-top:10px;padding-top:8px;border-top:1px solid var(--border);width:100%;}
 .trend-inline{display:flex;align-items:center;gap:20px;padding:14px 20px;flex-wrap:wrap;}
 .trend-inline-left{flex-shrink:0;min-width:130px;}
 .trend-inline-left .t-title{font-family:var(--fh);font-weight:800;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-3);margin-bottom:3px;}
@@ -518,39 +523,44 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
     <p>⚠️ <strong>Live data unavailable.</strong> Check your internet connection or click Refresh. If you're viewing this on GitHub Pages, data loads automatically.</p>
   </div>
 
-  <!-- HERO: quick stats left | pollen right -->
-  <div class="hero-grid" style="margin-top:24px;">
-
-    <!-- QUICK STATS PANEL — 2×2 grid, centered, fills full height -->
-    <div class="qs-grid">
-      <div class="qs-tile">
-        <div class="qs-icon">💨</div>
+  <!-- QUICK STATS — full-width horizontal row -->
+  <div class="qs-row" style="margin-top:24px;">
+    <div class="qs-tile">
+      <div class="qs-icon">💨</div>
+      <div class="qs-body">
         <div class="qs-label">Main Concern <span class="info-wrap" data-tip="The single pollutant driving today's AQI the most — measured relative to its safety threshold."><span class="info-btn">i</span></span></div>
         <div class="qs-val" id="qs-dom">—</div>
-        <div class="qs-note">Primary pollutant</div>
+        <div class="qs-note">Primary pollutant right now</div>
       </div>
-      <div class="qs-tile">
-        <div class="qs-icon">🏷️</div>
+    </div>
+    <div class="qs-tile">
+      <div class="qs-icon">🏷️</div>
+      <div class="qs-body">
         <div class="qs-label">AQI Rating <span class="info-wrap" data-tip="US EPA categories: Good (0–50), Moderate (51–100), Unhealthy for Some (101–150), Unhealthy (151–200), Very Unhealthy (201–300), Hazardous (301+)."><span class="info-btn">i</span></span></div>
         <div class="qs-val co" id="qs-cat">—</div>
         <div class="qs-note">US EPA classification</div>
       </div>
-      <div class="qs-tile">
-        <div class="qs-icon">⏰</div>
+    </div>
+    <div class="qs-tile">
+      <div class="qs-icon">⏰</div>
+      <div class="qs-body">
         <div class="qs-label">Best Time Outside <span class="info-wrap" data-tip="The hour window today when air quality is cleanest, based on the hourly forecast."><span class="info-btn">i</span></span></div>
         <div class="qs-val" id="qs-besttime">—</div>
         <div class="qs-note">Lowest AQI window today</div>
       </div>
-      <div class="qs-tile">
-        <div class="qs-icon">🌿</div>
+    </div>
+    <div class="qs-tile">
+      <div class="qs-icon">🌿</div>
+      <div class="qs-body">
         <div class="qs-label">Pollen Load <span class="info-wrap" data-tip="Combined pollen + mold index for Austin right now. Austin consistently ranks in the top 5 worst allergy cities in America."><span class="info-btn">i</span></span></div>
         <div class="qs-val co" id="qs-pollen">—</div>
         <div class="qs-note">Grass + ragweed + tree + mold</div>
       </div>
     </div>
+  </div>
 
-    <!-- POLLEN CARD -->
-    <div class="pollen-hero">
+  <!-- POLLEN CARD — full width -->
+  <div class="pollen-hero">
       <div class="pch-hdr">
         Pollen &amp; Allergens — Typical for <span id="pollenMonthLabel" style="color:var(--gold-3);margin-left:5px">this month</span>
         <span class="info-wrap" data-tip="Austin seasonal pollen averages from the National Allergy Bureau. Shows typical levels for the current month — updated each month. Dust is a live sensor reading. Austin is consistently one of the top 5 worst allergy cities in the US."><span class="info-btn">i</span></span>
@@ -630,7 +640,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 
       </div>
     </div>
-  </div><!-- /hero-grid -->
+  <!-- /pollen-hero -->
 
   <!-- POLLUTANT BREAKDOWN -->
   <div class="sec-hdr">
@@ -643,14 +653,54 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
       <span class="info-wrap" data-tip="Key particles and gases in Austin's air right now. Hover each ⓘ for plain-English explanations."><span class="info-btn">i</span></span>
     </div>
     <div class="poll-grid">
-      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">PM 2.5</span><span class="info-wrap" data-tip="Tiny Particles — Smaller than a human hair, these get deep into your lungs. Wood smoke, car exhaust, and dust create them. The #1 reason outdoor air affects how you feel inside."><span class="info-btn">i</span></span></div><div class="poll-full">Tiny Airborne Particles</div><div class="poll-num" id="pv-pm25">—</div><div class="poll-unit">µg/m³</div><div class="poll-limit">Safe limit: <span>12 µg/m³</span></div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-pm25"></div></div></div>
-      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">Ozone O₃</span><span class="info-wrap" data-tip="Ground-Level Ozone — Forms on hot sunny days, common in Austin summers. Irritates throat and lungs, especially for kids and asthma sufferers. Worst in afternoon heat."><span class="info-btn">i</span></span></div><div class="poll-full">Ground-Level Ozone</div><div class="poll-num" id="pv-o3">—</div><div class="poll-unit">µg/m³</div><div class="poll-limit">Safe limit: <span>100 µg/m³</span></div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-o3"></div></div></div>
-      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">PM 10</span><span class="info-wrap" data-tip="Dust & Larger Particles — From dust, pollen, mold, construction. Your nose filters many of these, but high levels still irritate — especially on windy Central Texas days."><span class="info-btn">i</span></span></div><div class="poll-full">Dust &amp; Larger Particles</div><div class="poll-num" id="pv-pm10">—</div><div class="poll-unit">µg/m³</div><div class="poll-limit">Safe limit: <span>54 µg/m³</span></div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-pm10"></div></div></div>
-      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">NO₂</span><span class="info-wrap" data-tip="Nitrogen Dioxide — From vehicle traffic and gas appliances. Higher near busy roads. Can irritate airways and aggravate asthma. Austin's traffic makes this worth watching."><span class="info-btn">i</span></span></div><div class="poll-full">Traffic &amp; Combustion Gas</div><div class="poll-num" id="pv-no2">—</div><div class="poll-unit">µg/m³</div><div class="poll-limit">Safe limit: <span>100 µg/m³</span></div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-no2"></div></div></div>
-      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">CO</span><span class="info-wrap" data-tip="Carbon Monoxide — Colorless, odorless gas from burning fuel. Outdoor levels are usually low, but indoors — from gas stoves or attached garages — it can build up silently."><span class="info-btn">i</span></span></div><div class="poll-full">Carbon Monoxide</div><div class="poll-num" id="pv-co">—</div><div class="poll-unit">µg/m³</div><div class="poll-limit">Safe limit: <span>4,400 µg/m³</span></div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-co"></div></div></div>
-      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">SO₂</span><span class="info-wrap" data-tip="Sulfur Dioxide — Mainly from power plants and industrial sites. Can irritate your nose and throat. Less common in Austin but worth watching on bad air days."><span class="info-btn">i</span></span></div><div class="poll-full">Industrial Gas</div><div class="poll-num" id="pv-so2">—</div><div class="poll-unit">µg/m³</div><div class="poll-limit">Safe limit: <span>185 µg/m³</span></div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-so2"></div></div></div>
-      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">UV Index</span><span class="info-wrap" data-tip="UV Radiation — Scale 0–11+. Under 3: low. Above 6: wear sunscreen. Above 8: limit direct sun for kids. Austin regularly hits 9–11 in summer."><span class="info-btn">i</span></span></div><div class="poll-full">Sun Radiation Strength</div><div class="poll-num" id="pv-uv">—</div><div class="poll-unit">scale 0–11+</div><div class="poll-limit">Concern above: <span>6 (High)</span></div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-uv"></div></div></div>
-      <div class="poll-cell"><div class="poll-cell-hd"><span class="poll-tag">Dust</span><span class="info-wrap" data-tip="Airborne Dust — Windblown soil and particles. Central Texas can get spikes from West Texas dust storms. Hard on HVAC filters and can trigger eye irritation."><span class="info-btn">i</span></span></div><div class="poll-full">Windblown Dust</div><div class="poll-num" id="pv-dust">—</div><div class="poll-unit">µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-dust"></div></div></div>
+      <div class="poll-cell">
+        <div class="poll-cell-hd"><span class="poll-tag">PM 2.5</span><span class="info-wrap" data-tip="Tiny Particles — Smaller than a human hair, these get deep into your lungs. Wood smoke, car exhaust, and dust create them. The #1 reason outdoor air affects how you feel inside."><span class="info-btn">i</span></span></div><div class="poll-full">Tiny Airborne Particles</div>
+        <div class="poll-num-block"><div class="poll-num" id="pv-pm25">—</div><div class="poll-unit">µg/m³</div></div>
+        <div class="poll-bar-col"><div class="poll-limit">Safe limit: 12 µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-pm25"></div></div></div>
+        <div class="poll-badge" id="pbadge-pm25">—</div>
+      </div>
+      <div class="poll-cell">
+        <div class="poll-cell-hd"><span class="poll-tag">Ozone O₃</span><span class="info-wrap" data-tip="Ground-Level Ozone — Forms on hot sunny days, common in Austin summers. Irritates throat and lungs, especially for kids and asthma sufferers. Worst in afternoon heat."><span class="info-btn">i</span></span></div><div class="poll-full">Ground-Level Ozone</div>
+        <div class="poll-num-block"><div class="poll-num" id="pv-o3">—</div><div class="poll-unit">µg/m³</div></div>
+        <div class="poll-bar-col"><div class="poll-limit">Safe limit: 100 µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-o3"></div></div></div>
+        <div class="poll-badge" id="pbadge-o3">—</div>
+      </div>
+      <div class="poll-cell">
+        <div class="poll-cell-hd"><span class="poll-tag">PM 10</span><span class="info-wrap" data-tip="Dust &amp; Larger Particles — From dust, pollen, mold, construction. Your nose filters many of these, but high levels still irritate — especially on windy Central Texas days."><span class="info-btn">i</span></span></div><div class="poll-full">Dust &amp; Larger Particles</div>
+        <div class="poll-num-block"><div class="poll-num" id="pv-pm10">—</div><div class="poll-unit">µg/m³</div></div>
+        <div class="poll-bar-col"><div class="poll-limit">Safe limit: 54 µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-pm10"></div></div></div>
+        <div class="poll-badge" id="pbadge-pm10">—</div>
+      </div>
+      <div class="poll-cell">
+        <div class="poll-cell-hd"><span class="poll-tag">NO₂</span><span class="info-wrap" data-tip="Nitrogen Dioxide — From vehicle traffic and gas appliances. Higher near busy roads. Can irritate airways and aggravate asthma. Austin's traffic makes this worth watching."><span class="info-btn">i</span></span></div><div class="poll-full">Traffic &amp; Combustion Gas</div>
+        <div class="poll-num-block"><div class="poll-num" id="pv-no2">—</div><div class="poll-unit">µg/m³</div></div>
+        <div class="poll-bar-col"><div class="poll-limit">Safe limit: 100 µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-no2"></div></div></div>
+        <div class="poll-badge" id="pbadge-no2">—</div>
+      </div>
+      <div class="poll-cell">
+        <div class="poll-cell-hd"><span class="poll-tag">CO</span><span class="info-wrap" data-tip="Carbon Monoxide — Colorless, odorless gas from burning fuel. Outdoor levels are usually low, but indoors — from gas stoves or attached garages — it can build up silently."><span class="info-btn">i</span></span></div><div class="poll-full">Carbon Monoxide</div>
+        <div class="poll-num-block"><div class="poll-num" id="pv-co">—</div><div class="poll-unit">µg/m³</div></div>
+        <div class="poll-bar-col"><div class="poll-limit">Safe limit: 4,400 µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-co"></div></div></div>
+        <div class="poll-badge" id="pbadge-co">—</div>
+      </div>
+      <div class="poll-cell">
+        <div class="poll-cell-hd"><span class="poll-tag">SO₂</span><span class="info-wrap" data-tip="Sulfur Dioxide — Mainly from power plants and industrial sites. Can irritate your nose and throat. Less common in Austin but worth watching on bad air days."><span class="info-btn">i</span></span></div><div class="poll-full">Industrial Gas</div>
+        <div class="poll-num-block"><div class="poll-num" id="pv-so2">—</div><div class="poll-unit">µg/m³</div></div>
+        <div class="poll-bar-col"><div class="poll-limit">Safe limit: 185 µg/m³</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-so2"></div></div></div>
+        <div class="poll-badge" id="pbadge-so2">—</div>
+      </div>
+      <div class="poll-cell">
+        <div class="poll-cell-hd"><span class="poll-tag">UV Index</span><span class="info-wrap" data-tip="UV Radiation — Scale 0–11+. Under 3: low. Above 6: wear sunscreen. Above 8: limit direct sun for kids. Austin regularly hits 9–11 in summer."><span class="info-btn">i</span></span></div><div class="poll-full">Sun Radiation Strength</div>
+        <div class="poll-num-block"><div class="poll-num" id="pv-uv">—</div><div class="poll-unit">scale 0–11+</div></div>
+        <div class="poll-bar-col"><div class="poll-limit">Concern above: 6</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-uv"></div></div></div>
+        <div class="poll-badge" id="pbadge-uv">—</div>
+      </div>
+      <div class="poll-cell">
+        <div class="poll-cell-hd"><span class="poll-tag">Dust</span><span class="info-wrap" data-tip="Airborne Dust — Windblown soil and particles. Central Texas can get spikes from West Texas dust storms. Hard on HVAC filters and can trigger eye irritation."><span class="info-btn">i</span></span></div><div class="poll-full">Windblown Dust</div>
+        <div class="poll-num-block"><div class="poll-num" id="pv-dust">—</div><div class="poll-unit">µg/m³</div></div>
+        <div class="poll-bar-col"><div class="poll-limit">Live sensor reading</div><div class="poll-bar-wrap"><div class="poll-bar" id="pb-dust"></div></div></div>
+        <div class="poll-badge" id="pbadge-dust">—</div>
+      </div>
     </div>
   </div>
 
@@ -1013,9 +1063,12 @@ function render(data){
     if(e){
       e.textContent=p.val!=null?p.val.toFixed(1):'—';
       const col=p.val==null?'var(--text-full)':p.val<=p.safe?'var(--good)':p.val<=p.warn?'var(--mod)':'var(--bad)';
+      const lbl=p.val==null?'No data':p.val<=p.safe?'Good':p.val<=p.warn?'Moderate':'Elevated';
+      const bg=p.val==null?'rgba(0,0,0,.06)':p.val<=p.safe?'#dcfce7':p.val<=p.warn?'#fef9c3':'#fee2e2';
       e.style.color=col;
-      const bar=$('pb-'+p.id);
-      if(bar)bar.style.background=col;
+      const bar=$('pb-'+p.id);if(bar)bar.style.background=col;
+      const badge=$('pbadge-'+p.id);
+      if(badge){badge.textContent=lbl;badge.style.color=col;badge.style.background=bg;}
     }
   });
   setTimeout(()=>polls.forEach(p=>setBar('pb-'+p.id,p.val,p.max)),200);
@@ -1122,14 +1175,19 @@ function renderForecast(h){
   const DNS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   $('forecastStrip').innerHTML=days.map((date,idx)=>{
     const vals=dm[date],avg=Math.round(vals.reduce((a,b)=>a+b,0)/vals.length);
+    const lo=Math.min(...vals),hi=Math.max(...vals);
     const m=aqiMeta(avg),dow=new Date(date+'T12:00:00').getDay();
-    const name=idx===0?'Today':DNS[dow],pct=Math.min(100,avg/200*100);
+    const name=idx===0?'Today':DNS[dow];
+    const mLo=aqiMeta(Math.round(lo)),mHi=aqiMeta(Math.round(hi));
     return`<div class="fc-card ${date===todayStr?'today':''}" style="--fc-color:${m.color}">
-      <div class="fc-name">${name}</div>
-      <div class="fc-num">${avg}</div>
-      <div class="fc-cat">${m.status}</div>
-      <div class="fc-track"><div class="fc-fill" style="width:${pct}%;background:var(--border-hi)"></div></div>
-      <div class="fc-date">${fmtDate(date)}</div>
+      <div class="fc-accent"></div>
+      <div class="fc-body">
+        <div class="fc-name">${name}</div>
+        <div class="fc-num">${avg}</div>
+        <div class="fc-cat">${m.status}</div>
+        <div class="fc-range"><span class="fc-range-lo">↓${Math.round(lo)}</span> &nbsp;·&nbsp; <span class="fc-range-hi">↑${Math.round(hi)}</span></div>
+        <div class="fc-date">${fmtDate(date)}</div>
+      </div>
     </div>`;
   }).join('');
 }

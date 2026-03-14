@@ -82,23 +82,25 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .pt-aqi-panel{display:flex;flex-direction:column;justify-content:space-between;align-items:stretch;text-align:center;border-right:1px solid var(--border);padding:20px 24px 16px;}
 
 /* eyebrow badge — compact gold tag top-center */
-.pt-aqi-eyebrow-wrap{display:inline-flex;align-items:center;justify-content:center;background:var(--grad);padding:4px 14px;border-radius:2px;margin-bottom:10px;align-self:center;}
-.pt-aqi-eyebrow{font-family:var(--fh);font-weight:900;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#1a1710;line-height:1;}
+.pt-aqi-eyebrow-wrap{display:inline-flex;align-items:center;justify-content:center;background:var(--grad);padding:8px 20px;border-radius:3px;margin-bottom:12px;align-self:center;}
+.pt-aqi-eyebrow{font-family:var(--fh);font-weight:900;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#1a1710;line-height:1;}
 
-/* big number */
-.pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(72px,8vw,110px);line-height:.88;transition:color .4s;display:block;text-align:center;}
+/* number + compare row */
+.pt-aqi-num-row{display:flex;align-items:flex-end;justify-content:center;gap:10px;}
+.pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(72px,8vw,110px);line-height:.88;transition:color .4s;flex-shrink:0;}
 
 /* status word */
 .pt-aqi-status{font-family:var(--fh);font-weight:800;font-size:24px;margin-top:6px;transition:color .4s;text-align:center;}
 
-/* compare — slim inline tag below status */
-.pt-compare-pill{display:none;flex-direction:row;align-items:center;justify-content:center;gap:6px;margin-top:8px;}
-.pt-compare-pill.vis{display:flex;}
-.pt-compare-pill .cmp-icon{font-size:14px;line-height:1;flex-shrink:0;}
-.pt-compare-pill .cmp-text{font-family:var(--fh);font-weight:700;font-size:11px;color:var(--text-mid);}
+/* compare — offset right of number, stacked */
+.pt-compare-pill{display:none;flex-direction:column;align-items:flex-start;gap:3px;padding-bottom:8px;opacity:0;}
+.pt-compare-pill.vis{display:flex;opacity:1;}
+.pt-compare-pill .cmp-icon{font-size:18px;line-height:1;}
+.pt-compare-pill .cmp-label{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);}
+.pt-compare-pill .cmp-text{font-family:var(--fh);font-weight:900;font-size:16px;line-height:1;}
 
-/* info row — 1×2: Kids&Pets | Dust */
-.pt-info-row{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px;}
+/* info row — single cell */
+.pt-info-single{width:100%;margin-top:10px;padding:10px 14px;border:1px solid var(--border);background:var(--bg-sub);display:flex;flex-direction:column;align-items:center;text-align:center;}
 .pt-info-cell{padding:8px 10px;border:1px solid var(--border);background:var(--bg-sub);display:flex;flex-direction:column;align-items:center;text-align:center;}
 .pt-info-label{font-family:var(--fh);font-weight:700;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:3px;}
 .pt-info-val{font-family:var(--fh);font-weight:800;font-size:12px;line-height:1.2;color:var(--text-full);}
@@ -158,8 +160,10 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .wx-desc{font-family:var(--fh);font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-top:4px;}
 .wx-hilo{display:flex;align-items:baseline;gap:10px;margin-top:5px;}
 .wx-humid-block{display:flex;flex-direction:column;flex:2;padding:10px 16px;border-left:1px solid var(--border);justify-content:center;align-items:center;text-align:center;gap:2px;}
-.wx-humid-icon{font-size:32px;line-height:1;margin-bottom:2px;}
-.wx-humid-val{font-family:var(--fh);font-weight:900;font-size:36px;line-height:1;color:var(--text-full);transition:color .4s;}
+.wx-humid-num-row{display:flex;align-items:flex-end;gap:4px;justify-content:center;}
+.wx-humid-icon-inline{font-size:32px;line-height:1;margin-bottom:2px;}
+.wx-humid-val{font-family:var(--fh);font-weight:900;font-size:44px;line-height:1;color:var(--text-full);transition:color .4s;}
+.wx-humid-sup{font-size:16px;font-weight:700;color:var(--text-dim);vertical-align:super;line-height:1;margin-left:1px;}
 .wx-humid-dew{font-size:11px;color:var(--text-dim);margin-top:4px;font-family:var(--fh);font-weight:600;}
 .wx-hi{font-family:var(--fh);font-size:14px;font-weight:800;color:var(--sens);}
 .wx-lo{font-family:var(--fh);font-size:14px;font-weight:800;color:var(--gold-3);}
@@ -433,26 +437,22 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
       <div class="pt-aqi-eyebrow-wrap">
         <span class="pt-aqi-eyebrow">Current Air Quality Index</span>
       </div>
-      <div class="pt-aqi-big" id="aqiNum">—</div>
+      <div class="pt-aqi-num-row">
+        <div class="pt-aqi-big" id="aqiNum">—</div>
+        <div class="pt-compare-pill" id="ptCompare">
+          <span class="cmp-icon" id="ptCompareIcon"></span>
+          <span class="cmp-label">Yesterday's AQI</span>
+          <span class="cmp-text" id="ptCompareText"></span>
+        </div>
+      </div>
       <div class="pt-aqi-status" id="aqiStatus">Loading...</div>
-      <div class="pt-compare-pill" id="ptCompare">
-        <span class="cmp-icon" id="ptCompareIcon"></span>
-        <span class="cmp-text" id="ptCompareText"></span>
+      <div class="pt-info-single">
+        <div class="pt-info-label">👨‍👩‍👧 Kids &amp; Pets Today</div>
+        <div class="pt-info-val" id="ptFamilyVal">Checking...</div>
       </div>
-      <div class="pt-info-row">
-        <div class="pt-info-cell">
-          <div class="pt-info-label">👨‍👩‍👧 Kids &amp; Pets</div>
-          <div class="pt-info-val" id="ptFamilyVal">Checking...</div>
-        </div>
-        <div class="pt-info-cell">
-          <div class="pt-info-label">🍂 Airborne Dust</div>
-          <div class="pt-info-sub">
-            <span class="pt-dust-num" id="ptDustVal">—</span>
-            <span class="pt-dust-unit">µg/m³</span>
-          </div>
-          <span class="pt-dust-badge" id="ptDustBadge">—</span>
-        </div>
-      </div>
+      <!-- dust IDs kept for JS — hidden -->
+      <span id="ptDustVal" style="display:none"></span>
+      <span id="ptDustBadge" style="display:none"></span>
       <!-- legacy hidden — JS still targets these -->
       <div id="ptFamily" style="display:none;"></div>
     </div>
@@ -513,9 +513,11 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
         </div>
       </div>
       <div class="wx-humid-block">
-        <div class="wx-humid-icon">💧</div>
         <div class="wx-curr-label">Humidity</div>
-        <div class="wx-humid-val"><span id="wxHumid">—</span>%</div>
+        <div class="wx-humid-num-row">
+          <span class="wx-humid-icon-inline">💧</span>
+          <span class="wx-humid-val" id="wxHumid">—</span><sup class="wx-humid-sup">%</sup>
+        </div>
         <div class="wx-humid-dew">Dew <span id="wxDew">—</span>°F</div>
       </div>
     </div>
@@ -896,12 +898,6 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
     </div>
   </div>
 
-  <div class="api-block">
-    <div class="api-lbl">📡 Live Data — Open-Meteo · Free · No API Key · CORS Enabled · Updates Hourly</div>
-    <div class="api-code">AQI: https://air-quality-api.open-meteo.com/v1/air-quality?latitude=30.2672&amp;longitude=-97.7431&amp;current=us_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,uv_index&amp;hourly=us_aqi,pm2_5,pm10,ozone,nitrogen_dioxide,carbon_monoxide,sulphur_dioxide,dust,uv_index&amp;forecast_days=7&amp;timezone=America%2FChicago<br>
-Weather: https://api.open-meteo.com/v1/forecast?latitude=30.2672&amp;longitude=-97.7431&amp;current=temperature_2m,apparent_temperature,relative_humidity_2m,dew_point_2m,weather_code,wind_speed_10m,wind_direction_10m,precipitation&amp;temperature_unit=fahrenheit&amp;wind_speed_unit=mph&amp;precipitation_unit=inch&amp;timezone=America%2FChicago</div>
-    <div class="api-meta">Austin TX · 30.2672°N 97.7431°W · Open-Meteo CC BY 4.0 · Embed in backend for newsletter automation</div>
-  </div>
 
 </div><!-- /main -->
 
@@ -1067,7 +1063,7 @@ function renderWeather(wx){
   set('wxWind',wind!=null?Math.round(wind):'—');
   // Color: humidity (comfort range)
   const humEl=$('wxHumid');
-  if(humEl&&humid!=null){const p=humEl.parentElement;if(p)p.style.color=humid<30?'#ea580c':humid<=60?'var(--good)':humid<=75?'#3b82f6':'#1d4ed8';}
+  if(humEl&&humid!=null){humEl.style.color=humid<30?'#ea580c':humid<=60?'var(--good)':humid<=75?'#3b82f6':'#1d4ed8';}
   // Color: wind speed
   const windEl=$('wxWind');
   if(windEl&&wind!=null){const ws=windEl.closest('.wx-stat-val');if(ws)ws.style.color=wind<5?'var(--good)':wind<15?'var(--text-full)':wind<25?'var(--mod)':'var(--bad)';}
@@ -1139,7 +1135,8 @@ function render(data){
     const d=aqi-yAqi;
     const cl=$('ptCompare');if(cl)cl.classList.add('vis');
     const icon=d<-5?'📉':d>5?'📈':'➡';
-    const txt=d<-5?`Better than yesterday (was ${Math.round(yAqi)})`:d>5?`Worse than yesterday (was ${Math.round(yAqi)})`:`Similar to yesterday (was ${Math.round(yAqi)})`;
+    const dir=d<-5?'▼ '+Math.round(yAqi):d>5?'▲ '+Math.round(yAqi):'→ '+Math.round(yAqi);
+    const txt=dir;
     const col=d<-5?'var(--good)':d>5?'var(--bad)':'var(--text-dim)';
     set('ptCompareIcon',icon);
     const ptct=$('ptCompareText');if(ptct){ptct.textContent=txt;ptct.style.color=col;}

@@ -76,23 +76,23 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 
 /* HERO — 3-column: AQI panel | Identity center | Weather right */
 .page-title-outer{background:#fff;border-bottom:2px solid var(--gold-2);}
-.page-title{display:grid;grid-template-columns:1fr 1.6fr 1fr;align-items:stretch;gap:0;background:#fff;max-width:1400px;margin:0 auto;width:100%;}
+.page-title{display:grid;grid-template-columns:1.5fr 1.5fr 1fr;align-items:stretch;gap:0;background:#fff;max-width:1400px;margin:0 auto;width:100%;}
 
 /* LEFT PANEL — AQI summary */
-.pt-aqi-panel{display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--border);padding:22px 24px;}
+.pt-aqi-panel{display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;border-right:1px solid var(--border);padding:24px 28px;}
 .pt-aqi-eyebrow{font-family:var(--fh);font-weight:700;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;}
-.pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(72px,9vw,120px);line-height:.88;transition:color .4s;}
-.pt-aqi-status{font-family:var(--fh);font-weight:800;font-size:18px;margin-top:8px;transition:color .4s;}
-.pt-compare{font-size:12px;color:var(--text-mid);margin-top:6px;display:none;align-items:center;gap:6px;}
+.pt-aqi-big{font-family:var(--fh);font-weight:900;font-size:clamp(80px,10vw,140px);line-height:.85;transition:color .4s;}
+.pt-aqi-status{font-family:var(--fh);font-weight:800;font-size:20px;margin-top:10px;transition:color .4s;}
+.pt-compare{font-size:12px;color:var(--text-mid);margin-top:6px;display:none;align-items:center;justify-content:center;gap:6px;}
 .pt-compare-icon{font-size:14px;}
-.pt-family{margin-top:10px;padding:8px 12px;border:1px solid var(--border);background:var(--bg-sub);}
-.pt-family-label{font-size:8px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:2px;}
+.pt-family{margin-top:10px;padding:10px 16px;border:1px solid var(--border);background:var(--bg-sub);width:100%;}
+.pt-family-label{font-size:8px;font-family:var(--fh);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:3px;text-align:center;}
 .pt-family-val{font-size:12px;font-family:var(--fh);font-weight:800;}
-.pt-scale{margin-top:12px;}
+.pt-scale{margin-top:14px;width:100%;}
 .pt-scale-bar{display:flex;gap:2px;height:6px;margin-bottom:5px;}
 .pt-sb{flex:1;border-radius:1px;opacity:.18;transition:opacity .4s;}
 .pt-sb.on{opacity:1;}
-.pt-scale-labels{display:flex;justify-content:space-between;}
+.pt-scale-labels{display:flex;justify-content:space-between;margin-top:4px;}
 .pt-sl{display:flex;flex-direction:column;align-items:center;flex:1;}
 .pt-sl-num{font-family:var(--fh);font-weight:800;font-size:9px;}
 .pt-sl-name{font-family:var(--fh);font-weight:600;font-size:7px;color:var(--text-dim);margin-top:1px;text-transform:uppercase;}
@@ -112,7 +112,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 
 /* RIGHT PANEL — weather */
 .wx-hero{display:flex;flex-direction:column;border-left:1px solid var(--border);}
-.wx-main{display:flex;align-items:center;gap:14px;padding:16px 18px;border-bottom:1px solid var(--border);background:#fff;}
+.wx-main{display:flex;align-items:center;justify-content:center;gap:14px;padding:18px;border-bottom:1px solid var(--border);background:#fff;}
 .wx-icon{font-size:40px;line-height:1;flex-shrink:0;width:46px;text-align:center;}
 .wx-temp-col{display:flex;flex-direction:column;justify-content:center;gap:2px;flex:1;}
 .wx-primary-row{display:flex;align-items:flex-end;gap:14px;}
@@ -129,7 +129,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .wx-hi{font-family:var(--fh);font-size:11px;font-weight:800;color:var(--sens);}
 .wx-lo{font-family:var(--fh);font-size:11px;font-weight:800;color:var(--gold-3);}
 .wx-stats{display:grid;grid-template-columns:repeat(2,1fr);flex:1;}
-.wx-stat{padding:11px 14px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:column;transition:background .2s;background:#fff;}
+.wx-stat{padding:14px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:column;align-items:center;text-align:center;transition:background .2s;background:#fff;}
 .wx-stat:nth-child(2n){border-right:none;}
 .wx-stat:nth-child(5),.wx-stat:nth-child(6){border-bottom:none;}
 .wx-stat:hover{background:var(--bg-sub);}
@@ -139,7 +139,7 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .wx-stat-unit-inline{font-size:10px;color:var(--text-dim);font-weight:400;}
 .wx-stat-sub{font-size:9px;color:var(--text-dim);margin-top:3px;line-height:1.3;}
 .wx-stat-sub2{font-family:var(--fh);font-weight:700;font-size:9px;color:var(--text-dim);margin-top:2px;}
-.hum-bar{width:100%;height:3px;background:rgba(0,0,0,.07);margin-top:5px;border-radius:1px;overflow:hidden;position:relative;}
+.hum-bar{width:90%;height:3px;background:rgba(0,0,0,.07);margin-top:6px;border-radius:1px;overflow:hidden;position:relative;}
 .hum-fill{height:100%;background:var(--grad-h);transition:width .8s ease;width:0;}
 .hum-good{position:absolute;left:40%;width:15%;height:100%;background:rgba(22,163,74,.3);top:0;}
 
@@ -164,40 +164,41 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
 .hs-lbl{font-size:9px;font-family:var(--fh);font-weight:700;color:var(--text-dim);white-space:nowrap;}
 
 /* HERO 50/50 */
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:4px;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:4px;align-items:stretch;}
 
 /* AQI CARD */
 .aqi-desc{font-size:14px;line-height:1.8;color:var(--text-mid);margin-top:16px;max-width:360px;}
 .family-badge{display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:10px 16px;border:2px solid var(--border-hi);background:var(--bg-sub);}
 
 /* POLLEN HERO CARD */
-.pollen-hero{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-md);padding:30px 28px;display:flex;flex-direction:column;position:relative;overflow:visible;}
+.pollen-hero{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-md);padding:24px 28px;display:flex;flex-direction:column;position:relative;overflow:visible;}
 .pollen-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#22c55e,#16a34a);}
 .pch-hdr{font-family:var(--fh);font-weight:800;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;display:flex;align-items:center;}
-.pollen-rows{display:flex;flex-direction:column;gap:3px;flex:1;}
-.p-row{background:var(--bg-sub);border:1px solid var(--border);padding:11px 14px;display:flex;align-items:center;gap:12px;transition:background .2s;}
+.pollen-rows{display:flex;flex-direction:column;gap:3px;flex:1;justify-content:space-between;}
+.p-row{background:var(--bg-sub);border:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;gap:14px;transition:background .2s;flex:1;}
 .p-row:hover{background:var(--bg-hover);}
 .p-emoji{font-size:22px;flex-shrink:0;}
 .p-info{flex:1;min-width:0;}
 .p-type-row{display:flex;align-items:center;margin-bottom:1px;}
 .p-type{font-family:var(--fh);font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-mid);}
 .cedar-tag{background:#7f1d1d;color:#fca5a5;font-family:var(--fh);font-size:8px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:2px 7px;margin-left:7px;display:none;vertical-align:middle;}
-.p-num{font-family:var(--fh);font-weight:900;font-size:28px;line-height:1;margin-top:2px;}
+.p-num{font-family:var(--fh);font-weight:900;font-size:32px;line-height:1;margin-top:3px;}
 .p-unit{font-size:10px;color:var(--text-dim);margin-top:1px;}
 .p-bar-wrap{width:100%;height:3px;background:rgba(0,0,0,.07);margin-top:6px;overflow:hidden;}
 .p-bar{height:100%;transition:width 1.2s ease;width:0%;}
-.p-badge{padding:3px 10px;font-family:var(--fh);font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;flex-shrink:0;white-space:nowrap;}
+.p-badge{padding:5px 12px;font-family:var(--fh);font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;flex-shrink:0;white-space:nowrap;border-radius:1px;}
 
 /* QUICK STATS */
-.qs-tile{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:22px 20px;position:relative;overflow:visible;transition:all .2s;}
+.qs-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:4px;height:100%;}
+.qs-tile{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);padding:20px 16px;position:relative;overflow:visible;transition:all .2s;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;}
 .qs-tile:hover{box-shadow:var(--sh-md);transform:translateY(-1px);}
 .qs-tile::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
 .qs-tile:hover::after{transform:scaleX(1);}
-.qs-icon{font-size:24px;margin-bottom:10px;}
-.qs-label{font-family:var(--fh);font-weight:700;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;display:flex;align-items:center;}
-.qs-val{font-family:var(--fh);font-weight:900;font-size:28px;line-height:1.1;color:var(--gold-3);}
+.qs-icon{font-size:26px;margin-bottom:8px;}
+.qs-label{font-family:var(--fh);font-weight:700;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:5px;display:flex;align-items:center;justify-content:center;}
+.qs-val{font-family:var(--fh);font-weight:900;font-size:26px;line-height:1.1;color:var(--gold-3);}
 .qs-val.co{color:inherit;}
-.qs-note{font-size:12px;color:var(--text-dim);margin-top:4px;}
+.qs-note{font-size:11px;color:var(--text-dim);margin-top:4px;}
 
 /* POLLUTANT TABLE */
 .poll-section{background:#fff;border:1px solid var(--border);box-shadow:var(--sh-sm);margin-bottom:4px;overflow:visible;}
@@ -510,16 +511,6 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
   </div>
 </div>
 </div>
-<!-- Hourly AQI strip — directly below hero, full width -->
-<div class="wx-hourly-outer">
-  <div class="wx-hourly-strip">
-    <div class="hs-label">
-      <div class="hs-title">Today's Hourly AQI</div>
-      <div class="hs-note" id="hsNote">Finding cleanest window...</div>
-    </div>
-    <div class="hs-bars" id="hourlyBars"></div>
-  </div>
-</div>
 
 <div class="main">
 
@@ -530,30 +521,30 @@ body{background:var(--bg);color:var(--text-full);font-family:var(--fb);min-heigh
   <!-- HERO: quick stats left | pollen right -->
   <div class="hero-grid" style="margin-top:24px;">
 
-    <!-- QUICK STATS PANEL -->
-    <div style="display:flex;flex-direction:column;gap:4px;">
+    <!-- QUICK STATS PANEL — 2×2 grid, centered, fills full height -->
+    <div class="qs-grid">
       <div class="qs-tile">
         <div class="qs-icon">💨</div>
-        <div class="qs-label">Main Concern Today <span class="info-wrap" data-tip="The single pollutant driving today's AQI the most — measured relative to its safety threshold."><span class="info-btn">i</span></span></div>
-        <div class="qs-val" id="qs-dom" style="font-size:21px">—</div>
-        <div class="qs-note">Primary pollutant right now</div>
+        <div class="qs-label">Main Concern <span class="info-wrap" data-tip="The single pollutant driving today's AQI the most — measured relative to its safety threshold."><span class="info-btn">i</span></span></div>
+        <div class="qs-val" id="qs-dom">—</div>
+        <div class="qs-note">Primary pollutant</div>
       </div>
       <div class="qs-tile">
         <div class="qs-icon">🏷️</div>
-        <div class="qs-label">Air Quality Rating <span class="info-wrap" data-tip="US EPA categories: Good (0–50), Moderate (51–100), Unhealthy for Some (101–150), Unhealthy (151–200), Very Unhealthy (201–300), Hazardous (301+)."><span class="info-btn">i</span></span></div>
-        <div class="qs-val co" id="qs-cat" style="font-size:24px;line-height:1.1">—</div>
+        <div class="qs-label">AQI Rating <span class="info-wrap" data-tip="US EPA categories: Good (0–50), Moderate (51–100), Unhealthy for Some (101–150), Unhealthy (151–200), Very Unhealthy (201–300), Hazardous (301+)."><span class="info-btn">i</span></span></div>
+        <div class="qs-val co" id="qs-cat">—</div>
         <div class="qs-note">US EPA classification</div>
       </div>
       <div class="qs-tile">
         <div class="qs-icon">⏰</div>
         <div class="qs-label">Best Time Outside <span class="info-wrap" data-tip="The hour window today when air quality is cleanest, based on the hourly forecast."><span class="info-btn">i</span></span></div>
-        <div class="qs-val" id="qs-besttime" style="font-size:20px">—</div>
+        <div class="qs-val" id="qs-besttime">—</div>
         <div class="qs-note">Lowest AQI window today</div>
       </div>
       <div class="qs-tile">
         <div class="qs-icon">🌿</div>
-        <div class="qs-label">Overall Pollen Load <span class="info-wrap" data-tip="Combined pollen + mold index for Austin right now. Austin consistently ranks in the top 5 worst allergy cities in America."><span class="info-btn">i</span></span></div>
-        <div class="qs-val co" id="qs-pollen" style="font-size:26px">—</div>
+        <div class="qs-label">Pollen Load <span class="info-wrap" data-tip="Combined pollen + mold index for Austin right now. Austin consistently ranks in the top 5 worst allergy cities in America."><span class="info-btn">i</span></span></div>
+        <div class="qs-val co" id="qs-pollen">—</div>
         <div class="qs-note">Grass + ragweed + tree + mold</div>
       </div>
     </div>
@@ -1039,7 +1030,6 @@ function render(data){
   ];
   cands.sort((a,b)=>b.s-a.s);
   set('qs-dom',cands[0].name);
-  const ptd=$('ptDom');if(ptd)ptd.textContent=cands[0].name;
   const ce=$('qs-cat');ce.textContent=meta.cat;ce.style.color=meta.color;
 
   /* Best time */
@@ -1048,7 +1038,7 @@ function render(data){
     const hr=parseInt(h.time[i].split('T')[1]);
     if(h.us_aqi[i]!=null)today.push({hour:hr,aqi:h.us_aqi[i]});
   }
-  if(today.length){today.sort((a,b)=>a.aqi-b.aqi);const b=today[0];const bt=fmtHr(b.hour)+' – '+fmtHr(b.hour+1);set('qs-besttime',bt);const ptbt=$('ptBestTime');if(ptbt)ptbt.textContent=bt;}
+  if(today.length){today.sort((a,b)=>a.aqi-b.aqi);const b=today[0];const bt=fmtHr(b.hour)+' – '+fmtHr(b.hour+1);set('qs-besttime',bt);}
 
   /* Pollen — seasonal baselines + live dust */
   const sp=getSeasonalPollen();
@@ -1082,7 +1072,6 @@ function render(data){
   const pollenAvg=(sp.grass+sp.ragweed+sp.tree+(sp.mold/20))/3;
   const pp=pollenMeta(pollenAvg);
   const pqe=$('qs-pollen');pqe.textContent=pp.label;pqe.style.color=pp.color;
-  const ptp=$('ptPollen');if(ptp){ptp.textContent=pp.label;ptp.style.color=pp.color;}
 
   renderHourly(h,hIdx);
   renderForecast(h);
